@@ -6,6 +6,7 @@
 package shoreline.GUI.Controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -31,23 +32,25 @@ public class MainWindowController implements Initializable
     private AnchorPane anchorpane;
     @FXML
     private JFXButton submitBtn;
+    @FXML
     private ImageView imageView;
     @FXML
     private BorderPane borderPane;
+    @FXML
+    private JFXTextField userTxtField;
+    @FXML
+    private AnchorPane loginPane;
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb)
-    {
-     
-   
-    }    
-
+    
     @FXML
     private void submitAction(ActionEvent event)
     {
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources)
+    {
+       imageView.setImage(new Image(getClass().getResourceAsStream("/res/shoreline.png")));
     }
     
 }

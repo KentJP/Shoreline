@@ -24,6 +24,27 @@ and open the template in the editor.
     -fx-text-fill: white;
     -fx-font-size: 20px;
     -fx-border-radius: 8px;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-border-color: white;
 
     
+}
+
+.text-field {
+    -fx-background-color:white;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 0 ;
+}
+.text-field:focused {
+    -fx-background-color: white;
+}
+
+.loginPane{
+    
+ -fx-background-color: #2663a5;   
+ -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-border-radius: 8px;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-border-color: white;
 }
