@@ -8,17 +8,17 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../res/Mainwindow.css" type="BorderPane" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shoreline.GUI.Controller.MainWindowController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shoreline.GUI.Controller.MainWindowController">
    <center>
       <AnchorPane fx:id="anchorpane" prefHeight="232.0" prefWidth="549.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane fx:id="loginPane" layoutX="280.0" layoutY="-1.0" prefHeight="311.0" prefWidth="249.0" style="-fx-background-color: F0F8FF; -fx-background-radius: 8; -fx-border-color: #2663a5; -fx-border-radius: 8;" styleClass="fx">
+            <AnchorPane fx:id="loginPane" layoutX="276.0" layoutY="31.0" prefHeight="311.0" prefWidth="249.0" style=": ;">
                <children>
-                  <JFXTextField fx:id="userTxtField" layoutX="47.0" layoutY="198.0" prefHeight="25.0" prefWidth="156.0" promptText="Insert USER ID" style="-fx-background-color: white; -fx-background-radius: 8;">
+                  <JFXTextField fx:id="userTxtField" layoutX="47.0" layoutY="198.0" prefHeight="25.0" prefWidth="156.0" promptText="USER ID" style=": ;">
                      <font>
                         <Font name="System Italic" size="12.0" />
                      </font></JFXTextField>
-                  <JFXButton fx:id="submitBtn" layoutX="46.0" layoutY="251.0" onAction="#submitAction" prefHeight="37.0" prefWidth="157.0" style="-fx-border-color: 2663a5;" text="Sign in" />
+                  <JFXButton fx:id="submitBtn" layoutX="46.0" layoutY="251.0" onAction="#submitAction" prefHeight="37.0" prefWidth="157.0" text="Sign in" />
                   <ImageView fx:id="imageView" fitHeight="54.0" fitWidth="200.0" layoutX="17.0" layoutY="28.0">
                      <image>
                         <Image url="@../../../../../../../Desktop/Shoreline%20logo.png" />
@@ -29,4 +29,4 @@
          </children>
       </AnchorPane>
    </center>
-</fx:root>
+</BorderPane>

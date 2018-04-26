@@ -7,14 +7,11 @@ package shoreline.GUI.Controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -50,7 +47,7 @@ public class MainWindowController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-       imageView.setImage(new Image(getClass().getResourceAsStream("/res/shoreline.png")));
+        imageView.setImage(new Image(getClass().getResourceAsStream("/shoreline/res/shoreline.png")));
     }
     
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package shoreline.BE;
+package shoreline;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -22,20 +22,18 @@ public class Main extends Application
     @Override
     public void start(Stage stage) throws Exception
     {
-        Parent root = FXMLLoader.load(getClass().getResource("/GUI/View/MainWindow.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/shoreline/GUI/View/MainWindow.fxml"));
         
-        Scene scene = new Scene(root,400,400);
+        Scene scene = new Scene(root);
         
         stage.setScene(scene);
-        stage.show();
-        scene.getStylesheets().add("/GUI/res/Mainwindow.css");
-        stage.setResizable(false);
-        stage.setScene(scene);
+        scene.getStylesheets().add("/shoreline/res/Mainwindow.css");
         stage.show();
         stage.setTitle("Shoreline login");
         
-       
+         
         
+   
     }
 
     /**
@@ -43,7 +41,7 @@ public class Main extends Application
      */
     public static void main(String[] args)
     {
-        
+        launch(args);
     }
     
 }
