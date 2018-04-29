@@ -3,13 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package shoreline.GUI.Model;
+package shoreline.DAL.FileReader;
+
+import java.io.File;
+import java.util.List;
 
 /**
  *
- * @author Kent Juul
+ * @author frederik
  */
-public class test3
-{
+public interface StrategyFileReader {
+    
+    public List<String> readFile(File file);
+    
+    
     
 }
