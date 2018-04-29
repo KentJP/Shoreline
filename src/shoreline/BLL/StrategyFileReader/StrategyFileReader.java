@@ -3,22 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package shoreline.DAL.FileReader;
+package shoreline.BLL.StrategyFileReader;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 
 /**
  *
  * @author frederik
  */
-public class XLSXReader implements StrategyFileReader{
-
-    @Override
-    public List<String> readFile(File file) 
-    {
-        System.out.println("INSERT FROM DATACONVERTER");
-        return null;
-    }
+public interface StrategyFileReader 
+{
+    
+    public List<HashMap> readFile(File file);
+    
+    
     
 }
