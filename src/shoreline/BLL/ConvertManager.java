@@ -13,8 +13,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.io.FilenameUtils;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+import org.json.JSONObject;
+
 import shoreline.BLL.StrategyFileReader.StrategyFileReader;
 import shoreline.BLL.StrategyFileReader.XLSXReader;
 /**
@@ -49,28 +49,24 @@ public class ConvertManager
     public void convertToJSON()
     {
         JSONObject root = new JSONObject();
-        
-        int i = 1;
-        
+              
+        int rowIndex = 1;
         for (HashMap listProperty : listProperties) 
         { 
-            JSONObject jsonRow = new JSONObject();
-
-            jsonRow.putAll(listProperty);  
+            JSONObject jsonRow = new JSONObject(listProperty);
             
-            root.put("Row" + i, jsonRow);
-            i++;
+            root.put("Exel Object " + rowIndex  , jsonRow);
+            rowIndex++;
             
-            System.out.println(root.toString());
-            System.out.println(" ");
         }
 
         try 
         {
             FileWriter file = new FileWriter(filePath);
             
-            file.write(root.toJSONString());
+            file.write(root.toString(4));
             file.flush();
+          
             
             
             
