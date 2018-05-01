@@ -27,7 +27,7 @@ public class Main extends Application
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
-        //scene.getStylesheets().add("/shoreline/res/Mainwindow.css");
+        scene.getStylesheets().add("/shoreline/res/Mainwindow.css");
         stage.show();
         stage.setTitle("Shoreline login");
         

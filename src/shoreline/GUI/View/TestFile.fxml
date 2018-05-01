@@ -1,10 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shoreline.GUI.Controller.TestFileController">
-   <children>
-      <JFXButton layoutX="194.0" layoutY="149.0" onAction="#chooseFileEvent" prefHeight="103.0" prefWidth="212.0" text="Choose File" />
-   </children>
-</AnchorPane>
+<SplitPane dividerPositions="0.27816901408450706" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="679.0" prefWidth="1029.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shoreline.GUI.Controller.TestFileController">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+         <children>
+            <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="546.0" prefWidth="251.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                     <children>
+                        <JFXButton layoutX="53.0" layoutY="14.0" onAction="#chooseFileEvent" prefHeight="57.0" prefWidth="136.0" text="Select Import data" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="52.0" />
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="297.0" prefWidth="249.0">
+                     <children>
+                        <TableView fx:id="importDataTableView" layoutX="45.0" prefHeight="382.0" prefWidth="211.0" AnchorPane.bottomAnchor="-0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="importDataTableColumn" minWidth="0.0" prefWidth="280.0" text="Import data" />
+                          </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="546.0" prefWidth="589.0">
+         <children>
+            <TableView layoutX="36.0" layoutY="111.0" prefHeight="528.0" prefWidth="661.0" AnchorPane.bottomAnchor="38.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="41.0" AnchorPane.topAnchor="111.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="Input " />
+                <TableColumn prefWidth="75.0" text="Output  " />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+         </children></AnchorPane>
+  </items>
+</SplitPane>

@@ -27,7 +27,7 @@ public class ConvertManager
     private List<HashMap> listProperties;
     private String filePath = "JSONrunner.json";
   
-    public void identifyFile(File selectedFile) 
+    public List<HashMap> identifyFile(File selectedFile) 
     {
         String path = selectedFile.getAbsolutePath();
         String fileExtension = FilenameUtils.getExtension(path);
@@ -39,10 +39,10 @@ public class ConvertManager
         
         if(fileReader != null)
         {
-            listProperties = fileReader.readFile(selectedFile);
+            return fileReader.readFile(selectedFile);
         }
         
-        convertToJSON();
+        return null;
     }
     
     

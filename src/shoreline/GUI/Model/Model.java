@@ -6,6 +6,12 @@
 package shoreline.GUI.Model;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import shoreline.BLL.ConvertManager;
 
 /**
@@ -15,10 +21,28 @@ import shoreline.BLL.ConvertManager;
 public class Model {
     
     private ConvertManager cm = new ConvertManager();
+    private List<HashMap> currentSheetInput;
+    private ObservableList<String> headerValues = FXCollections.observableArrayList();
 
     public void identifyFile(File selectedFile) 
     {
-        cm.identifyFile(selectedFile);
+        currentSheetInput = cm.identifyFile(selectedFile);
+        
+        HashMap<String, String> temp = currentSheetInput.get(1);
+        
+        for (String key : temp.keySet()) 
+        {
+            headerValues.add(key);
+        }
+        
+        headerValues.add("reeeeeee");
+    
+        
+    }
+
+    public ObservableList<String> getCurrentHeaderValues() 
+    {
+        return headerValues;
     }
     
     

@@ -7,10 +7,16 @@ package shoreline.GUI.Controller;
 
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.FileChooser;
 import shoreline.GUI.Model.Model;
 
@@ -23,7 +29,11 @@ public class TestFileController implements Initializable {
 
     
     private Model model = new Model();
-    
+    private List<HashMap> sheetInput = new ArrayList<>();
+    @FXML
+    private TableView<String> importDataTableView;
+    @FXML
+    private TableColumn<String, String> importDataTableColumn;
     /**
      * Initializes the controller class.
      */
@@ -43,6 +53,25 @@ public class TestFileController implements Initializable {
             model.identifyFile(selectedFile);
             
         }
+        
+        displayImportData();
+        
     }
+    
+    private void displayConvertConfig()
+    {
+        
+        importDataTableView.setItems(model.getCurrentHeaderValues());
+        importDataTableColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()));
+    }
+
+    private void displayImportData() 
+    {
+
+        
+    }
+    
+    
+    
     
 }
