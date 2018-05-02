@@ -16,18 +16,26 @@
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
-                        <JFXButton layoutX="53.0" layoutY="14.0" onAction="#chooseFileEvent" prefHeight="57.0" prefWidth="136.0" text="Select Import data" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="52.0" />
+                        <JFXButton layoutX="53.0" layoutY="14.0" onAction="#chooseFileEvent" prefHeight="57.0" prefWidth="136.0" text="Select Import data" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="52.0">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font></JFXButton>
+                        <JFXButton layoutX="44.0" layoutY="219.0" onAction="#convertData" prefHeight="47.0" prefWidth="185.0" text="Convert">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </JFXButton>
                      </children>
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="297.0" prefWidth="249.0">
                      <children>
-                        <ListView fx:id="importDataList" layoutX="40.0" layoutY="14.0" onDragDetected="#startDrag" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
+                        <ListView fx:id="importDataList" layoutX="40.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
                         <Label layoutX="28.0" layoutY="14.0" maxHeight="40.0" prefHeight="40.0" prefWidth="280.0" text="Import Data values" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <JFXButton layoutX="229.0" layoutY="5.0" onAction="#addImportData" text="-&gt;" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                        <JFXButton layoutX="229.0" layoutY="5.0" onAction="#addInput" text="-&gt;" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
                      </children>
                   </AnchorPane>
               </items>
@@ -39,20 +47,21 @@
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <ListView fx:id="InputDataList" layoutX="100.0" layoutY="58.0" onMouseDragReleased="#endDrop" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <ListView fx:id="inputDataList" layoutX="100.0" layoutY="58.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <ListView fx:id="OutputDataList" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <ListView fx:id="outputDataList" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
               </items>
             </SplitPane>
-            <JFXTextField fx:id="hardValueTxtField" layoutY="169.0" prefHeight="31.0" prefWidth="184.0" promptText="Insert Hard Value" />
-            <JFXButton layoutX="184.0" layoutY="169.0" onAction="#addHardValue" text="add" />
+            <JFXTextField fx:id="hardValueTxtField" layoutY="169.0" prefHeight="31.0" prefWidth="123.0" promptText="Insert Hard Value" />
+            <JFXButton layoutX="133.0" layoutY="172.0" onAction="#addHardValue" text="Add" />
             <JFXButton layoutX="271.0" layoutY="169.0" onAction="#moveInputUp" text="UP" />
             <JFXButton layoutX="310.0" layoutY="169.0" onAction="#moveInputDown" text="Down" />
+            <JFXButton layoutX="184.0" layoutY="172.0" onAction="#removeInput" text="Remove" />
          </children></AnchorPane>
   </items>
 </SplitPane>

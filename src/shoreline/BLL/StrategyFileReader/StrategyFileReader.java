@@ -16,7 +16,10 @@ import java.util.List;
 public interface StrategyFileReader 
 {
     
-    public List<HashMap> readFile(File file);
+    public HashMap<String, Integer> readProperties(File file);
+    
+    public List<HashMap> extractData(HashMap<String, Integer> properties);
+            
     
     
     

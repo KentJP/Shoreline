@@ -25,26 +25,32 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class XLSXReader implements StrategyFileReader
 {
     
-    private HashMap<String, Integer> headerList = new HashMap<>();
+    private int rowLength;
+    private DataFormatter formatter;
+    private FileInputStream fis;
+    private XSSFWorkbook wb;
+    private  XSSFSheet sheet;
     
-    private List<HashMap> listProperties = new ArrayList<>();
-
+   
     @Override
-    public List<HashMap> readFile(File file)
+    public HashMap<String, Integer> readProperties(File file) 
     {
-    
         try 
         {
-            DataFormatter formatter = new DataFormatter();
-            FileInputStream fis = new FileInputStream(file);
-            XSSFWorkbook wb = new XSSFWorkbook(fis);
+            formatter = new DataFormatter();
+            fis = new FileInputStream(file);
+            wb = new XSSFWorkbook(fis);
             
-            XSSFSheet sheet = wb.getSheetAt(0);
+            sheet = wb.getSheetAt(0);
             
-            int rowLength = sheet.getLastRowNum() +1;
+            rowLength = sheet.getLastRowNum() +1;
             
             
             int cellCounter = 0;
+            
+            
+            HashMap<String, Integer> headerList = new HashMap<>();
+            
             
             while(sheet.getRow(0).getCell(cellCounter) != null)
             {
@@ -70,17 +76,31 @@ public class XLSXReader implements StrategyFileReader
                 }
                 cellCounter++;
             }
+            return headerList;
             
             
+        } catch (IOException ex) 
+        {
+            Logger.getLogger(XLSXReader.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    @Override
+    public List<HashMap> extractData(HashMap<String, Integer> properties) 
+    {
+        
+            List<HashMap> listProperties = new ArrayList<>();
+                    
             for (int i = 1; i < rowLength; i++) 
             {
                 
                 HashMap<String,String> rowValue = new HashMap<>();
                         
-                for (String propertyValue : headerList.keySet()) 
+                for (String propertyValue : properties.keySet()) 
                 {
         
-                    Cell cell = sheet.getRow(i).getCell(headerList.get(propertyValue));
+                    Cell cell = sheet.getRow(i).getCell(properties.get(propertyValue));
                     String cellValue = formatter.formatCellValue(cell);
                     
                     rowValue.put(propertyValue, cellValue);
@@ -89,18 +109,7 @@ public class XLSXReader implements StrategyFileReader
                 
             }
             
-        
-            
-            
-            
-        } 
-        catch (IOException ex) 
-        {
-            Logger.getLogger(XLSXReader.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return listProperties;
-        
-
+            return listProperties;
     }
     
 }

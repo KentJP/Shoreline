@@ -24,10 +24,8 @@ import shoreline.BLL.StrategyFileReader.XLSXReader;
 public class ConvertManager
 {
     private StrategyFileReader fileReader;
-    private List<HashMap> listProperties;
-    private String filePath = "JSONrunner.json";
   
-    public List<HashMap> identifyFile(File selectedFile) 
+    public HashMap<String,Integer> readProperties(File selectedFile) 
     {
         String path = selectedFile.getAbsolutePath();
         String fileExtension = FilenameUtils.getExtension(path);
@@ -39,21 +37,24 @@ public class ConvertManager
         
         if(fileReader != null)
         {
-            return fileReader.readFile(selectedFile);
+            return fileReader.readProperties(selectedFile);
         }
         
         return null;
     }
     
     
-    public void convertToJSON()
+    public void convertToJSON(HashMap<String, Integer> configuretProperties)
     {
+        
+        List<HashMap> extractedData = fileReader.extractData(configuretProperties);
+        
         JSONObject root = new JSONObject();
               
         int rowIndex = 1;
-        for (HashMap listProperty : listProperties) 
+        for (HashMap listOfValues : extractedData) 
         { 
-            JSONObject jsonRow = new JSONObject(listProperty);
+            JSONObject jsonRow = new JSONObject(listOfValues);
             
             root.put("Exel Object " + rowIndex  , jsonRow);
             rowIndex++;
@@ -62,7 +63,7 @@ public class ConvertManager
 
         try 
         {
-            FileWriter file = new FileWriter(filePath);
+            FileWriter file = new FileWriter("JSONrunner.json");
             
             file.write(root.toString(4));
             file.flush();
@@ -85,7 +86,8 @@ public class ConvertManager
         
         
     }
-    
+
+  
 }
 
         

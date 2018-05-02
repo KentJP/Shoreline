@@ -7,6 +7,8 @@ package shoreline.GUI.Model;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Observable;
@@ -21,19 +23,17 @@ import shoreline.BLL.ConvertManager;
 public class Model {
     
     private ConvertManager cm = new ConvertManager();
-    private List<HashMap> currentSheetInput;
+    private HashMap<String, Integer> currentSheetInput;
     private ObservableList<String> headerValues = FXCollections.observableArrayList();
-    
+    private ObservableList<String> inputHeaderValues = FXCollections.observableArrayList();
     private ObservableList<String> outputHeaderValues = FXCollections.observableArrayList();
     
 
-    public void identifyFile(File selectedFile) 
+    public void readProperties(File selectedFile) 
     {
-        currentSheetInput = cm.identifyFile(selectedFile);
+        currentSheetInput = cm.readProperties(selectedFile);
         
-        HashMap<String, String> temp = currentSheetInput.get(1);
-        
-        for (String key : temp.keySet()) 
+        for (String key : currentSheetInput.keySet()) 
         {
             headerValues.add(key);
         }
@@ -67,9 +67,88 @@ public class Model {
     
     public ObservableList<String> getCurrentOutputHeaderValues()
     {
-        return outputHeaderValues;
+        return outputHeaderValues;     
+    }
+    
+    public ObservableList<String> getCurrentInputHeaderVaules()
+    {
+        return inputHeaderValues;
+    }
+    
+    public void addHardValue(String hardValue)
+    {
+        inputHeaderValues.add(hardValue);
+    }
+    
+    public void moveInputUp(String selectedItem) 
+    {
+        int index = inputHeaderValues.indexOf(selectedItem);
+        int nextIndex = index - 1; 
+        
+        if(nextIndex > -1)
+        {
+             Collections.swap(inputHeaderValues, index, nextIndex);     
+        }        
+    }
+    
+    public void moveInputDown(String selectedItem) 
+    {
+        int index = inputHeaderValues.indexOf(selectedItem);
+        int nextIndex = index + 1; 
+        
+        if(nextIndex < inputHeaderValues.size())
+        {
+             Collections.swap(inputHeaderValues, index, nextIndex);     
+        }
+    }
+
+    public void addInput(String selectedHeader) 
+    {
+        inputHeaderValues.add(selectedHeader);
+        headerValues.remove(selectedHeader);
+    }
+
+    public void removeInput(String selectedItem) 
+    {
+        inputHeaderValues.remove(selectedItem);
+        headerValues.add(selectedItem);
+    }
+
+    public void extractData() 
+    {
+        HashMap<String, Integer> configuretProperties = new HashMap<>();
+        
+        for (String outputHeaderValue : outputHeaderValues) 
+        {
+            int index = outputHeaderValues.indexOf(outputHeaderValue);
+            
+            String correspondingInput; 
+            
+            
+            if(index > inputHeaderValues.size())
+            {
+                correspondingInput = "";
+            }
+            else
+            {
+                correspondingInput = inputHeaderValues.get(index);
+            }
+            
+                        
+            int value  = currentSheetInput.get(correspondingInput);
+            
+            configuretProperties.put(outputHeaderValue, value);
+        }
+        
+        cm.convertToJSON(configuretProperties);
+            
+        
         
     }
+
+ 
+    
+    
     
     
 }

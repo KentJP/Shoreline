@@ -9,6 +9,7 @@ import com.jfoenix.controls.JFXTextField;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -42,20 +43,25 @@ public class TestFileController implements Initializable {
     private List<HashMap> sheetInput = new ArrayList<>();
     @FXML
     private ListView<String> importDataList;
-    @FXML
-    private ListView<String> InputDataList;
-    @FXML
-    private ListView<String> OutputDataList;
+
     
     private String selectedHeader;
     @FXML
     private JFXTextField hardValueTxtField;
+    @FXML
+    private ListView<String> inputDataList;
+    @FXML
+    private ListView<String> outputDataList;
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
- 
+    public void initialize(URL url, ResourceBundle rb) 
+    {
+        importDataList.setItems(model.getCurrentHeaderValues());
+        inputDataList.setItems(model.getCurrentInputHeaderVaules());
+        outputDataList.setItems(model.getCurrentOutputHeaderValues());
+
     }    
 
     @FXML
@@ -66,66 +72,74 @@ public class TestFileController implements Initializable {
         
         if(selectedFile != null)
         {
-            model.identifyFile(selectedFile);
+            model.readProperties(selectedFile);
             
         }
         
-        displayImportData();
-        
-    }
-    
-    private void displayConvertConfig()
-    {
-
-    }
-
-    private void displayImportData() 
-    {
-        importDataList.getItems().setAll(model.getCurrentHeaderValues());
-        OutputDataList.getItems().setAll(model.getCurrentOutputHeaderValues());
         
     }
 
     @FXML
-    private void startDrag(MouseEvent event) 
-    {
-        selectedHeader = importDataList.getSelectionModel().getSelectedItem();
-        System.out.println(selectedHeader);
-    }
-
-    @FXML
-    private void endDrop(MouseDragEvent event) 
-    {
-        InputDataList.getItems().add(selectedHeader);
-    }
-
-    @FXML
-    private void addImportData(ActionEvent event) 
+    private void addInput(ActionEvent event) 
     {
         if(!importDataList.getSelectionModel().getSelectedItem().isEmpty())
         {
             String selectedHeader = importDataList.getSelectionModel().getSelectedItem();
             
-            InputDataList.getItems().add(selectedHeader);
+            model.addInput(selectedHeader);
         }
     }
 
     @FXML
     private void addHardValue(ActionEvent event) 
     {
-        String hardValue = "\"" + hardValueTxtField.getText() +    "\"";
-        InputDataList.getItems().add(hardValue);
-        hardValueTxtField.clear();
+        if(inputDataList != null)
+        {
+            String hardValue = "\"" + hardValueTxtField.getText() +    "\"";
+            model.addHardValue(hardValue);
+            hardValueTxtField.clear();
+        }
         
     }
 
     @FXML
-    private void moveInputUp(ActionEvent event) {
+    private void removeInput(ActionEvent event) 
+    {
+        String selectedItem = inputDataList.getSelectionModel().getSelectedItem();
+        
+        if(selectedItem != null)
+        {
+            model.removeInput(selectedItem);
+        }
+    }
+    
+    
+    @FXML
+    private void moveInputUp(ActionEvent event) 
+    {
+        String selectedItem = inputDataList.getSelectionModel().getSelectedItem();
+        model.moveInputUp(selectedItem);
+        inputDataList.getSelectionModel().select(selectedItem);        
     }
 
     @FXML
-    private void moveInputDown(ActionEvent event) {
+    private void moveInputDown(ActionEvent event) 
+    {
+        String selectedItem = inputDataList.getSelectionModel().getSelectedItem();
+        model.moveInputDown(selectedItem);
+        inputDataList.getSelectionModel().select(selectedItem);
+   
+        
+     
+        
     }
+
+    @FXML
+    private void convertData(ActionEvent event) 
+    { 
+        model.extractData();
+    }
+
 
 
     
