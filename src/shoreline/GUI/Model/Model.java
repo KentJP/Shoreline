@@ -23,6 +23,9 @@ public class Model {
     private ConvertManager cm = new ConvertManager();
     private List<HashMap> currentSheetInput;
     private ObservableList<String> headerValues = FXCollections.observableArrayList();
+    
+    private ObservableList<String> outputHeaderValues = FXCollections.observableArrayList();
+    
 
     public void identifyFile(File selectedFile) 
     {
@@ -36,6 +39,23 @@ public class Model {
         }
         
         headerValues.add("reeeeeee");
+        outputHeaderValues.addAll(
+            "siteName",
+                "assetSerialNumber",
+                "type",
+                "externalWorkOrderId",
+                "systemStatus",
+                "userStatus",
+                "createdOn",
+                "createdBy",
+                "name",
+                "priority",
+                "status",
+                "latestFinishDate",
+                "earliestStartDate",
+                "latestStartDate",
+                "estimatedTime");
+                
     
         
     }
@@ -43,6 +63,12 @@ public class Model {
     public ObservableList<String> getCurrentHeaderValues() 
     {
         return headerValues;
+    }
+    
+    public ObservableList<String> getCurrentOutputHeaderValues()
+    {
+        return outputHeaderValues;
+        
     }
     
     

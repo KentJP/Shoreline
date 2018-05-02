@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <SplitPane dividerPositions="0.27816901408450706" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="679.0" prefWidth="1029.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shoreline.GUI.Controller.TestFileController">
   <items>
@@ -19,14 +21,13 @@
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="297.0" prefWidth="249.0">
                      <children>
-                        <TableView fx:id="importDataTableView" layoutX="45.0" prefHeight="382.0" prefWidth="211.0" AnchorPane.bottomAnchor="-0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                          <columns>
-                            <TableColumn fx:id="importDataTableColumn" minWidth="0.0" prefWidth="280.0" text="Import data" />
-                          </columns>
-                           <columnResizePolicy>
-                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                           </columnResizePolicy>
-                        </TableView>
+                        <ListView fx:id="importDataList" layoutX="40.0" layoutY="14.0" onDragDetected="#startDrag" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
+                        <Label layoutX="28.0" layoutY="14.0" maxHeight="40.0" prefHeight="40.0" prefWidth="280.0" text="Import Data values" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <JFXButton layoutX="229.0" layoutY="5.0" onAction="#addImportData" text="-&gt;" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
                      </children>
                   </AnchorPane>
               </items>
@@ -34,15 +35,24 @@
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="546.0" prefWidth="589.0">
          <children>
-            <TableView layoutX="36.0" layoutY="111.0" prefHeight="528.0" prefWidth="661.0" AnchorPane.bottomAnchor="38.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="41.0" AnchorPane.topAnchor="111.0">
-              <columns>
-                <TableColumn prefWidth="75.0" text="Input " />
-                <TableColumn prefWidth="75.0" text="Output  " />
-              </columns>
-               <columnResizePolicy>
-                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-               </columnResizePolicy>
-            </TableView>
+            <SplitPane dividerPositions="0.5" layoutX="197.0" layoutY="169.0" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="200.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <ListView fx:id="InputDataList" layoutX="100.0" layoutY="58.0" onMouseDragReleased="#endDrop" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <ListView fx:id="OutputDataList" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+            <JFXTextField fx:id="hardValueTxtField" layoutY="169.0" prefHeight="31.0" prefWidth="184.0" promptText="Insert Hard Value" />
+            <JFXButton layoutX="184.0" layoutY="169.0" onAction="#addHardValue" text="add" />
+            <JFXButton layoutX="271.0" layoutY="169.0" onAction="#moveInputUp" text="UP" />
+            <JFXButton layoutX="310.0" layoutY="169.0" onAction="#moveInputDown" text="Down" />
          </children></AnchorPane>
   </items>
 </SplitPane>
