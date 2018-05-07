@@ -5,7 +5,9 @@
  */
 package shoreline.GUI.Controller;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
@@ -52,6 +54,16 @@ public class TestFileController implements Initializable {
     private ListView<String> inputDataList;
     @FXML
     private ListView<String> outputDataList;
+    @FXML
+    private JFXButton moveInputDownBtn;
+    @FXML
+    private JFXButton moveInputUpBtn;
+    @FXML
+    private JFXButton selectImportBtn;
+    @FXML
+    private JFXButton selectOutputBtn;
+    @FXML
+    private JFXButton convertBtn;
     /**
      * Initializes the controller class.
      */
@@ -61,7 +73,9 @@ public class TestFileController implements Initializable {
         importDataList.setItems(model.getCurrentHeaderValues());
         inputDataList.setItems(model.getCurrentInputHeaderVaules());
         outputDataList.setItems(model.getCurrentOutputHeaderValues());
-
+        
+    
+   
     }    
 
     @FXML

@@ -124,6 +124,7 @@ public class Model {
             
             String correspondingInput; 
             
+                        
             
             if(index > inputHeaderValues.size())
             {
@@ -133,8 +134,7 @@ public class Model {
             {
                 correspondingInput = inputHeaderValues.get(index);
             }
-            
-                        
+                            
             int value  = currentSheetInput.get(correspondingInput);
             
             configuretProperties.put(outputHeaderValue, value);
@@ -145,6 +145,20 @@ public class Model {
         
         
     }
+    
+    
+    private Boolean isHardValue(String value)
+    {
+        if(value.startsWith("\"") && value.endsWith("\""))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 
  
     

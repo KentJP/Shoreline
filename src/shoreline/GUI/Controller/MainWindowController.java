@@ -54,14 +54,20 @@ public class MainWindowController implements Initializable
          Parent root = FXMLLoader.load(getClass().getResource("/shoreline/GUI/View/TestFile.fxml"));
         
         Scene scene = new Scene(root);
-        //scene.getStylesheets().add(("/shoreline/res/TestFile.css"));
+        scene.getStylesheets().add("/shoreline/res/TestWindow.css");
        
-        
+            
         
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
         stage.setTitle("Shoreline login");
+        
+        Stage closeStage = (Stage) submitBtn.getScene().getWindow();
+        closeStage.close();
+
+        
+        
         
         } else
         {
