@@ -23,11 +23,6 @@
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font></JFXButton>
-                        <JFXButton fx:id="selectOutputBtn" layoutX="35.0" layoutY="81.0" onAction="#chooseFileEvent" prefHeight="57.0" prefWidth="211.0" text="Select Output format" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="34.0">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </JFXButton>
                      </children>
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="297.0" prefWidth="249.0">
