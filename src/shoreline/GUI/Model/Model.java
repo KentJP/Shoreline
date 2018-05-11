@@ -38,7 +38,6 @@ public class Model {
             headerValues.add(key);
         }
         
-        headerValues.add("reeeeeee");
         outputHeaderValues.addAll(
             "siteName",
                 "assetSerialNumber",
