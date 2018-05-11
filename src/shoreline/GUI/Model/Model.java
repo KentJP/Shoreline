@@ -28,6 +28,8 @@ public class Model {
     private User currentUser;
     
     public static Model model = new Model();
+    
+    private UserManager usermanager = new UserManager();
 
     public  Model getInstance() {
         
@@ -173,7 +175,7 @@ public class Model {
 
     public  User login(String userName) throws SQLException {
         
-        currentUser = UserManager.login(userName);
+        currentUser = usermanager.login(userName);
         
         return currentUser;
     }
