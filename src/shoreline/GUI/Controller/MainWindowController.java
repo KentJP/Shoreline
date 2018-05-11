@@ -9,6 +9,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,6 +22,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import shoreline.BE.User;
+import shoreline.GUI.Model.Model;
 
 /**
  * FXML Controller class
@@ -42,35 +45,45 @@ public class MainWindowController implements Initializable
     private JFXTextField userTxtField;
     @FXML
     private AnchorPane loginPane;
+    
+    /**
+     *
+     */
+    private static Model model = new Model();
 
     
     @FXML
-    private void submitAction(ActionEvent event) throws IOException
+    private void submitAction(ActionEvent event) throws IOException, SQLException
     {
         String userName = userTxtField.getText();
+         
         
-        if (!userName.isEmpty()) {
-        
-         Parent root = FXMLLoader.load(getClass().getResource("/shoreline/GUI/View/TestFile.fxml"));
-        
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add("/shoreline/res/TestWindow.css");
-       
+        if (userName != null){
+            User currentUser = model.login(userName);
             
-        
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
-        stage.setTitle("Shoreline login");
-        
-        Stage closeStage = (Stage) submitBtn.getScene().getWindow();
-        closeStage.close();
-
-        
-        
-        
+            Parent root = FXMLLoader.load(getClass().getResource("/shoreline/GUI/View/TestFile.fxml"));
+            
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add("/shoreline/res/TestWindow.css");
+            
+            
+            
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+            stage.setTitle("Shoreline login");
+            
+            Stage closeStage = (Stage) submitBtn.getScene().getWindow();
+            closeStage.close();
+            
+            
+            
+            
         } else
         {
+            
+           
+            
             
         }
         

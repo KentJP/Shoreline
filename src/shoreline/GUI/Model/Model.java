@@ -6,6 +6,7 @@
 package shoreline.GUI.Model;
 
 import java.io.File;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -14,13 +15,25 @@ import java.util.List;
 import java.util.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import shoreline.BE.User;
 import shoreline.BLL.ConvertManager;
+import shoreline.BLL.UserManager;
 
 /**
  *
  * @author frederik
  */
 public class Model {
+    
+    private User currentUser;
+    
+    public static Model model = new Model();
+
+    public  Model getInstance() {
+        
+        return model;
+      
+    }
     
     private ConvertManager cm = new ConvertManager();
     private HashMap<String, Integer> currentSheetInput;
@@ -156,6 +169,13 @@ public class Model {
         {
             return false;
         }
+    }
+
+    public  User login(String userName) throws SQLException {
+        
+        currentUser = UserManager.login(userName);
+        
+        return currentUser;
     }
 
 
