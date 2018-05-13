@@ -5,13 +5,18 @@
  */
 package shoreline.GUI.Controller;
 
+import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import org.apache.poi.hsmf.datatypes.PropertyValue;
 import shoreline.BE.ActionLog;
 import shoreline.GUI.Model.Model;
@@ -39,6 +44,8 @@ public class LogViewController implements Initializable {
     private TableColumn<ActionLog, String> actionColumn;
     
     private Model model = new Model();
+    @FXML
+    private JFXTextField searchTxtField;
 
     /**
      * Initializes the controller class.
@@ -58,5 +65,36 @@ public class LogViewController implements Initializable {
         
       
     }    
+
+    @FXML
+    private void searchEvent(KeyEvent event) 
+    {
+        FilteredList filter = new FilteredList(actionLogTableView.getItems(), e -> true);
+        searchTxtField.textProperty().addListener((observable, oldValue, newValue) -> {
+
+            filter.setPredicate((Predicate<? super ActionLog>) (ActionLog log) -> 
+            {
+                if (newValue.isEmpty() || newValue == null) 
+                {
+                    return true;
+                } else if (log.getFname().toLowerCase().contains(newValue.toLowerCase()) ||
+                            log.getLname().toLowerCase().contains(newValue.toLowerCase()) ||
+                            log.getEmail().toLowerCase().contains(newValue.toLowerCase()) ||
+                            log.getDate().toLowerCase().contains(newValue.toLowerCase()) ||
+                            log.getTime().toLowerCase().contains(newValue.toLowerCase()) ||
+                            log.getAction().toLowerCase().contains(newValue.toLowerCase()))
+                {
+                    return true;    
+                }
+
+                return false;
+            });
+            SortedList sort = new SortedList(filter);
+            sort.comparatorProperty().bind(actionLogTableView.comparatorProperty());
+
+            actionLogTableView.setItems(sort);
+        });
+
+    }
     
 }
