@@ -17,11 +17,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import shoreline.BE.ActionLog;
 import shoreline.BE.User;
 import shoreline.GUI.Model.Model;
 
@@ -45,54 +47,50 @@ public class MainWindowController implements Initializable
     private JFXTextField userTxtField;
     @FXML
     private AnchorPane loginPane;
+    @FXML
+    private Label loginErrorLbl;    
+  
     
-    /**
-     *
-     */
-    private static Model model = new Model();
+    private Model model = new Model();
 
+
+    
+    
+    
+    
+    @Override
+    public void initialize(URL location, ResourceBundle resources)
+    {
+        loginErrorLbl.setVisible(false);
+        imageView.setImage(new Image(getClass().getResourceAsStream("/shoreline/res/shoreline.png")));
+    }
+    
+    
+    
     
     @FXML
     private void submitAction(ActionEvent event) throws IOException, SQLException
     {
-        String userName = userTxtField.getText();
-         
+        String loginInfo = userTxtField.getText();
         
-        if (userName != null){
-            User currentUser = model.login(userName);
-            
+        if(model.validateLogin(loginInfo))
+        {           
             Parent root = FXMLLoader.load(getClass().getResource("/shoreline/GUI/View/TestFile.fxml"));
             
             Scene scene = new Scene(root);
             scene.getStylesheets().add("/shoreline/res/TestWindow.css");
-            
-            
-            
+
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
             stage.setTitle("Shoreline login");
             
             Stage closeStage = (Stage) submitBtn.getScene().getWindow();
-            closeStage.close();
-            
-            
-            
-            
-        } else
-        {
-            
-           
-            
-            
+            closeStage.close();   
         }
-        
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources)
-    {
-        imageView.setImage(new Image(getClass().getResourceAsStream("/shoreline/res/shoreline.png")));
-    }
-    
+        else
+        {
+            loginErrorLbl.setVisible(true);
+        }
+    }    
 }

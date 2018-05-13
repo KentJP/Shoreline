@@ -3,14 +3,22 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/GUI/Model/Model.java</file>
-            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/BLL/StrategyFileReader/XLSXReader.java</file>
-            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/Main.java</file>
-            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/res/Mainwindow.css</file>
-            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/GUI/Controller/TestFileController.java</file>
-            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/BLL/ConvertManager.java</file>
-            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/BLL/StrategyFileReader/StrategyFileReader.java</file>
-            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/res/TestWindow.css</file>
+            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/GUI/Model/Model.java</file>
+            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/GUI/Controller/LogViewController.java</file>
+            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/BE/CurrentUser.java</file>
+            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/BLL/LogManager.java</file>
+            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/GUI/View/LogView.fxml</file>
+            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/GUI/View/MainWindow.fxml</file>
+            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/DAL/DataBaseConnector.java</file>
+            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/DAL/LogDAO.java</file>
+            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/BLL/ConvertManager.java</file>
+            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/GUI/Controller/TestFileController.java</file>
+            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/GUI/Controller/MainWindowController.java</file>
+            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/res/Mainwindow.css</file>
+            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/BE/ActionLog.java</file>
+            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/BE/User.java</file>
+            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/DAL/UserDAO.java</file>
+            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/BLL/UserManager.java</file>
         </group>
     </open-files>
 </project-private>

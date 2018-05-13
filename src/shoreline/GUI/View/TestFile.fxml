@@ -23,6 +23,11 @@
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font></JFXButton>
+                        <JFXButton layoutX="36.0" layoutY="247.0" onAction="#viewLogEvent" prefHeight="57.0" prefWidth="211.0" text="View Log">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </JFXButton>
                      </children>
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="297.0" prefWidth="249.0">

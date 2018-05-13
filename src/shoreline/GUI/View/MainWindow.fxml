@@ -2,28 +2,28 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shoreline.GUI.Controller.MainWindowController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shoreline.GUI.Controller.MainWindowController">
    <center>
       <AnchorPane fx:id="anchorpane" prefHeight="232.0" prefWidth="549.0" BorderPane.alignment="CENTER">
          <children>
             <AnchorPane fx:id="loginPane" layoutX="276.0" layoutY="31.0" prefHeight="311.0" prefWidth="249.0" style=": ;">
                <children>
-                  <JFXTextField fx:id="userTxtField" layoutX="47.0" layoutY="198.0" prefHeight="25.0" prefWidth="156.0" promptText="USER ID" style=": ;">
+                  <JFXTextField fx:id="userTxtField" layoutX="47.0" layoutY="198.0" prefHeight="25.0" prefWidth="156.0" promptText="example123@email.com" style=": ;">
                      <font>
                         <Font name="System Italic" size="12.0" />
                      </font></JFXTextField>
                   <JFXButton fx:id="submitBtn" layoutX="46.0" layoutY="251.0" onAction="#submitAction" prefHeight="37.0" prefWidth="157.0" text="Sign in" />
-                  <ImageView fx:id="imageView" fitHeight="54.0" fitWidth="200.0" layoutX="17.0" layoutY="28.0">
-                     <image>
-                        <Image url="@../../../../../../../Desktop/Shoreline%20logo.png" />
-                     </image>
-                  </ImageView>
+                  <ImageView fx:id="imageView" fitHeight="54.0" fitWidth="200.0" layoutX="25.0" layoutY="28.0" />
+                  <Label fx:id="loginErrorLbl" layoutX="46.0" layoutY="174.0" prefHeight="17.0" prefWidth="158.0" text="Invalid login information" textFill="#ff1b1b">
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font></Label>
                </children>
             </AnchorPane>
          </children>

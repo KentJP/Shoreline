@@ -15,8 +15,10 @@ import java.util.List;
 import java.util.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import shoreline.BE.ActionLog;
 import shoreline.BE.User;
 import shoreline.BLL.ConvertManager;
+import shoreline.BLL.LogManager;
 import shoreline.BLL.UserManager;
 
 /**
@@ -25,23 +27,20 @@ import shoreline.BLL.UserManager;
  */
 public class Model {
     
-    private User currentUser;
-    
-    public static Model model = new Model();
     
     private UserManager usermanager = new UserManager();
+    private LogManager logmanager = new LogManager();
 
-    public  Model getInstance() {
-        
-        return model;
-      
-    }
     
     private ConvertManager cm = new ConvertManager();
     private HashMap<String, Integer> currentSheetInput;
     private ObservableList<String> headerValues = FXCollections.observableArrayList();
     private ObservableList<String> inputHeaderValues = FXCollections.observableArrayList();
     private ObservableList<String> outputHeaderValues = FXCollections.observableArrayList();
+    
+    private ObservableList<ActionLog> actionLogList = FXCollections.observableArrayList();
+    
+    
     
 
     public void readProperties(File selectedFile) 
@@ -87,6 +86,12 @@ public class Model {
     public ObservableList<String> getCurrentInputHeaderVaules()
     {
         return inputHeaderValues;
+    }
+    
+    public ObservableList<ActionLog> getActionLogList()
+    {
+        actionLogList.setAll(logmanager.getAllActionLogs());
+        return actionLogList;
     }
     
     public void addHardValue(String hardValue)
@@ -173,12 +178,16 @@ public class Model {
         }
     }
 
-    public  User login(String userName) throws SQLException {
-        
-        currentUser = usermanager.login(userName);
-        
-        return currentUser;
+    public boolean validateLogin(String loginInfo) 
+    {
+        return usermanager.validateLogin(loginInfo);
     }
+    
+    public void logAciton(ActionLog log)
+    {
+        logmanager.logAction(log);
+    }
+
 
 
  

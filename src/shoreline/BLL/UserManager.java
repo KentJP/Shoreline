@@ -13,17 +13,19 @@ import shoreline.DAL.UserDAO;
  *
  * @author peder
  */
-public class UserManager {
+public class UserManager 
+{
     
-    private final UserDAO userdao = new UserDAO();
+    private UserDAO userdao = new UserDAO();
 
-    public User login(String userName) throws SQLException {
-        
-        return userdao.login(userName);
-                
+    public boolean validateLogin(String loginInfo) 
+    {
+        return userdao.validateLogin(loginInfo);
+    }
+    
       
         
         
-    }
+    
     
 }

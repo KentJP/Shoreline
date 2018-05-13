@@ -9,17 +9,23 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -31,6 +37,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import shoreline.GUI.Model.Model;
 
 /**
@@ -60,8 +67,6 @@ public class TestFileController implements Initializable {
     private JFXButton moveInputUpBtn;
     @FXML
     private JFXButton selectImportBtn;
-    @FXML
-    private JFXButton selectOutputBtn;
     @FXML
     private JFXButton convertBtn;
     /**
@@ -152,6 +157,25 @@ public class TestFileController implements Initializable {
     private void convertData(ActionEvent event) 
     { 
         model.extractData();
+    }
+
+    @FXML
+    private void viewLogEvent(ActionEvent event) 
+    {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/shoreline/GUI/View/LogView.fxml"));
+            
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add("/shoreline/res/TestWindow.css");
+            
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+            stage.setTitle("Shoreline login");
+        } catch (IOException ex) 
+        {
+            Logger.getLogger(TestFileController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 

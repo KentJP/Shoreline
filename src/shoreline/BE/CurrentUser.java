@@ -14,42 +14,46 @@ import java.io.Serializable;
 public class CurrentUser {
     
     
-    private Boolean isConstructed;
+    private static CurrentUser currentUser = new CurrentUser();
     
-    private int id;
-    private String email;
-    private String fName;
-    private String lName;
+    private static int id;
+    private static String email;
+    private static String fName;
+    private static String lName;
     
+    private CurrentUser(){}
     
-    public CurrentUser(int id, String email, String fName, String lName)
+    public static void setCurrentUser(int id, String email, String fName, String lName)
     {
-        if(isConstructed != true)
-        {
-            this.id = id;
-            this.email = email;
-            this.fName = fName;
-            this.lName = lName;        
-            
-            isConstructed = true;
-        } 
+        CurrentUser.id = id;
+        CurrentUser.email = email;
+        CurrentUser.fName = fName;
+        CurrentUser.lName = lName;
     }
+    
 
-    public int getId() {
+    public static int getId() {
         return id;
     }
 
-    public String getEmail() {
+    public static String getEmail() {
         return email;
     }
 
-    public String getfName() {
+    public static String getfName() {
         return fName;
     }
 
-    public String getlName() {
+    public static String getlName() {
         return lName;
     }
     
+    public static CurrentUser getInstance()
+    {
+        return currentUser;
+    }
+    
+    
+
     
 }
