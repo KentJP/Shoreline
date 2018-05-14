@@ -44,8 +44,7 @@ public class XLSXReader implements StrategyFileReader
             sheet = wb.getSheetAt(0);
             
             rowLength = sheet.getLastRowNum() +1;
-            
-            
+                        
             int cellCounter = 0;
             
             
