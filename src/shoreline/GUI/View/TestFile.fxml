@@ -11,7 +11,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.27816901408450706" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="679.0" prefWidth="1029.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shoreline.GUI.Controller.TestFileController">
+<SplitPane dividerPositions="0.27816901408450706" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="679.0" prefWidth="1029.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shoreline.GUI.Controller.TestFileController">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
          <children>
@@ -23,7 +23,7 @@
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font></JFXButton>
-                        <JFXButton layoutX="36.0" layoutY="247.0" onAction="#viewLogEvent" prefHeight="57.0" prefWidth="211.0" text="View Log">
+                        <JFXButton fx:id="logBtn" layoutX="36.0" layoutY="247.0" onAction="#viewLogEvent" prefHeight="57.0" prefWidth="211.0" text="View Log">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>

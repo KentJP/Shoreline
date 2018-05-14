@@ -69,6 +69,8 @@ public class TestFileController implements Initializable {
     private JFXButton selectImportBtn;
     @FXML
     private JFXButton convertBtn;
+    @FXML
+    private JFXButton logBtn;
     /**
      * Initializes the controller class.
      */
@@ -166,7 +168,7 @@ public class TestFileController implements Initializable {
             Parent root = FXMLLoader.load(getClass().getResource("/shoreline/GUI/View/LogView.fxml"));
             
             Scene scene = new Scene(root);
-            scene.getStylesheets().add("/shoreline/res/TestWindow.css");
+            scene.getStylesheets().add("/shoreline/res/Logview.css");
             
             Stage stage = new Stage();
             stage.setScene(scene);

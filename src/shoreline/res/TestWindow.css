@@ -7,7 +7,7 @@ and open the template in the editor.
     Created on : 03-05-2018, 10:36:43
     Author     : frederik
 */
-#selectImportBtn, #selectOutputBtn, #convertBtn{
+#selectImportBtn, #selectOutputBtn, #convertBtn, #logBtn{
    
     -fx-background-color: #2663a5;
     -fx-text-fill: white;
@@ -20,5 +20,12 @@ and open the template in the editor.
 
 .jfx-button:hover{
     -fx-border-color: #2663a5;
+    -fx-background-color: #2663a5;
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-border-color: white;
 }
 
