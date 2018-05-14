@@ -16,9 +16,9 @@ and open the template in the editor.
 
 .jfx-button{
    
-    -fx-background-color: #2663a5;
+    -fx-background-color: #1a99cc;
     -fx-text-fill: white;
-    -fx-font-size: 20px;
+    -fx-font-size: 15px;
     -fx-border-radius: 8px;
     -fx-background-radius: 8px;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
@@ -27,7 +27,7 @@ and open the template in the editor.
     
 }
 .jfx-text-field{
-    -fx-background-color: #F0F8FF;
+    -fx-background-color: #1a99cc;
 }
 
 .jfx-text-field:focused{
@@ -43,5 +43,5 @@ and open the template in the editor.
     -fx-border-radius: 8px;
     -fx-background-radius: 8px;
     
-    -fx-border-color: #2663a5;
+    -fx-border-color: #1a99cc;
 }

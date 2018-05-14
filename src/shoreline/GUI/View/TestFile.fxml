@@ -11,7 +11,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.27816901408450706" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="679.0" prefWidth="1029.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shoreline.GUI.Controller.TestFileController">
+<SplitPane dividerPositions="0.27816901408450706" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="679.0" prefWidth="1029.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shoreline.GUI.Controller.TestFileController">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
          <children>
@@ -19,11 +19,16 @@
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
-                        <JFXButton fx:id="selectImportBtn" layoutX="35.0" layoutY="14.0" onAction="#chooseFileEvent" prefHeight="57.0" prefWidth="211.0" text="Select Import data" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="34.0">
+                        <JFXButton fx:id="selectImportBtn" layoutX="36.0" layoutY="23.0" onAction="#chooseFileEvent" prefHeight="50.0" prefWidth="185.0" text="Select Import data" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="60.0">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font></JFXButton>
-                        <JFXButton layoutX="36.0" layoutY="247.0" onAction="#viewLogEvent" prefHeight="57.0" prefWidth="211.0" text="View Log">
+                        <JFXButton fx:id="logBtn" layoutX="36.0" layoutY="247.0" onAction="#viewLogEvent" prefHeight="50.0" prefWidth="185.0" text="View Log">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="convertBtn" layoutX="36.0" layoutY="136.0" onAction="#convertData" prefHeight="50.0" prefWidth="185.0" text="Convert" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="136.0">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
@@ -114,11 +119,6 @@
                      </stops>
                   </LinearGradient>
                </ripplerFill>
-            </JFXButton>
-            <JFXButton fx:id="convertBtn" layoutX="496.0" layoutY="14.0" onAction="#convertData" prefHeight="47.0" prefWidth="227.0" text="Convert" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
             </JFXButton>
          </children></AnchorPane>
   </items>
