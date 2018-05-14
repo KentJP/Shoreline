@@ -9,23 +9,46 @@ and open the template in the editor.
 */
 #selectImportBtn, #selectOutputBtn, #convertBtn, #logBtn{
    
-    -fx-background-color: #2663a5;
+    -fx-background-color: #1a99cc;
     -fx-text-fill: white;
     -fx-border-radius: 7px;
     -fx-background-radius: 8px;
     -fx-border-color: white;
+    -fx-font-size: 15px;
 
     
 }
 
 .jfx-button:hover{
-    -fx-border-color: #2663a5;
-    -fx-background-color: #2663a5;
-    -fx-text-fill: white;
-    -fx-font-size: 20px;
+    -fx-border-color: #1a99cc;
+    -fx-background-color: #1a99cc;
+   
+    -fx-font-size: 10px;
     -fx-border-radius: 8px;
     -fx-background-radius: 8px;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
     -fx-border-color: white;
+}
+
+
+
+list-cell:selected{
+    -fx-background-color: #1a99cc;
+    -fx-font-color: black;
+    
+}
+
+
+.list-cell:even:selected { 
+    -fx-background-color: #1a99cc;
+    
+    
+}
+
+.list-cell:odd {
+    
+   background-color: white; 
+   -fx-font-color: black;
+    
 }
 
