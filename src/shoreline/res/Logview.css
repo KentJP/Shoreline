@@ -33,23 +33,12 @@ and open the template in the editor.
 }
 
 
-.table-column .label{
+.table-column .column-header-background{
+    -fx-background-color: #1a99cc; 
+}
+.table-view .column-header{
     -fx-background-color: #1a99cc;
-    -fx-text-fill: white;
-    -fx-cursor:null;
-    -fx-width: 180px; 
-    table-layout: fixed
-    
 }
-
-.table-view .arrow {
-    -fx-background-insets: 0;
-    -fx-padding: 0;
-    -fx-shape: " ";
-    
-    
-}
-
 
 
 
