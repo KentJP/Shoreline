@@ -26,6 +26,7 @@ import javafx.stage.Stage;
 import shoreline.BE.ActionLog;
 import shoreline.BE.User;
 import shoreline.GUI.Model.Model;
+import org.controlsfx.control.textfield.TextFields;
 
 /**
  * FXML Controller class
@@ -52,7 +53,7 @@ public class LoginViewController implements Initializable
   
     
     private Model model = new Model();
-
+    String[] possibleSuggestions = {"pedersenkentjuul@gmail.com", "fjt1509@hotmail.com", "dani2885@easv365.dk"};
 
     
     
@@ -63,6 +64,7 @@ public class LoginViewController implements Initializable
     {
         loginErrorLbl.setVisible(false);
         imageView.setImage(new Image(getClass().getResourceAsStream("/shoreline/res/shoreline.png")));
+        TextFields.bindAutoCompletion(userTxtField, possibleSuggestions);
         
   
     }

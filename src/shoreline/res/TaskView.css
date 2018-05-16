@@ -24,6 +24,7 @@ and open the template in the editor.
 .table-row-cell:selected{
     
  -fx-background-color: #1a99cc;
+ -fx-border-color: white;
  -fx-font-color: black;
  alignment-adjust: 0;
 }
