@@ -41,6 +41,7 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -67,6 +68,10 @@ public class MainViewController implements Initializable {
     private ListView<Configuration> inputListView;
     @FXML
     private ListView<String> outputListView;
+    @FXML
+    private AnchorPane naviPane;
+    @FXML
+    private AnchorPane importPane;
     
 
     /**

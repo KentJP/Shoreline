@@ -63,6 +63,8 @@ public class LoginViewController implements Initializable
     {
         loginErrorLbl.setVisible(false);
         imageView.setImage(new Image(getClass().getResourceAsStream("/shoreline/res/shoreline.png")));
+        
+  
     }
     
     

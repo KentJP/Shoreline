@@ -69,4 +69,9 @@ public class ConversionTask {
         this.status = "Failed to convert";
     }
     
+    public void changeSatusConverting()
+    {
+        this.status = "Converting...";
+    }
+    
 }

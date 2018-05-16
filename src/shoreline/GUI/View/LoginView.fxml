@@ -8,22 +8,24 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shoreline.GUI.Controller.LoginViewController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shoreline.GUI.Controller.LoginViewController">
    <center>
-      <AnchorPane fx:id="anchorpane" prefHeight="232.0" prefWidth="549.0" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="anchorpane" maxHeight="600.0" maxWidth="800.0" prefHeight="232.0" prefWidth="549.0">
          <children>
-            <AnchorPane fx:id="loginPane" layoutX="276.0" layoutY="31.0" prefHeight="311.0" prefWidth="249.0" style=": ;">
+            <AnchorPane fx:id="loginPane" layoutX="276.0" layoutY="31.0" prefHeight="311.0" prefWidth="249.0" style=": ;" AnchorPane.leftAnchor="276.0" AnchorPane.rightAnchor="275.0">
                <children>
-                  <JFXTextField fx:id="userTxtField" focusColor="#1a99cc" layoutX="47.0" layoutY="198.0" prefHeight="25.0" prefWidth="156.0" promptText="example123@email.com" style=": ;">
+                  <JFXTextField fx:id="userTxtField" focusColor="#1a99cc" layoutX="47.0" layoutY="198.0" prefHeight="25.0" prefWidth="156.0" promptText="example123@email.com" style=": ;" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="46.0">
                      <font>
                         <Font name="System Italic" size="12.0" />
-                     </font></JFXTextField>
-                  <JFXButton fx:id="submitBtn" layoutX="46.0" layoutY="251.0" onAction="#submitAction" prefHeight="37.0" prefWidth="157.0" text="Sign in" />
-                  <ImageView fx:id="imageView" fitHeight="54.0" fitWidth="200.0" layoutX="25.0" layoutY="28.0" />
-                  <Label fx:id="loginErrorLbl" layoutX="46.0" layoutY="174.0" prefHeight="17.0" prefWidth="158.0" text="Invalid login information" textFill="#ff1b1b">
+                     </font>
+                  </JFXTextField>
+                  <JFXButton fx:id="submitBtn" layoutX="46.0" layoutY="251.0" onAction="#submitAction" prefHeight="37.0" prefWidth="157.0" text="Sign in" AnchorPane.leftAnchor="46.0" AnchorPane.rightAnchor="46.0" />
+                  <ImageView fx:id="imageView" fitHeight="74.0" fitWidth="200.0" layoutX="25.0" layoutY="28.0" preserveRatio="true" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="24.0" />
+                  <Label fx:id="loginErrorLbl" layoutX="46.0" layoutY="174.0" prefHeight="17.0" prefWidth="158.0" text="Invalid login information" textFill="#ff1b1b" AnchorPane.leftAnchor="46.0" AnchorPane.rightAnchor="45.0">
                      <font>
                         <Font name="System Italic" size="12.0" />
-                     </font></Label>
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </children>

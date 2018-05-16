@@ -54,14 +54,15 @@ public class LogViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) 
     {
         actionLogTableView.getItems().setAll(model.getActionLogList());
-        
+
         firstNameColumn.setCellValueFactory(new PropertyValueFactory("fname"));
         lastNameColumn.setCellValueFactory(new PropertyValueFactory("lname"));
         emailColumn.setCellValueFactory(new PropertyValueFactory("email"));
         dateColumn.setCellValueFactory(new PropertyValueFactory("date"));
         timeColumn.setCellValueFactory(new PropertyValueFactory("time"));
         actionColumn.setCellValueFactory(new PropertyValueFactory("action"));
-                
+        dateColumn.setSortType(TableColumn.SortType.DESCENDING);
+        actionLogTableView.getSortOrder().add(dateColumn);              
         
       
     }    

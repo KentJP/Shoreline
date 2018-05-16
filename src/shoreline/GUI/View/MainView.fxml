@@ -16,32 +16,32 @@
          <children>
             <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="546.0" prefWidth="251.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                <AnchorPane fx:id="naviPane" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
-                        <JFXButton layoutX="36.0" layoutY="23.0" onAction="#chooseFileEvent" prefHeight="50.0" prefWidth="185.0" text="Select Import data" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="60.0">
+                        <JFXButton fx:id="importDataBtn" layoutX="36.0" layoutY="23.0" onAction="#chooseFileEvent" prefHeight="50.0" prefWidth="185.0" text="Select Import data" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="60.0">
                            <font>
-                              <Font name="System Bold" size="18.0" />
+                              <Font size="18.0" />
                            </font></JFXButton>
-                        <JFXButton layoutX="36.0" layoutY="247.0" onAction="#viewLogEvent" prefHeight="50.0" prefWidth="185.0" text="View Log">
+                        <JFXButton fx:id="viewLogBtn" layoutX="36.0" layoutY="247.0" onAction="#viewLogEvent" prefHeight="50.0" prefWidth="185.0" text="View Log">
                            <font>
-                              <Font name="System Bold" size="18.0" />
+                              <Font size="18.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton layoutX="36.0" layoutY="182.0" onAction="#viewTasksEvent" prefHeight="50.0" prefWidth="185.0" text="View Tasks">
+                        <JFXButton fx:id="viewTaskBtn" layoutX="36.0" layoutY="182.0" onAction="#viewTasksEvent" prefHeight="50.0" prefWidth="185.0" text="View Tasks">
                            <font>
-                              <Font name="System Bold" size="18.0" />
+                              <Font size="18.0" />
                            </font>
                         </JFXButton>
                      </children>
                   </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="297.0" prefWidth="249.0">
+                <AnchorPane fx:id="importPane" minHeight="0.0" minWidth="0.0" prefHeight="297.0" prefWidth="249.0">
                      <children>
                         <Label layoutX="28.0" layoutY="14.0" maxHeight="40.0" prefHeight="40.0" prefWidth="280.0" text="Import Data values" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <JFXButton layoutX="230.0" onAction="#addInput" prefHeight="41.0" prefWidth="37.0" text=" " AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <JFXButton fx:id="addBtn" layoutX="230.0" onAction="#addInput" prefHeight="41.0" prefWidth="37.0" text=" " AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <graphic>
                               <FontAwesomeIconView glyphName="ARROW_RIGHT" size="30" wrappingWidth="21.85714340209961" />
                            </graphic>
@@ -56,7 +56,7 @@
                               </LinearGradient>
                            </ripplerFill>
                         </JFXButton>
-                        <ListView fx:id="importListView" layoutX="41.0" layoutY="92.0" prefHeight="334.0" prefWidth="281.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
+                        <ListView fx:id="importListView" layoutX="41.0" layoutY="92.0" prefHeight="334.0" prefWidth="281.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
                      </children>
                   </AnchorPane>
               </items>
@@ -78,7 +78,7 @@
                   </AnchorPane>
               </items>
             </SplitPane>
-            <JFXButton layoutX="211.0" layoutY="157.0" onAction="#moveInputDown" prefHeight="41.0" prefWidth="37.0" text=" ">
+            <JFXButton fx:id="moveDownBtn" layoutX="288.0" layoutY="157.0" onAction="#moveInputDown" prefHeight="41.0" prefWidth="37.0" text=" ">
                <graphic>
                   <FontAwesomeIconView glyphName="ARROW_DOWN" size="30" wrappingWidth="21.85714340209961" />
                </graphic>
@@ -91,7 +91,7 @@
                      </stops>
                   </LinearGradient>
                </ripplerFill></JFXButton>
-            <JFXButton layoutX="126.0" layoutY="157.0" onAction="#moveInputUp" prefHeight="41.0" prefWidth="37.0" text=" ">
+            <JFXButton fx:id="moveUpBtn" layoutX="238.0" layoutY="157.0" onAction="#moveInputUp" prefHeight="41.0" prefWidth="37.0" text=" ">
                <graphic>
                   <FontAwesomeIconView glyphName="ARROW_UP" size="30" wrappingWidth="21.85714340209961" />
                </graphic>
@@ -106,9 +106,9 @@
                   </LinearGradient>
                </ripplerFill>
             </JFXButton>
-            <JFXButton layoutX="599.0" layoutY="10.0" onAction="#saveTaskEvent" prefHeight="50.0" prefWidth="185.0" text="Save Task" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <JFXButton fx:id="saveTaskBtn" layoutX="599.0" layoutY="10.0" onAction="#saveTaskEvent" prefHeight="50.0" prefWidth="185.0" text="Save Task" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font size="18.0" />
                </font>
             </JFXButton>
          </children></AnchorPane>
