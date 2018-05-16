@@ -17,6 +17,8 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import shoreline.BE.Configuration;
+import shoreline.BE.ConversionTask;
 
 /**
  *
@@ -24,58 +26,32 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 public class XLSXReader implements StrategyFileReader
 {
-    
-    private int rowLength;
-    private DataFormatter formatter;
-    private FileInputStream fis;
-    private XSSFWorkbook wb;
-    private  XSSFSheet sheet;
-    
-   
+
     @Override
-    public HashMap<String, Integer> readProperties(File file) 
+    public List<Configuration> readProperties(File file) 
     {
         try 
         {
-            formatter = new DataFormatter();
-            fis = new FileInputStream(file);
-            wb = new XSSFWorkbook(fis);
+            DataFormatter formatter = new DataFormatter();
+            FileInputStream fis = new FileInputStream(file.getAbsolutePath());
+            XSSFWorkbook wb = new XSSFWorkbook(fis);
             
-            sheet = wb.getSheetAt(0);
-            
-            rowLength = sheet.getLastRowNum() +1;
+            XSSFSheet sheet = wb.getSheetAt(0);
+
                         
             int cellCounter = 0;
             
-            
-            HashMap<String, Integer> headerList = new HashMap<>();
-            
-            
+           List<Configuration> configurationList = new ArrayList<>();
+
             while(sheet.getRow(0).getCell(cellCounter) != null)
             {
-                int dublicateCounter = 0;
                 String cellValue = sheet.getRow(0).getCell(cellCounter).getStringCellValue();
                 
-                if(!headerList.containsKey(cellValue))
-                {
-                    headerList.put(cellValue, cellCounter);
-                    
-                } else
-                {
-                    boolean done = false;
-                    
-                    while(!done)
-                    {
-                        if(!headerList.containsKey(cellValue + ++dublicateCounter))
-                        {
-                            headerList.put(cellValue + dublicateCounter, cellCounter);
-                            done = true;
-                        }
-                    }
-                }
+                Configuration c = new Configuration(cellCounter, cellValue);
+                configurationList.add(c);
                 cellCounter++;
             }
-            return headerList;
+            return configurationList;
             
             
         } catch (IOException ex) 
@@ -84,10 +60,22 @@ public class XLSXReader implements StrategyFileReader
         }
         return null;
     }
+     
+    
+    
 
     @Override
-    public List<HashMap> extractData(HashMap<String, Integer> properties) 
+    public List<HashMap> extractData(ConversionTask task) 
     {
+        try
+        {
+            DataFormatter formatter = new DataFormatter();
+            FileInputStream fis = new FileInputStream(task.getFilePath());
+            XSSFWorkbook wb = new XSSFWorkbook(fis);
+            
+            XSSFSheet sheet = wb.getSheetAt(0);
+            
+            int rowLength = sheet.getLastRowNum()+1;
         
             List<HashMap> listProperties = new ArrayList<>();
                     
@@ -95,20 +83,26 @@ public class XLSXReader implements StrategyFileReader
             {
                 
                 HashMap<String,String> rowValue = new HashMap<>();
-                        
-                for (String propertyValue : properties.keySet()) 
+                   
+                
+                for (Configuration config : task.getConfigurations()) 
                 {
-        
-                    Cell cell = sheet.getRow(i).getCell(properties.get(propertyValue));
+                    Cell cell = sheet.getRow(i).getCell(config.getIndex());
                     String cellValue = formatter.formatCellValue(cell);
                     
-                    rowValue.put(propertyValue, cellValue);
+                    rowValue.put(config.getNewValue(), cellValue);
                 }
+                
                 listProperties.add(rowValue);
                 
             }
-            
             return listProperties;
+        }
+        catch (IOException ex) 
+        {
+            Logger.getLogger(XLSXReader.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;      
     }
     
 }

@@ -11,19 +11,19 @@ import java.io.Serializable;
  *
  * @author frederik
  */
-public class Conversion implements Serializable{
+public class Configuration implements Serializable{
     
     private int index;
     private String oldValue;
     private String newValue;
     
-    public Conversion(int index, String oldValue)
+    public Configuration(int index, String oldValue)
     {
         this.index = index;
         this.oldValue = oldValue;
     }
     
-    public Conversion(int index, String oldValue, String newValue)
+    public Configuration(int index, String oldValue, String newValue)
     {
         this.index = index;
         this.oldValue = oldValue;

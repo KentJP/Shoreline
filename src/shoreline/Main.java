@@ -22,12 +22,12 @@ public class Main extends Application
     @Override
     public void start(Stage stage) throws Exception
     {
-        Parent root = FXMLLoader.load(getClass().getResource("/shoreline/GUI/View/MainWindow.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/shoreline/GUI/View/LoginView.fxml"));
         
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
-        scene.getStylesheets().add("/shoreline/res/Mainwindow.css");
+        scene.getStylesheets().add("/shoreline/res/LoginView.css");
         stage.show();
         stage.setTitle("Shoreline login");
         

@@ -8,6 +8,8 @@ package shoreline.BLL.StrategyFileReader;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
+import shoreline.BE.Configuration;
+import shoreline.BE.ConversionTask;
 
 /**
  *
@@ -16,9 +18,9 @@ import java.util.List;
 public interface StrategyFileReader 
 {
     
-    public HashMap<String, Integer> readProperties(File file);
+    public List<Configuration> readProperties(File file);
     
-    public List<HashMap> extractData(HashMap<String, Integer> properties);
+    public List<HashMap> extractData(ConversionTask task);
             
     
     

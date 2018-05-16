@@ -32,7 +32,7 @@ import shoreline.GUI.Model.Model;
  *
  * @author Kent Juul
  */
-public class MainWindowController implements Initializable
+public class LoginViewController implements Initializable
 {
 
     @FXML
@@ -75,10 +75,10 @@ public class MainWindowController implements Initializable
         
         if(model.validateLogin(loginInfo))
         {           
-            Parent root = FXMLLoader.load(getClass().getResource("/shoreline/GUI/View/TestFile.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/shoreline/GUI/View/MainView.fxml"));
             
             Scene scene = new Scene(root);
-            scene.getStylesheets().add("/shoreline/res/TestWindow.css");
+            scene.getStylesheets().add("/shoreline/res/MainView.css");
 
             Stage stage = new Stage();
             stage.setScene(scene);

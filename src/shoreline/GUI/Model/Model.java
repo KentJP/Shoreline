@@ -16,6 +16,8 @@ import java.util.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import shoreline.BE.ActionLog;
+import shoreline.BE.Configuration;
+import shoreline.BE.ConversionTask;
 import shoreline.BE.User;
 import shoreline.BLL.ConvertManager;
 import shoreline.BLL.LogManager;
@@ -32,28 +34,23 @@ public class Model {
     private LogManager logmanager = new LogManager();
 
     
-    private ConvertManager cm = new ConvertManager();
+    private ConvertManager convertmanager = new ConvertManager();
+    
     private HashMap<String, Integer> currentSheetInput;
-    private ObservableList<String> headerValues = FXCollections.observableArrayList();
-    private ObservableList<String> inputHeaderValues = FXCollections.observableArrayList();
-    private ObservableList<String> outputHeaderValues = FXCollections.observableArrayList();
-    
-    private ObservableList<ActionLog> actionLogList = FXCollections.observableArrayList();
     
     
+    private ObservableList<Configuration> headerValues;
+    private ObservableList<Configuration> inputHeaderValues;
+    private ObservableList<String> outputHeaderValues;
     
+    private ObservableList<ActionLog> actionLogList;
+    
+    private ObservableList<ConversionTask> taskList;
 
-    public void readProperties(File selectedFile) 
+    public Model() 
     {
-        currentSheetInput = cm.readProperties(selectedFile);
-        
-        for (String key : currentSheetInput.keySet()) 
-        {
-            headerValues.add(key);
-        }
-        
-        outputHeaderValues.addAll(
-            "siteName",
+        this.actionLogList = FXCollections.observableArrayList();
+        this.outputHeaderValues = FXCollections.observableArrayList("siteName",
                 "assetSerialNumber",
                 "type",
                 "externalWorkOrderId",
@@ -68,12 +65,20 @@ public class Model {
                 "earliestStartDate",
                 "latestStartDate",
                 "estimatedTime");
-                
+        this.headerValues = FXCollections.observableArrayList();
+        this.inputHeaderValues = FXCollections.observableArrayList();
+        this.taskList = FXCollections.observableArrayList();
+    }
     
-        
+    
+    
+
+    public void readProperties(File selectedFile) 
+    {
+        headerValues.setAll(convertmanager.readProperties(selectedFile));     
     }
 
-    public ObservableList<String> getCurrentHeaderValues() 
+    public ObservableList<Configuration> getCurrentHeaderValues() 
     {
         return headerValues;
     }
@@ -83,7 +88,7 @@ public class Model {
         return outputHeaderValues;     
     }
     
-    public ObservableList<String> getCurrentInputHeaderVaules()
+    public ObservableList<Configuration> getCurrentInputHeaderVaules()
     {
         return inputHeaderValues;
     }
@@ -94,12 +99,14 @@ public class Model {
         return actionLogList;
     }
     
-    public void addHardValue(String hardValue)
-    {
-        inputHeaderValues.add(hardValue);
+    public ObservableList<ConversionTask> getAllTasks() 
+    {   
+        taskList.setAll(convertmanager.getAllTasks());
+        return taskList;
     }
-    
-    public void moveInputUp(String selectedItem) 
+
+
+    public void moveInputUp(Configuration selectedItem) 
     {
         int index = inputHeaderValues.indexOf(selectedItem);
         int nextIndex = index - 1; 
@@ -110,7 +117,7 @@ public class Model {
         }        
     }
     
-    public void moveInputDown(String selectedItem) 
+    public void moveInputDown(Configuration selectedItem) 
     {
         int index = inputHeaderValues.indexOf(selectedItem);
         int nextIndex = index + 1; 
@@ -121,62 +128,18 @@ public class Model {
         }
     }
 
-    public void addInput(String selectedHeader) 
+    public void addInput(Configuration selectedHeader) 
     {
         inputHeaderValues.add(selectedHeader);
         headerValues.remove(selectedHeader);
     }
 
-    public void removeInput(String selectedItem) 
+    public void removeInput(Configuration selectedItem) 
     {
         inputHeaderValues.remove(selectedItem);
         headerValues.add(selectedItem);
     }
 
-    public void extractData() 
-    {
-        HashMap<String, Integer> configuretProperties = new HashMap<>();
-        
-        for (String outputHeaderValue : outputHeaderValues) 
-        {
-            int index = outputHeaderValues.indexOf(outputHeaderValue);
-            
-            String correspondingInput; 
-            
-                        
-            
-            if(index > inputHeaderValues.size())
-            {
-                correspondingInput = "";
-            }
-            else
-            {
-                correspondingInput = inputHeaderValues.get(index);
-            }
-                            
-            int value  = currentSheetInput.get(correspondingInput);
-            
-            configuretProperties.put(outputHeaderValue, value);
-        }
-        
-        cm.convertToJSON(configuretProperties);
-            
-        
-        
-    }
-    
-    
-    private Boolean isHardValue(String value)
-    {
-        if(value.startsWith("\"") && value.endsWith("\""))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 
     public boolean validateLogin(String loginInfo) 
     {
@@ -188,6 +151,40 @@ public class Model {
         logmanager.logAction(log);
     }
 
+    public void saveTask(String taskName, String filePath) 
+    {
+        List<Configuration> mapConfig = new ArrayList<>();
+        
+        for (String outputValue : outputHeaderValues) 
+        {
+            int index = outputHeaderValues.indexOf(outputValue);
+            
+            Configuration con  = inputHeaderValues.get(index);
+            
+            con.setNewValue(outputValue);
+            
+            mapConfig.add(con); 
+        }
+        
+        convertmanager.saveTask(taskName, filePath, mapConfig);
+    }
+
+    public void clearInput() 
+    {
+        inputHeaderValues.clear();
+    }
+
+    public void clearImport() 
+    {
+        headerValues.clear();
+    }
+
+    public void convertToJSON(ConversionTask selectedTask, String dir) 
+    {
+        convertmanager.convertToJSON(selectedTask, dir);
+    }
+
+    
 
 
  
