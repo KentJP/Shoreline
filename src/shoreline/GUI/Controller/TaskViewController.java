@@ -48,6 +48,7 @@ public class TaskViewController implements Initializable {
         TaskTableView.getItems().setAll(model.getAllTasks());
         taskNameColumn.setCellValueFactory(new PropertyValueFactory("name"));
         statusColumn.setCellValueFactory(new PropertyValueFactory("status"));
+        TaskTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         
         
         configuringDirectoryChooser(directoryChooser);

@@ -37,8 +37,8 @@ and open the template in the editor.
     -fx-background-color: #1a99cc;
     -fx-text-fill: white;
     -fx-cursor:null;
-    
-    
+    -fx-width: 180px; 
+    table-layout: fixed
     
 }
 
@@ -46,6 +46,8 @@ and open the template in the editor.
     -fx-background-insets: 0;
     -fx-padding: 0;
     -fx-shape: " ";
+    
+    
 }
 
 

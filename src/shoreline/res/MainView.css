@@ -33,7 +33,29 @@ and open the template in the editor.
     -fx-border-radius: 5;
 }
 
+.list-row-cell{
+    -fx-background-color: -fx-table-cell-border-color, #f0f8ff;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em; 
+    border-color: #F0F8FF; 
+}
 
 
+.list-cell:even{
+    -fx-background-color: #F0F8FF;
+}
 
+.list-cell:selected{
+    
+ -fx-background-color: #1a99cc;
+ -fx-font-color: black;
+ alignment-adjust: 0;
+}
 
+.list-cell:odd{
+    -fx-background-color: white;
+}
+.list-cell:odd:selected{
+    
+    -fx-background-color: #1a99cc;
+}
