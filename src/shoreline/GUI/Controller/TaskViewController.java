@@ -13,7 +13,11 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.DirectoryChooser;
@@ -45,38 +49,83 @@ public class TaskViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        TaskTableView.getItems().setAll(model.getAllTasks());
+        TaskTableView.setItems(model.getAllTasks());
         taskNameColumn.setCellValueFactory(new PropertyValueFactory("name"));
         statusColumn.setCellValueFactory(new PropertyValueFactory("status"));
         TaskTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         
-        
+       // setupStatusColumnColor();
         configuringDirectoryChooser(directoryChooser);
     }    
 
     @FXML
     private void convertEvent(ActionEvent event) 
     {    
-        File file = directoryChooser.showDialog(null);
-        if(file != null)
-        {
-            String dir = file.getAbsolutePath();
+
+        ConversionTask selectedTask = TaskTableView.getSelectionModel().getSelectedItem();
             
-            ConversionTask selectedTask = TaskTableView.getSelectionModel().getSelectedItem();
+            if(selectedTask.getStatus().equals("Ready to Convert"))
+            {
+                File file = directoryChooser.showDialog(null);
+                if(file != null)
+                {
+                    String dir = file.getAbsolutePath();
             
-            model.convertToJSON(selectedTask, dir);
+                    model.convertToJSON(selectedTask, dir);
+                }
+            }
+            else
+            {
+                Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("Cannot convert Task");
+                alert.setHeaderText(null);
+                alert.setContentText("This task is not \"Ready to Convert\"");
+
+                alert.showAndWait();
+            }
+     
+            
+            
             ActionLog al = new ActionLog("Converted task: " + selectedTask.getName());
-            model.logAciton(al);
-        }
-        
+            model.logAciton(al);    
     }
     
         private void configuringDirectoryChooser(DirectoryChooser directoryChooser) {
-        // Set title for DirectoryChooser
-        directoryChooser.setTitle("Select Some Directories");
+       
+        directoryChooser.setTitle("Select a Directorie");
  
-        // Set Initial Directory
+       
         directoryChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+    }
+
+    private void setupStatusColumnColor() 
+    {
+        statusColumn.setCellFactory(column -> {
+            return new TableCell<ConversionTask, String>() {
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+
+                    setText(empty ? "" : getItem().toString());
+                    setGraphic(null);
+
+                    TableRow<ConversionTask> currentRow = getTableRow();
+
+                   if (!isEmpty()) 
+                   {
+                    
+                    if(item.equals("Ready to Convert")) 
+                        currentRow.setStyle("-fx-background-color:White");
+                    else if(item.equals("Converted"))
+                        currentRow.setStyle("-fx-background-color:lightgreen");
+                    else if(item.equals("Failed to convert"))
+                        currentRow.setStyle("-fx-background-color:lightred");
+                    else if(item.equals("Converting..."))
+                        currentRow.setStyle("-fx-background-color:87CEFA");
+                }
+            }
+        };
+    });              
     }
     
 }

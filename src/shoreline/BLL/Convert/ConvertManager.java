@@ -3,13 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package shoreline.BLL;
+package shoreline.BLL.Convert;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.io.FilenameUtils;
@@ -26,6 +28,8 @@ import shoreline.DAL.ConvertDAO;
  */
 public class ConvertManager
 {
+    private final ExecutorService executor = Executors.newFixedThreadPool(10);
+    
     private StrategyFileReader fileReader;
     private ConvertDAO convertdao = new ConvertDAO();
   
@@ -45,39 +49,12 @@ public class ConvertManager
     }
     
     
-    public void convertToJSON(ConversionTask conversionTask, String dir)
+    public boolean convertToJSON(ConversionTask conversionTask, String dir)
     {
-        String fileDir = dir + "\\" + conversionTask.getName().trim()+ ".JSON";
-        System.out.println(fileDir);
-        chooseReader(conversionTask.getFilePath());
-        if(fileReader != null)
-        {
-            List<HashMap> extractedData = fileReader.extractData(conversionTask);
         
-            JSONObject root = new JSONObject();
-              
-            int rowIndex = 1;
-            for (HashMap listOfValues : extractedData) 
-            { 
-                JSONObject jsonRow = new JSONObject(listOfValues);
-            
-                root.put("Exel Object " + rowIndex  , jsonRow);
-                rowIndex++;
-            
-            }
-            try 
-            {
-                FileWriter file = new FileWriter(fileDir);
-            
-                file.write(root.toString(4));
-                file.flush();
-            } 
-            catch (IOException ex) 
-            {
-            Logger.getLogger(ConvertManager.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-
+        executor.submit(new ConvertRunnable(conversionTask, dir));
+  
+        return false;
     }
 
     
@@ -99,6 +76,11 @@ public class ConvertManager
         {
             fileReader = new XLSXReader();
         }
+    }
+
+    public void updateTaskStatus(ConversionTask updatedTask) 
+    {
+        convertdao.updateTaskStatus(updatedTask);
     }
 
 

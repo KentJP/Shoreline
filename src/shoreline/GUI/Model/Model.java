@@ -19,7 +19,7 @@ import shoreline.BE.ActionLog;
 import shoreline.BE.Configuration;
 import shoreline.BE.ConversionTask;
 import shoreline.BE.User;
-import shoreline.BLL.ConvertManager;
+import shoreline.BLL.Convert.ConvertManager;
 import shoreline.BLL.LogManager;
 import shoreline.BLL.UserManager;
 
@@ -32,12 +32,8 @@ public class Model {
     
     private UserManager usermanager = new UserManager();
     private LogManager logmanager = new LogManager();
-
-    
     private ConvertManager convertmanager = new ConvertManager();
-    
-    private HashMap<String, Integer> currentSheetInput;
-    
+        
     
     private ObservableList<Configuration> headerValues;
     private ObservableList<Configuration> inputHeaderValues;
@@ -181,7 +177,26 @@ public class Model {
 
     public void convertToJSON(ConversionTask selectedTask, String dir) 
     {
-        convertmanager.convertToJSON(selectedTask, dir);
+        int taskIndex = taskList.indexOf(selectedTask);
+        ConversionTask updatedTask = taskList.get(taskIndex);
+        updatedTask.changeSatusConverting();
+        
+        taskList.set(taskIndex, updatedTask);
+        convertmanager.updateTaskStatus(updatedTask);
+        
+        if(convertmanager.convertToJSON(selectedTask, dir))
+        {
+            selectedTask.changeStatusConverted();
+            taskList.set(taskIndex, selectedTask);
+            convertmanager.updateTaskStatus(selectedTask);
+        }
+        else
+        {
+            selectedTask.changeStatusFailed();
+            taskList.set(taskIndex, selectedTask);
+            convertmanager.updateTaskStatus(selectedTask);
+        }
+        
     }
 
     

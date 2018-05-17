@@ -53,7 +53,6 @@ public class LoginViewController implements Initializable
   
     
     private Model model = new Model();
-    String[] possibleSuggestions = {"pedersenkentjuul@gmail.com", "fjt1509@hotmail.com", "dani2885@easv365.dk"};
 
     
     
@@ -64,7 +63,6 @@ public class LoginViewController implements Initializable
     {
         loginErrorLbl.setVisible(false);
         imageView.setImage(new Image(getClass().getResourceAsStream("/shoreline/res/shoreline.png")));
-        TextFields.bindAutoCompletion(userTxtField, possibleSuggestions);
         
   
     }

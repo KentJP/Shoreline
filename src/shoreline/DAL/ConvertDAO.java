@@ -103,6 +103,7 @@ public class ConvertDAO {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
                 String filePath = rs.getString("filePath");
+                String status = rs.getString("status");
                 List<Configuration> configList = new ArrayList<>();
                 
                 String sql2 = "SELECT * FROM Configuration WHERE taskId = ?";
@@ -124,7 +125,7 @@ public class ConvertDAO {
                     configList.add(c);
                 }
                 
-                ConversionTask task = new ConversionTask(id, name, filePath, configList);
+                ConversionTask task = new ConversionTask(id, name, filePath, status, configList);
                 taskList.add(task);
             }
           return taskList;          
@@ -135,6 +136,28 @@ public class ConvertDAO {
             Logger.getLogger(ConvertDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     return null;    
+    }
+
+    public void updateTaskStatus(ConversionTask updatedTask) 
+    {
+         try(Connection con = dbconnector.getConnection())
+         {
+             String sql = "UPDATE ConversionTask SET status = ? WHERE id = ?";
+             
+             PreparedStatement statement = con.prepareStatement(sql);
+             
+             statement.setString(1, updatedTask.getStatus());
+             statement.setInt(2, updatedTask.getId());
+             
+             statement.execute();
+             
+             
+             
+         } catch (SQLException ex) 
+         {
+            Logger.getLogger(ConvertDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
 

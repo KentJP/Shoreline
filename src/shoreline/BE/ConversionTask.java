@@ -30,13 +30,13 @@ public class ConversionTask {
         
     }
     
-    public ConversionTask(int id, String name, String filePath, List<Configuration> configurations)
+    public ConversionTask(int id, String name, String filePath, String status, List<Configuration> configurations)
     {
         this.id = id;
         this.name = name;
         this.filePath = filePath;
         this.configurations = configurations;
-        this.status = "Ready to Convert";        
+        this.status = status;        
     }
 
     public int getId() {
