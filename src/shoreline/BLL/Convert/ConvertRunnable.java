@@ -37,10 +37,10 @@ public class ConvertRunnable implements Runnable{
     @Override
     public void run() 
     {
-        try
-        {
+
             System.out.println("started conversion on " + conversionTask.getName());
-            Thread.sleep(20000);
+                        
+            
             String fileDir = dir + "\\" + conversionTask.getName().trim()+ ".JSON";
             System.out.println(fileDir);
             chooseReader(conversionTask.getFilePath());
@@ -64,7 +64,7 @@ public class ConvertRunnable implements Runnable{
                     FileWriter file = new FileWriter(fileDir);
             
                     file.write(root.toString(4));
-                    file.flush();
+                    file.close();
                     System.out.println("ended conversion on " + conversionTask.getName());
                     
                 } catch (IOException ex) 
@@ -73,10 +73,7 @@ public class ConvertRunnable implements Runnable{
                 }
             }
             
-        } catch(InterruptedException e)
-        {
-            
-        }
+        
         
     
     }

@@ -45,6 +45,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import shoreline.BE.ActionLog;
 import shoreline.BE.Configuration;
 import shoreline.GUI.Model.Model;
@@ -72,6 +73,20 @@ public class MainViewController implements Initializable {
     private AnchorPane naviPane;
     @FXML
     private AnchorPane importPane;
+    @FXML
+    private JFXButton importDataBtn;
+    @FXML
+    private JFXButton viewLogBtn;
+    @FXML
+    private JFXButton viewTaskBtn;
+    @FXML
+    private JFXButton addBtn;
+    @FXML
+    private JFXButton moveDownBtn;
+    @FXML
+    private JFXButton moveUpBtn;
+    @FXML
+    private JFXButton saveTaskBtn;
     
 
     /**
@@ -85,6 +100,8 @@ public class MainViewController implements Initializable {
         importListView.setItems(model.getCurrentHeaderValues());
         inputListView.setItems(model.getCurrentInputHeaderVaules());
         outputListView.setItems(model.getCurrentOutputHeaderValues());
+
+
         
        
     
@@ -242,6 +259,7 @@ public class MainViewController implements Initializable {
             stage.setScene(scene);
             stage.show();
             stage.setTitle("Shoreline login");
+            
         } catch (IOException ex) 
         {
             Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
