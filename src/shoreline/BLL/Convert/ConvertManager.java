@@ -19,6 +19,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.json.JSONObject;
 import shoreline.BE.Configuration;
 import shoreline.BE.ConversionTask;
+import shoreline.BE.MappingDesign;
 
 import shoreline.BLL.StrategyFileReader.StrategyFileReader;
 import shoreline.BLL.StrategyFileReader.XLSXReader;
@@ -29,7 +30,9 @@ import shoreline.DAL.ConvertDAO;
  */
 public class ConvertManager
 {
-    private final ExecutorService executor = Executors.newSingleThreadExecutor(new ThreadFactory() {
+        private static ConvertManager convertmanager = new ConvertManager();
+
+    private static final ExecutorService executor = Executors.newSingleThreadExecutor(new ThreadFactory() {
             public Thread newThread(Runnable r) {
                 Thread t = Executors.defaultThreadFactory().newThread(r);
                 t.setDaemon(true);
@@ -39,6 +42,17 @@ public class ConvertManager
     
     private StrategyFileReader fileReader;
     private ConvertDAO convertdao = new ConvertDAO();
+    
+    
+    private ConvertManager(){}
+    
+    public static ConvertManager getInstance()
+    {
+        return convertmanager;
+    }
+    
+    
+    
   
     public List<Configuration> readProperties(File selectedFile) 
     {
@@ -89,6 +103,17 @@ public class ConvertManager
     {
         convertdao.updateTaskStatus(updatedTask);
     }
+
+    public void saveMapConfig(MappingDesign mc) 
+    {
+        convertdao.saveMapConfig(mc);
+    }
+
+    public List<MappingDesign> getAllMapDesigns() 
+    {
+        return convertdao.getAllMapDesigns();
+    }
+
 
 
 

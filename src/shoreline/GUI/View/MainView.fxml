@@ -32,6 +32,7 @@
                               <Font size="18.0" />
                            </font>
                         </JFXButton>
+                        <JFXButton fx:id="AutoConversionBtn" layoutX="36.0" layoutY="118.0" onAction="#SetupAutoConvertEvent" prefHeight="50.0" prefWidth="185.0" text="Setup Automated Conversion" />
                      </children>
                   </AnchorPane>
                 <AnchorPane fx:id="importPane" minHeight="0.0" minWidth="0.0" prefHeight="297.0" prefWidth="249.0">
@@ -106,7 +107,12 @@
                   </LinearGradient>
                </ripplerFill>
             </JFXButton>
-            <JFXButton fx:id="saveTaskBtn" layoutX="599.0" layoutY="10.0" onAction="#saveTaskEvent" prefHeight="50.0" prefWidth="185.0" text="Save Task" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <JFXButton fx:id="saveTaskBtn" layoutX="599.0" layoutY="10.0" onAction="#saveTaskEvent" prefHeight="50.0" prefWidth="185.0" text="Save as Task" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="saveMappingBtn" layoutX="543.0" layoutY="67.0" onAction="#saveMappingEvent" prefHeight="50.0" prefWidth="185.0" text="Save Mapping">
                <font>
                   <Font size="18.0" />
                </font>

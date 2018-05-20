@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import shoreline.BE.Configuration;
 import shoreline.BE.ConversionTask;
+import shoreline.BE.MappingDesign;
 
 /**
  *
@@ -160,5 +161,95 @@ public class ConvertDAO {
         
     }
 
+    public void saveMapConfig(MappingDesign mc) 
+    {
+         try(Connection con = dbconnector.getConnection())
+         {            
+            String sqlStatement = "INSERT INTO MappingDesign VALUES(?)";
+         
+        
+            PreparedStatement statement = con.prepareStatement(sqlStatement, Statement.RETURN_GENERATED_KEYS);
+            
+            statement.setString(1, mc.getName());
+            
+
+            int mapID = 0;
+            
+            if(statement.executeUpdate() == 1)
+            {
+                ResultSet rs = statement.getGeneratedKeys();
+                rs.next(); 
+                mapID = rs.getInt(1);
+            }
+           
+             for (Configuration configuration : mc.getMapConfig()) 
+             {
+                String sql = "INSERT INTO MapConfiguration VALUES(?, ?, ?, ?)"; 
+                
+                PreparedStatement statement2 = con.prepareStatement(sql);
+                
+                statement2.setInt(1, mapID);
+                statement2.setInt(2, configuration.getIndex());
+                statement2.setString(3, configuration.getOldValue());
+                statement2.setString(4, configuration.getNewValue());
+                
+                statement2.execute();
+                
+             }
+             
+         } catch (SQLException ex) 
+         {
+            Logger.getLogger(ConvertDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public List<MappingDesign> getAllMapDesigns() 
+    {
+        try(Connection con = dbconnector.getConnection())
+        {
+            String sql = "SELECT * FROM MappingDesign";
+            
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            
+            List<MappingDesign> mapList = new ArrayList<>();
+            
+            while(rs.next())
+            {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                List<Configuration> configList = new ArrayList<>();
+                
+                String sql2 = "SELECT * FROM MapConfiguration WHERE mapId = ?";
+                
+                PreparedStatement statement = con.prepareStatement(sql2);
+                
+                statement.setInt(1, id);
+                
+                ResultSet configRS = statement.executeQuery();
+                
+                while(configRS.next())
+                {
+                    int index = configRS.getInt("propertyIndex");
+                    String oldValue = configRS.getString("oldValue");
+                    String newValue = configRS.getString("newValue");
+                    
+                    Configuration c = new Configuration(index, oldValue, newValue);
+                    
+                    configList.add(c);
+                }
+                
+                MappingDesign md = new MappingDesign(id, name, configList);
+                mapList.add(md);
+            }
+          return mapList;          
+            
+            
+        } catch (SQLException ex) 
+        {
+            Logger.getLogger(ConvertDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 
 }

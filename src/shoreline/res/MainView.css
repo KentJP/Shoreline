@@ -17,11 +17,11 @@ and open the template in the editor.
     -fx-background-color: #F0F8FF; 
 }
 
-#importDataBtn, #viewTaskBtn, #viewLogBtn, #saveTaskBtn{
+#importDataBtn, #viewTaskBtn, #viewLogBtn, #saveTaskBtn, #saveMappingBtn, #AutoConversionBtn{
    
     -fx-background-color: #1a99cc;
     -fx-text-fill: white;
-    -fx-font-size: 15px;
+   
 
    
     -fx-border-radius: 5;

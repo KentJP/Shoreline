@@ -18,8 +18,10 @@ import javafx.collections.ObservableList;
 import shoreline.BE.ActionLog;
 import shoreline.BE.Configuration;
 import shoreline.BE.ConversionTask;
+import shoreline.BE.MappingDesign;
 import shoreline.BE.User;
 import shoreline.BLL.Convert.ConvertManager;
+import shoreline.BLL.DirectoryWatcher.WatchManager;
 import shoreline.BLL.LogManager;
 import shoreline.BLL.UserManager;
 
@@ -32,8 +34,8 @@ public class Model {
     
     private UserManager usermanager = new UserManager();
     private LogManager logmanager = new LogManager();
-    private ConvertManager convertmanager = new ConvertManager();
-        
+    private ConvertManager convertmanager = ConvertManager.getInstance();
+    private WatchManager watchmanager = new WatchManager();
     
     private ObservableList<Configuration> headerValues;
     private ObservableList<Configuration> inputHeaderValues;
@@ -198,6 +200,37 @@ public class Model {
         }
         
     }
+
+    public void saveMapConfig(String mapConfigName) 
+    {
+        List<Configuration> mapConfig = new ArrayList<>();
+        
+        for (String outputValue : outputHeaderValues) 
+        {
+            int index = outputHeaderValues.indexOf(outputValue);
+            
+            Configuration con  = inputHeaderValues.get(index);
+            
+            con.setNewValue(outputValue);
+            
+            mapConfig.add(con); 
+            
+        }
+        MappingDesign mc = new MappingDesign(mapConfigName, mapConfig);
+        
+        convertmanager.saveMapConfig(mc);
+    }
+
+    public List<MappingDesign> getAllMapDesigns() 
+    {
+       return convertmanager.getAllMapDesigns();
+    }
+
+    public void createDirectoryWatcher(String dir, String name, MappingDesign selectedMap) 
+    {
+        watchmanager.createDirectoryWatcher(dir, name, selectedMap);
+    }
+
 
 
 

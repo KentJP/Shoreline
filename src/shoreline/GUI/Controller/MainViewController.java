@@ -30,6 +30,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
@@ -43,11 +44,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import javafx.util.Callback;
 import shoreline.BE.ActionLog;
 import shoreline.BE.Configuration;
+import shoreline.BE.MappingDesign;
 import shoreline.GUI.Model.Model;
 
 /**
@@ -87,6 +91,10 @@ public class MainViewController implements Initializable {
     private JFXButton moveUpBtn;
     @FXML
     private JFXButton saveTaskBtn;
+    @FXML
+    private JFXButton AutoConversionBtn;
+    @FXML
+    private JFXButton saveMappingBtn;
     
 
     /**
@@ -266,6 +274,86 @@ public class MainViewController implements Initializable {
         }        
     }
 
+ 
+    @FXML
+    private void saveMappingEvent(ActionEvent event) 
+    {
+        if(inputListView.getItems().size() == outputListView.getItems().size())
+        {
+            TextInputDialog dialog = new TextInputDialog();
+            dialog.setTitle("Map Design Name");
+            dialog.setHeaderText("Please Enter a name for the current mapping configuration");
+            dialog.setContentText("Map design name: ");
+            dialog.setGraphic(null);
+        
+            Optional<String> result = dialog.showAndWait();
+        
+            if(result.isPresent())
+            {
+                model.saveMapConfig(result.get());
+                
+                ActionLog a = new ActionLog("Created new Map Design: " + result.get());
+                model.logAciton(a);
+                
+                model.clearImport();
+                model.clearInput();
+            }  
+        }else
+        {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Insufficient amount of mappings");
+            alert.setHeaderText(null);
+            alert.setContentText("Please map every Output header to a given Import header");
+
+            alert.showAndWait();
+            
+        }
+    }
+
+   @FXML
+    private void SetupAutoConvertEvent(ActionEvent event) 
+    {
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        File file = directoryChooser.showDialog(null);
+        
+        if(file != null)
+        {
+            TextInputDialog textDialog = new TextInputDialog();
+            textDialog.setTitle("Directory Name");
+            textDialog.setHeaderText("Please Enter a name for your directory");
+            textDialog.setContentText("directory name: ");
+            textDialog.setGraphic(null);
+            
+            Optional<String> textDialogResult = textDialog.showAndWait();
+            
+            if(!textDialogResult.get().isEmpty())
+            {
+            
+                List<MappingDesign> mapDesigns = model.getAllMapDesigns();
+                  
+                MappingDesign defaultDesign = mapDesigns.get(0);
+                ChoiceDialog<MappingDesign> dialog = new ChoiceDialog<>(defaultDesign, mapDesigns);
+            
+         
+            
+                dialog.setTitle("Select Configuration");
+                dialog.setHeaderText("Select a predifined mapping configuration");
+                dialog.setContentText("Choose your Map configuration:");
+
+                Optional<MappingDesign> result = dialog.showAndWait();
+                if (result.isPresent())
+                {
+                    String dir = file.getAbsolutePath();
+                    MappingDesign  selectedMap = result.get();
+                
+                    model.createDirectoryWatcher(dir, textDialog.getResult(), selectedMap);
+               
+                }
+            }
+        }
+        
+        
+    }
 
 
     

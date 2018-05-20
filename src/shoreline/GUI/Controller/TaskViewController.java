@@ -114,14 +114,11 @@ public class TaskViewController implements Initializable {
                    if (!isEmpty()) 
                    {
                     
-                    if(item.equals("Ready to Convert")) 
-                        currentRow.setStyle("-fx-background-color:White");
-                    else if(item.equals("Converted"))
+                     if(item.equals("Converted"))
                         currentRow.setStyle("-fx-background-color:lightgreen");
                     else if(item.equals("Failed to convert"))
                         currentRow.setStyle("-fx-background-color:lightred");
-                    else if(item.equals("Converting..."))
-                        currentRow.setStyle("-fx-background-color:87CEFA");
+                    
                 }
             }
         };
