@@ -16,6 +16,13 @@ public class Configuration implements Serializable{
     private int index;
     private String oldValue;
     private String newValue;
+
+    
+    
+    public Configuration(String oldValue) 
+    {
+        this.oldValue = oldValue;
+    }
     
     public Configuration(int index, String oldValue)
     {
@@ -30,6 +37,10 @@ public class Configuration implements Serializable{
         this.newValue = newValue;
         
     }
+    
+    
+    
+    
 
     public int getIndex() {
         return index;
@@ -55,5 +66,26 @@ public class Configuration implements Serializable{
         this.newValue = newValue;
     }
     
+    
+    public boolean isStaticValue()            
+    {
+        if(oldValue.startsWith("\"") && oldValue.endsWith("\""))
+        {
+            return true;
+            
+        } else
+        {
+            return false;
+        }
+    }
+    
+    public void removeStaticIdentifier()
+    {
+        int nameLength = oldValue.length();
+        
+        String newOldValue = oldValue.substring(1, nameLength-1);
+        oldValue = newOldValue;
+        
+    }
     
 }

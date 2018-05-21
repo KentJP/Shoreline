@@ -95,6 +95,10 @@ public class MainViewController implements Initializable {
     private JFXButton AutoConversionBtn;
     @FXML
     private JFXButton saveMappingBtn;
+    @FXML
+    private JFXButton clearAllBtn;
+    @FXML
+    private JFXTextField staticValueTxtField;
     
 
     /**
@@ -139,19 +143,7 @@ public class MainViewController implements Initializable {
             
             model.addInput(selectedHeader);
         }
-    }
-
-
-    private void removeInput(ActionEvent event) 
-    {
-        Configuration selectedItem = inputListView.getSelectionModel().getSelectedItem();
-        
-        if(selectedItem != null)
-        {
-            model.removeInput(selectedItem);
-        }
-    }
-    
+    } 
     
     @FXML
     private void moveInputUp(ActionEvent event) 
@@ -353,6 +345,35 @@ public class MainViewController implements Initializable {
         }
         
         
+    }
+
+    @FXML
+    private void clearAllEvent(ActionEvent event) 
+    {
+        model.clearImport();
+        model.clearInput();
+    }
+
+    @FXML
+    private void removeInputEvent(ActionEvent event) 
+    {
+        Configuration selectedItem = inputListView.getSelectionModel().getSelectedItem();
+        if(selectedItem != null)
+        {
+            model.removeInput(selectedItem);
+        }
+    }
+
+    @FXML
+    private void addStaticValueEvent(ActionEvent event) 
+    {
+        String staticValue = "\"" + staticValueTxtField.getText() + "\"";
+        staticValueTxtField.clear();
+        
+        Configuration staticValueConfig = new Configuration(staticValue);
+        
+        model.addStaticValue(staticValueConfig);
+
     }
 
 

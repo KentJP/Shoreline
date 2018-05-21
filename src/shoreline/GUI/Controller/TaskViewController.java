@@ -64,7 +64,7 @@ public class TaskViewController implements Initializable {
 
         ConversionTask selectedTask = TaskTableView.getSelectionModel().getSelectedItem();
             
-            if(selectedTask.getStatus().equals("Ready to Convert"))
+        if(selectedTask.getStatus().equals("Ready to Convert"))
             {
                 File file = directoryChooser.showDialog(null);
                 if(file != null)

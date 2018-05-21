@@ -87,10 +87,16 @@ public class XLSXReader implements StrategyFileReader
                 
                 for (Configuration config : task.getConfigurations()) 
                 {
-                    Cell cell = sheet.getRow(i).getCell(config.getIndex());
-                    String cellValue = formatter.formatCellValue(cell);
+                    if(!config.isStaticValue())
+                    {
+                        Cell cell = sheet.getRow(i).getCell(config.getIndex());
+                        String cellValue = formatter.formatCellValue(cell);
                     
-                    rowValue.put(config.getNewValue(), cellValue);
+                        rowValue.put(config.getNewValue(), cellValue);
+                    } else
+                    {
+                        rowValue.put(config.getNewValue(), config.getOldValue());
+                    }
                 }
                 
                 listProperties.add(rowValue);

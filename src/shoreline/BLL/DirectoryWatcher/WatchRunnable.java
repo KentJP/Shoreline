@@ -105,7 +105,7 @@ public class WatchRunnable implements Runnable
  
                         if (kind == StandardWatchEventKinds.OVERFLOW) 
                         {
-                             continue;
+                          continue;
                         } else if (kind == StandardWatchEventKinds.ENTRY_CREATE) 
                         {
                             String taskName = fileName.getFileName().toString();
@@ -115,15 +115,13 @@ public class WatchRunnable implements Runnable
                             ConversionTask ct = new ConversionTask(taskName, taskFilePath, taskConfig);
                             convertmanager.convertToJSON(ct, directory.getAbsolutePath() + "\\" + "Output");
                             
+                            
                                 
                             
  
                         } 
                     }           
                 }
-                
-                
-                
             } catch (IOException ex) 
             {
                 Logger.getLogger(WatchRunnable.class.getName()).log(Level.SEVERE, null, ex);

@@ -75,7 +75,7 @@ public class ConvertManager
         
         executor.submit(new ConvertRunnable(conversionTask, dir));
   
-        return false;
+        return true;
     }
 
     

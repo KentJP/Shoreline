@@ -134,8 +134,14 @@ public class Model {
 
     public void removeInput(Configuration selectedItem) 
     {
-        inputHeaderValues.remove(selectedItem);
-        headerValues.add(selectedItem);
+        if(!selectedItem.isStaticValue())
+        {
+            inputHeaderValues.remove(selectedItem);
+            headerValues.add(selectedItem);
+        } else
+        {
+            inputHeaderValues.remove(selectedItem);
+        }
     }
 
 
@@ -188,6 +194,7 @@ public class Model {
         
         if(convertmanager.convertToJSON(selectedTask, dir))
         {
+            
             selectedTask.changeStatusConverted();
             taskList.set(taskIndex, selectedTask);
             convertmanager.updateTaskStatus(selectedTask);
@@ -229,6 +236,11 @@ public class Model {
     public void createDirectoryWatcher(String dir, String name, MappingDesign selectedMap) 
     {
         watchmanager.createDirectoryWatcher(dir, name, selectedMap);
+    }
+
+    public void addStaticValue(Configuration staticValueConfig) 
+    {
+        inputHeaderValues.add(staticValueConfig);
     }
 
 
