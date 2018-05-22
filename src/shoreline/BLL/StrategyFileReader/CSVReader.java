@@ -73,18 +73,23 @@ public class CSVReader implements StrategyFileReader {
         BufferedReader br = null;
         boolean succesFullRead = false;
 
-        if (inProcessFile.exists()) {
-            while (!succesFullRead) {
-                try {
+        if (inProcessFile.exists()) 
+        {
+            while (!succesFullRead) 
+            {
+                try 
+                {
                     br = new BufferedReader(new FileReader(filePath));
                     succesFullRead = true;
                     skipHeaders = br.readLine();
 
-                    while ((line = br.readLine()) != null) {
+                    while ((line = br.readLine()) != null) 
+                    {
                         HashMap<String, String> rowData = new HashMap<>();
                         String[] row = line.split(",");
 
-                        for (Configuration config : configList) {
+                        for (Configuration config : configList) 
+                        {
                             String cellValue = row[config.getIndex()];
                             String newHeaderValue = config.getNewValue();
 
@@ -98,13 +103,16 @@ public class CSVReader implements StrategyFileReader {
 
                 } catch (FileNotFoundException ex) 
                 {
-                    try {
+                    try 
+                    {
                         Thread.sleep(50);
+                        
                     } catch (InterruptedException ex1) 
                     {
                         Logger.getLogger(CSVReader.class.getName()).log(Level.SEVERE, null, ex1);
                     }
-                } catch (IOException ex) {
+                } catch (IOException ex) 
+                {
                     Logger.getLogger(CSVReader.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }

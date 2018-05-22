@@ -86,7 +86,7 @@ public class TaskViewController implements Initializable {
      
             
             
-            ActionLog al = new ActionLog("Converted task: " + selectedTask.getName());
+            ActionLog al = new ActionLog("Started manual conversion on Task : " + selectedTask.getName());
             model.logAciton(al);    
     }
     

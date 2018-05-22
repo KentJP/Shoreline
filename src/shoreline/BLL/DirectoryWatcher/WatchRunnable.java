@@ -17,10 +17,14 @@ import java.nio.file.WatchService;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
+import shoreline.BE.ActionLog;
 import shoreline.BE.Configuration;
 import shoreline.BE.ConversionTask;
 import shoreline.BE.MappingDesign;
 import shoreline.BLL.Convert.ConvertManager;
+import shoreline.BLL.LogManager;
 
 /**
  *
@@ -29,13 +33,14 @@ import shoreline.BLL.Convert.ConvertManager;
 public class WatchRunnable implements Runnable
 {
     private ConvertManager convertmanager = ConvertManager.getInstance();
+    private LogManager logmanager = new LogManager();
     private WatchService watcher;
 
     private String name;
     private String dir;
     private MappingDesign md;
     
-    private String[] subFolders = {"Input", "Completed Input", "Output", "FailedConversions"};
+    private String[] subFolders = {"Input", "Output",};
     
     
     
@@ -108,16 +113,21 @@ public class WatchRunnable implements Runnable
                           continue;
                         } else if (kind == StandardWatchEventKinds.ENTRY_CREATE) 
                         {
-                            String taskName = fileName.getFileName().toString();
-                            String taskFilePath = directory.getAbsolutePath() + "\\" + "Input" + "\\" + fileName;
+                           
+                            String taskFilePath = directory.getAbsolutePath() + "\\" + "Input" + "\\" + fileName; 
+                            String taskName = FilenameUtils.removeExtension(fileName.toString());
                             List<Configuration> taskConfig = md.getMapConfig();
                             
                             ConversionTask ct = new ConversionTask(taskName, taskFilePath, taskConfig);
+                            ActionLog a = new ActionLog("Started Automatic Conversion on Task : " + ct.getName());
+                            logmanager.logAction(a);
                             convertmanager.convertToJSON(ct, directory.getAbsolutePath() + "\\" + "Output");
                             
                             
-                                
                             
+                            
+                            
+            
  
                         } 
                     }  
