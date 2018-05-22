@@ -20,6 +20,7 @@ import org.json.JSONObject;
 import shoreline.BE.Configuration;
 import shoreline.BE.ConversionTask;
 import shoreline.BE.MappingDesign;
+import shoreline.BLL.StrategyFileReader.CSVReader;
 
 import shoreline.BLL.StrategyFileReader.StrategyFileReader;
 import shoreline.BLL.StrategyFileReader.XLSXReader;
@@ -96,6 +97,9 @@ public class ConvertManager
         if(absolutePath.endsWith("xlsx"))
         {
             fileReader = new XLSXReader();
+        } else if (absolutePath.endsWith("csv"))
+        {
+            fileReader = new CSVReader();
         }
     }
 

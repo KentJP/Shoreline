@@ -301,7 +301,7 @@ public class MainViewController implements Initializable {
             
         }
     }
-
+ 
    @FXML
     private void SetupAutoConvertEvent(ActionEvent event) 
     {
@@ -325,8 +325,6 @@ public class MainViewController implements Initializable {
                   
                 MappingDesign defaultDesign = mapDesigns.get(0);
                 ChoiceDialog<MappingDesign> dialog = new ChoiceDialog<>(defaultDesign, mapDesigns);
-            
-         
             
                 dialog.setTitle("Select Configuration");
                 dialog.setHeaderText("Select a predifined mapping configuration");

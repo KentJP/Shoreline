@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.JSONObject;
 import shoreline.BE.ConversionTask;
+import shoreline.BLL.StrategyFileReader.CSVReader;
 import shoreline.BLL.StrategyFileReader.StrategyFileReader;
 import shoreline.BLL.StrategyFileReader.XLSXReader;
 
@@ -38,8 +39,9 @@ public class ConvertRunnable implements Runnable{
     public void run() 
     {
 
+            
             System.out.println("started conversion on " + conversionTask.getName());
-                        
+            
             
             String fileDir = dir + "\\" + conversionTask.getName().trim()+ ".JSON";
             System.out.println(fileDir);
@@ -47,7 +49,6 @@ public class ConvertRunnable implements Runnable{
             if(fileReader != null)
             {
                 List<HashMap> extractedData = fileReader.extractData(conversionTask);
-        
                 JSONObject root = new JSONObject();
               
                 int rowIndex = 1;
@@ -84,6 +85,9 @@ public class ConvertRunnable implements Runnable{
         if(absolutePath.endsWith("xlsx"))
         {
             fileReader = new XLSXReader();
+        } else if(absolutePath.endsWith("csv"))
+        {
+            fileReader = new CSVReader();
         }
     }
     

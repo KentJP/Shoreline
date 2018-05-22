@@ -7,6 +7,7 @@ package shoreline.BLL.StrategyFileReader;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,91 +25,92 @@ import shoreline.BE.ConversionTask;
  *
  * @author frederik
  */
-public class XLSXReader implements StrategyFileReader
-{
+public class XLSXReader implements StrategyFileReader {
 
     @Override
-    public List<Configuration> readProperties(File file) 
-    {
-        try 
-        {
+    public List<Configuration> readProperties(File file) {
+        try {
             DataFormatter formatter = new DataFormatter();
             FileInputStream fis = new FileInputStream(file.getAbsolutePath());
             XSSFWorkbook wb = new XSSFWorkbook(fis);
-            
+
             XSSFSheet sheet = wb.getSheetAt(0);
 
-                        
             int cellCounter = 0;
-            
-           List<Configuration> configurationList = new ArrayList<>();
 
-            while(sheet.getRow(0).getCell(cellCounter) != null)
-            {
+            List<Configuration> configurationList = new ArrayList<>();
+
+            while (sheet.getRow(0).getCell(cellCounter) != null) {
                 String cellValue = sheet.getRow(0).getCell(cellCounter).getStringCellValue();
-                
+
                 Configuration c = new Configuration(cellCounter, cellValue);
                 configurationList.add(c);
                 cellCounter++;
             }
             return configurationList;
-            
-            
-        } catch (IOException ex) 
-        {
+
+        } catch (IOException ex) {
             Logger.getLogger(XLSXReader.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
-     
-    
-    
 
     @Override
-    public List<HashMap> extractData(ConversionTask task) 
-    {
-        try
-        {
+    public List<HashMap> extractData(ConversionTask task){
+        try {
             DataFormatter formatter = new DataFormatter();
-            FileInputStream fis = new FileInputStream(task.getFilePath());
-            XSSFWorkbook wb = new XSSFWorkbook(fis);
-            
-            XSSFSheet sheet = wb.getSheetAt(0);
-            
-            int rowLength = sheet.getLastRowNum()+1;
-        
-            List<HashMap> listProperties = new ArrayList<>();
-                    
-            for (int i = 1; i < rowLength; i++) 
+            boolean succesFullRead = false;
+            File inProcessFile = new File(task.getFilePath());
+            FileInputStream fis = null;
+            if(inProcessFile.exists())
             {
-                
-                HashMap<String,String> rowValue = new HashMap<>();
-                   
-                
-                for (Configuration config : task.getConfigurations()) 
-                {
-                    if(!config.isStaticValue())
-                    {
+                while (!succesFullRead) {
+
+                    try {
+                        fis = new FileInputStream(task.getFilePath());
+                        succesFullRead=true;
+                    } catch (FileNotFoundException fnf) {
+                        try {
+                            Thread.sleep(50);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(XLSXReader.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }
+            }else
+            {
+            }
+            XSSFWorkbook wb = new XSSFWorkbook(fis);
+
+            XSSFSheet sheet = wb.getSheetAt(0);
+
+            int rowLength = sheet.getLastRowNum() + 1;
+
+            List<HashMap> listProperties = new ArrayList<>();
+
+            for (int i = 1; i < rowLength; i++) {
+
+                HashMap<String, String> rowValue = new HashMap<>();
+
+                for (Configuration config : task.getConfigurations()) {
+                    if (!config.isStaticValue()) {
                         Cell cell = sheet.getRow(i).getCell(config.getIndex());
                         String cellValue = formatter.formatCellValue(cell);
-                    
+
                         rowValue.put(config.getNewValue(), cellValue);
-                    } else
-                    {
+                    } else {
                         rowValue.put(config.getNewValue(), config.getOldValue());
                     }
                 }
-                
+
                 listProperties.add(rowValue);
-                
+
             }
             return listProperties;
-        }
-        catch (IOException ex) 
-        {
+        } catch (IOException ex) {
             Logger.getLogger(XLSXReader.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;      
+        return null;
     }
-    
+
 }

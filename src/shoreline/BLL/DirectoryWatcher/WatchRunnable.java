@@ -120,7 +120,8 @@ public class WatchRunnable implements Runnable
                             
  
                         } 
-                    }           
+                    }  
+                    key.reset();
                 }
             } catch (IOException ex) 
             {

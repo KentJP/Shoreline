@@ -42,8 +42,14 @@ public class MappingDesign {
     public List<Configuration> getMapConfig() {
         return mapConfig;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
     
     
+   
     
     
     
