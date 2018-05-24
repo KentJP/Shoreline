@@ -29,23 +29,23 @@ import shoreline.BLL.UserManager;
  *
  * @author frederik
  */
-public class Model {
-    
-    
+public class Model
+{
+
     private UserManager usermanager = new UserManager();
     private LogManager logmanager = new LogManager();
     private ConvertManager convertmanager = ConvertManager.getInstance();
     private WatchManager watchmanager = new WatchManager();
-    
+
     private ObservableList<Configuration> headerValues;
     private ObservableList<Configuration> inputHeaderValues;
     private ObservableList<String> outputHeaderValues;
-    
+
     private ObservableList<ActionLog> actionLogList;
-    
+
     private ObservableList<ConversionTask> taskList;
 
-    public Model() 
+    public Model()
     {
         this.actionLogList = FXCollections.observableArrayList();
         this.outputHeaderValues = FXCollections.observableArrayList("siteName",
@@ -67,74 +67,122 @@ public class Model {
         this.inputHeaderValues = FXCollections.observableArrayList();
         this.taskList = FXCollections.observableArrayList();
     }
-    
-    
-    
 
-    public void readProperties(File selectedFile) 
+    /**
+     * Reading properties of a selected file
+     *
+     * @param selectedFile
+     * @return Properties of a selected file
+     */
+    public void readProperties(File selectedFile)
     {
-        headerValues.setAll(convertmanager.readProperties(selectedFile));     
+        headerValues.setAll(convertmanager.readProperties(selectedFile));
     }
 
-    public ObservableList<Configuration> getCurrentHeaderValues() 
+    /**
+     * Get an observableList with the current header values.
+     *
+     * @return Returns an ObservableList with the header values.
+     */
+    public ObservableList<Configuration> getCurrentHeaderValues()
     {
         return headerValues;
     }
-    
+
+    /**
+     * Get an ObservableList with predefined values
+     *
+     * @return Returns an ObservableList with predefined values.
+     */
     public ObservableList<String> getCurrentOutputHeaderValues()
     {
-        return outputHeaderValues;     
+        return outputHeaderValues;
     }
-    
+
+    /**
+     * Get an observableList with the current input header values.
+     *
+     * @return Returns an ObservableList with the input header values.
+     */
     public ObservableList<Configuration> getCurrentInputHeaderVaules()
     {
         return inputHeaderValues;
     }
-    
+
+    /**
+     * Get an ObservableList with actions that the users has made.
+     *
+     * @return Returns a list of actions that the users has made.
+     */
     public ObservableList<ActionLog> getActionLogList()
     {
         actionLogList.setAll(logmanager.getAllActionLogs());
         return actionLogList;
     }
-    
-    public ObservableList<ConversionTask> getAllTasks() 
-    {   
+
+    /**
+     * Get an ObservableList with all the task that have been saved.
+     *
+     * @return Returns a list of the saved tasks.
+     */
+    public ObservableList<ConversionTask> getAllTasks()
+    {
         taskList.setAll(convertmanager.getAllTasks());
         return taskList;
     }
 
+    /**
+     * Moves up a header value on the listview contains input header values.
+     *
+     * @param selectedItem
+     */
+    public void moveInputUp(Configuration selectedItem)
+    {
+        int index = inputHeaderValues.indexOf(selectedItem);
+        int nextIndex = index - 1;
 
-    public void moveInputUp(Configuration selectedItem) 
-    {
-        int index = inputHeaderValues.indexOf(selectedItem);
-        int nextIndex = index - 1; 
-        
-        if(nextIndex > -1)
+        if (nextIndex > -1)
         {
-             Collections.swap(inputHeaderValues, index, nextIndex);     
-        }        
-    }
-    
-    public void moveInputDown(Configuration selectedItem) 
-    {
-        int index = inputHeaderValues.indexOf(selectedItem);
-        int nextIndex = index + 1; 
-        
-        if(nextIndex < inputHeaderValues.size())
-        {
-             Collections.swap(inputHeaderValues, index, nextIndex);     
+            Collections.swap(inputHeaderValues, index, nextIndex);
         }
     }
 
-    public void addInput(Configuration selectedHeader) 
+    /**
+     * Moves down a header value on the listview contains input header values.
+     *
+     * @param selectedItem
+     */
+    public void moveInputDown(Configuration selectedItem)
+    {
+        int index = inputHeaderValues.indexOf(selectedItem);
+        int nextIndex = index + 1;
+
+        if (nextIndex < inputHeaderValues.size())
+        {
+            Collections.swap(inputHeaderValues, index, nextIndex);
+        }
+    }
+
+    /**
+     * Moves a header value from headervaluesList to inputHeaderValuesList.
+     *
+     * @param selectedHeader
+     */
+    public void addInput(Configuration selectedHeader)
     {
         inputHeaderValues.add(selectedHeader);
         headerValues.remove(selectedHeader);
     }
 
-    public void removeInput(Configuration selectedItem) 
+    /**
+     * Removes a header value from inputHeaderValuesList and add it to
+     * headerValueList.
+     *
+     * @param selectedItem
+     */
+    public void removeInput(Configuration selectedItem)
     {
-        if(!selectedItem.isStaticValue())
+        if (!selectedItem.isStaticValue())
         {
             inputHeaderValues.remove(selectedItem);
             headerValues.add(selectedItem);
@@ -144,112 +192,141 @@ public class Model {
         }
     }
 
-
-    public boolean validateLogin(String loginInfo) 
+    /**
+     * Validate wheater or not the Email is in the Database.
+     *
+     * @param loginInfo
+     * @return true if the email is in the database - else return false.
+     */
+    public boolean validateLogin(String loginInfo)
     {
         return usermanager.validateLogin(loginInfo);
     }
-    
+
+    /**
+     * Logs actions in the database
+     *
+     * @param log
+     */
     public void logAciton(ActionLog log)
     {
         logmanager.logAction(log);
     }
 
-    public void saveTask(String taskName, String filePath) 
+    /**
+     * Saves a task to an ArrayList
+     *
+     * @param taskName
+     * @param filePath
+     */
+    public void saveTask(String taskName, String filePath)
     {
         List<Configuration> mapConfig = new ArrayList<>();
-        
-        for (String outputValue : outputHeaderValues) 
+
+        for (String outputValue : outputHeaderValues)
         {
             int index = outputHeaderValues.indexOf(outputValue);
-            
-            Configuration con  = inputHeaderValues.get(index);
-            
+
+            Configuration con = inputHeaderValues.get(index);
+
             con.setNewValue(outputValue);
-            
-            mapConfig.add(con); 
+
+            mapConfig.add(con);
         }
-        
+
         convertmanager.saveTask(taskName, filePath, mapConfig);
     }
 
-    public void clearInput() 
+    /**
+     * Clears all input.
+     */
+    public void clearInput()
     {
         inputHeaderValues.clear();
     }
 
-    public void clearImport() 
+    /**
+     * Clears all import.
+     */
+    public void clearImport()
     {
         headerValues.clear();
     }
-
-    public void convertToJSON(ConversionTask selectedTask, String dir) 
+    
+    /**
+     * Converts a selectedTask to JSON
+     * @param selectedTask
+     * @param dir 
+     */
+    public void convertToJSON(ConversionTask selectedTask, String dir)
     {
         int taskIndex = taskList.indexOf(selectedTask);
         ConversionTask updatedTask = taskList.get(taskIndex);
         updatedTask.changeSatusConverting();
-        
+
         taskList.set(taskIndex, updatedTask);
         convertmanager.updateTaskStatus(updatedTask);
-        
-        if(convertmanager.convertToJSON(selectedTask, dir))
+
+        if (convertmanager.convertToJSON(selectedTask, dir))
         {
-            
+
             selectedTask.changeStatusConverted();
             taskList.set(taskIndex, selectedTask);
             convertmanager.updateTaskStatus(selectedTask);
-        }
-        else
+        } else
         {
             selectedTask.changeStatusFailed();
             taskList.set(taskIndex, selectedTask);
             convertmanager.updateTaskStatus(selectedTask);
         }
-        
+
     }
 
-    public void saveMapConfig(String mapConfigName) 
+    /**
+     * Saves the map configuration to an ArrayList.
+     * @param mapConfigName 
+     */
+    public void saveMapConfig(String mapConfigName)
     {
         List<Configuration> mapConfig = new ArrayList<>();
-        
-        for (String outputValue : outputHeaderValues) 
+
+        for (String outputValue : outputHeaderValues)
         {
             int index = outputHeaderValues.indexOf(outputValue);
-            
-            Configuration con  = inputHeaderValues.get(index);
-            
+
+            Configuration con = inputHeaderValues.get(index);
+
             con.setNewValue(outputValue);
-            
-            mapConfig.add(con); 
-            
+
+            mapConfig.add(con);
+
         }
         MappingDesign mc = new MappingDesign(mapConfigName, mapConfig);
-        
+
         convertmanager.saveMapConfig(mc);
     }
 
-    public List<MappingDesign> getAllMapDesigns() 
+    /**
+     * Get all map designs and configurations from the database.
+     * @return Returns a List of MappingDesigns and configurations from the database.
+     */
+    public List<MappingDesign> getAllMapDesigns()
     {
-       return convertmanager.getAllMapDesigns();
+        return convertmanager.getAllMapDesigns();
     }
 
-    public void createDirectoryWatcher(String dir, String name, MappingDesign selectedMap) 
+    public void createDirectoryWatcher(String dir, String name, MappingDesign selectedMap)
     {
         watchmanager.createDirectoryWatcher(dir, name, selectedMap);
     }
 
-    public void addStaticValue(Configuration staticValueConfig) 
+    /**
+     * Add a new static value to the inputHeaderValuesList.
+     * @param staticValueConfig 
+     */
+    public void addStaticValue(Configuration staticValueConfig)
     {
         inputHeaderValues.add(staticValueConfig);
     }
 
-
-
-
-
- 
-    
-    
-    
-    
 }

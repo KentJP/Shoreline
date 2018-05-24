@@ -40,7 +40,11 @@ public class UserDAO
     }
     
     
-
+    /**
+     * Validate wheater or not the Email is in the Database.
+     * @param loginInfo
+     * @return true if the email is in the database - else return false.
+     */
     public boolean validateLogin(String loginInfo) 
     {
         try(Connection con = dbConnector.getConnection())

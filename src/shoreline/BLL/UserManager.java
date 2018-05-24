@@ -18,6 +18,11 @@ public class UserManager
     
     private UserDAO userdao = new UserDAO();
 
+    /**
+     * Validate wheater or not the Email is in the Database.
+     * @param loginInfo
+     * @return true if the email is in the database - else return false.
+     */
     public boolean validateLogin(String loginInfo) 
     {
         return userdao.validateLogin(loginInfo);

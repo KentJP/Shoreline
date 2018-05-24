@@ -17,11 +17,19 @@ public class LogManager {
     
     private LogDAO logdao = new LogDAO();
 
+    /**
+     * Logs actions in the database
+     * @param log 
+     */
     public void logAction(ActionLog log) 
     {
         logdao.logAction(log);
     }
 
+    /**
+     * Get a List with actions that the users has made.
+     * @return Returns a list of actions that the users has made.
+     */
     public List<ActionLog> getAllActionLogs() 
     {
         return logdao.getAllActionLogs();

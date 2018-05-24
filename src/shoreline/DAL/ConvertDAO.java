@@ -139,6 +139,10 @@ public class ConvertDAO {
     return null;    
     }
 
+    /**
+     * Updating the status of CoversionTask in the database.
+     * @param updatedTask 
+     */
     public void updateTaskStatus(ConversionTask updatedTask) 
     {
          try(Connection con = dbconnector.getConnection())
@@ -161,6 +165,10 @@ public class ConvertDAO {
         
     }
 
+    /**
+     * Saves the map configuration and design to the database.
+     * @param mapConfigName 
+     */
     public void saveMapConfig(MappingDesign mc) 
     {
          try(Connection con = dbconnector.getConnection())
@@ -203,6 +211,10 @@ public class ConvertDAO {
         }
     }
 
+    /**
+     * Get all map designs and configurations from the database.
+     * @return Returns a List of MappingDesigns and configurations from the database.
+     */
     public List<MappingDesign> getAllMapDesigns() 
     {
         try(Connection con = dbconnector.getConnection())

@@ -54,7 +54,11 @@ public class ConvertManager
     
     
     
-  
+  /**
+   * Reading properties of a selected file
+   * @param selectedFile
+   * @return Properties of a selected file
+   */
     public List<Configuration> readProperties(File selectedFile) 
     {
         String path = selectedFile.getAbsolutePath();
@@ -70,7 +74,12 @@ public class ConvertManager
         return null;
     }
     
-    
+    /**
+     * Starts a thread that starts Converting the selected task to JSON.
+     * @param conversionTask
+     * @param dir
+     * @return true
+     */
     public boolean convertToJSON(ConversionTask conversionTask, String dir)
     {
         
@@ -102,17 +111,30 @@ public class ConvertManager
             fileReader = new CSVReader();
         }
     }
-
+    
+    /**
+     * Updating the status of CoversionTask in the database.
+     * Either "Completed" or "Failed".
+     * @param updatedTask 
+     */
     public void updateTaskStatus(ConversionTask updatedTask) 
     {
         convertdao.updateTaskStatus(updatedTask);
     }
 
+    /**
+     * Saves the map configuration and design to the database.
+     * @param mapConfigName 
+     */
     public void saveMapConfig(MappingDesign mc) 
     {
         convertdao.saveMapConfig(mc);
     }
 
+    /**
+     * Get all map designs and configurations from the database.
+     * @return Returns a List of MappingDesigns and configurations from the database.
+     */
     public List<MappingDesign> getAllMapDesigns() 
     {
         return convertdao.getAllMapDesigns();

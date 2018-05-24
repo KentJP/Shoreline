@@ -39,6 +39,10 @@ public class LogDAO {
     
     
     
+    /**
+     * Logs actions in the database
+     * @param log 
+     */
     public void logAction(ActionLog log) 
     {
         try(Connection con = dbconnector.getConnection())
@@ -62,6 +66,10 @@ public class LogDAO {
         }
     }
 
+     /**
+     * Draw all actions made from the database.
+     * @return Returns a list of actions that the users has made.
+     */
     public List<ActionLog> getAllActionLogs() 
     {
         try(Connection con = dbconnector.getConnection())
