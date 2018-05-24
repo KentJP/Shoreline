@@ -28,9 +28,9 @@ import shoreline.BE.ConversionTask;
 public class XLSXReader implements StrategyFileReader {
 
     /**
-     *
+     * Reading the headers from a XLSX file 
      * @param file
-     * @return
+     * @return Returns a list of headers
      */
     @Override
     public List<Configuration> readProperties(File file) {
@@ -61,9 +61,9 @@ public class XLSXReader implements StrategyFileReader {
     }
 
     /**
-     *
+     * Extracting data from a file and mapping it in a hashmap.
      * @param task
-     * @return
+     * @return Returns a hashmap of extracted data
      */
     @Override
     public List<HashMap> extractData(ConversionTask task){

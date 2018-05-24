@@ -48,8 +48,8 @@ public class ConvertManager
     private ConvertManager(){}
     
     /**
-     *
-     * @return
+     * Gets instance - singleton.
+     * @return an instance of convertmanager - singleton.
      */
     public static ConvertManager getInstance()
     {

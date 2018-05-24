@@ -31,7 +31,7 @@ public class ConvertDAO {
     private boolean wasSuccessfull;
      
     /**
-     *
+     * This is the constructor of this class.
      */
     public ConvertDAO() 
     {

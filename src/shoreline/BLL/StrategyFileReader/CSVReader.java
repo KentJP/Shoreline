@@ -25,9 +25,9 @@ import shoreline.BE.ConversionTask;
 public class CSVReader implements StrategyFileReader {
 
     /**
-     *
+     * Reading the headers from a CSV file 
      * @param file
-     * @return Returns a list of configurations
+     * @return Returns a list of headers
      */
     @Override
     public List<Configuration> readProperties(File file) {
@@ -65,9 +65,9 @@ public class CSVReader implements StrategyFileReader {
     }
 
     /**
-     *
+     * Extracting data from a file and mapping it in a hashmap.
      * @param task
-     * @return
+     * @return Returns a hashmap of extracted data
      */
     @Override
     public List<HashMap> extractData(ConversionTask task) {

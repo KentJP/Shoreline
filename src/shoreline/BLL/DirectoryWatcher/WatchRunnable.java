@@ -43,7 +43,7 @@ public class WatchRunnable implements Runnable
     private String[] subFolders = {"Input", "Output",};
     
     /**
-     *
+     * This is the constructor of this class
      * @param dir
      * @param name
      * @param md

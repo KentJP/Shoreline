@@ -26,7 +26,7 @@ public class LogDAO {
     DataBaseConnector dbconnector;
     
     /**
-     *
+     * This is the constructor of this class.
      */
     public LogDAO()
     {

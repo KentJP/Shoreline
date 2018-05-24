@@ -46,7 +46,8 @@ public class Model
     private ObservableList<ConversionTask> taskList;
 
     /**
-     *
+     * This is the constructor of this class.
+     * It contains several observableArrayLists.
      */
     public Model()
     {

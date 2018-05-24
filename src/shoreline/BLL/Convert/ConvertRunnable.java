@@ -32,7 +32,7 @@ public class ConvertRunnable implements Runnable{
     private LogManager logmanager = new LogManager();
     
     /**
-     *
+     * This is the constructor of the class.
      * @param conversionTask
      * @param dir
      */

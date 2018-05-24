@@ -11,7 +11,7 @@ import shoreline.DAL.UserDAO;
 
 /**
  *
- * @author peder
+ * @author Daniel
  */
 public class UserManager 
 {

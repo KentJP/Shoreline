@@ -34,7 +34,7 @@ public class ActionLog implements Serializable
     private DateFormat timeFormat = new SimpleDateFormat("HH:mm");
     
     /**
-     *
+     * Constructor of ActionLog
      * @param action
      */
     public ActionLog(String action)
@@ -48,7 +48,7 @@ public class ActionLog implements Serializable
     }
     
     /**
-     *
+     * This is the constructor of this class
      * @param id
      * @param fname
      * @param lname
@@ -74,9 +74,7 @@ public class ActionLog implements Serializable
      * @return Returns ID.
      */
     public int getId() {
-  
-            return id;
-        
+            return id;       
     }
 
     /**

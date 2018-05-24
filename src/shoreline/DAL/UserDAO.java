@@ -27,7 +27,7 @@ public class UserDAO
     private DataBaseConnector dbConnector;
     
     /**
-     *
+     * This is the constructor of this class.
      */
     public UserDAO()
     {
