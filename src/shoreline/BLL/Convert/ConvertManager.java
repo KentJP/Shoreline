@@ -88,7 +88,12 @@ public class ConvertManager
         return true;
     }
 
-    
+    /**
+     * Saves the task and its configuration to the database.
+     * @param taskName
+     * @param filePath
+     * @param mapConfig 
+     */
     public void saveTask(String taskName, String filePath, List<Configuration> mapConfig) 
     {
         ConversionTask conversionTask = new ConversionTask(taskName, filePath, mapConfig);
@@ -96,11 +101,22 @@ public class ConvertManager
         
     }
 
+    /**
+     * Gets a list of all the tasks from the database.
+     * @return Returns a list of all tasks from the database.
+     */
     public List<ConversionTask> getAllTasks() 
     {
         return convertdao.getAllTasks();
     }
 
+    /**
+     * Chooses the right reader for the specific file.
+     * Can work with:
+     * - xlsx
+     * - csv
+     * @param absolutePath 
+     */
     private void chooseReader(String absolutePath) 
     {
         if(absolutePath.endsWith("xlsx"))

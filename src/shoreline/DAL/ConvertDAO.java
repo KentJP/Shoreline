@@ -46,6 +46,10 @@ public class ConvertDAO {
         }
     }
 
+    /**
+     * Saves the task and its configuration to the database
+     * @param conversionTask 
+     */
     public void saveTask(ConversionTask conversionTask) 
     {
         try(Connection con = dbconnector.getConnection())
@@ -88,6 +92,10 @@ public class ConvertDAO {
 
     }
 
+    /**
+     * Gets a list of all the tasks in the database.
+     * @return Returns a list of all the tasks from the database.
+     */
     public List<ConversionTask> getAllTasks() 
     {
         try(Connection con = dbconnector.getConnection())

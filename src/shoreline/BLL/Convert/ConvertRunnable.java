@@ -38,7 +38,12 @@ public class ConvertRunnable implements Runnable{
         this.dir = dir;
     }
     
-    
+    /**
+     * Extracting the data from the selectedfile
+     * Mapping the data
+     * Creating a JSON file
+     * Writing the mapped data into the JSON file
+     */   
     @Override
     public void run() 
     {
@@ -90,7 +95,13 @@ public class ConvertRunnable implements Runnable{
     
     }
     
-    
+    /**
+     * Chooses the right reader for the specific file.
+     * Can work with:
+     * - xlsx
+     * - csv
+     * @param absolutePath 
+     */
     private void chooseReader(String absolutePath) 
     {
         if(absolutePath.endsWith("xlsx"))
