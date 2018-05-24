@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import shoreline.BE.Configuration;
 import shoreline.BE.ConversionTask;
 import shoreline.BE.MappingDesign;
+import shoreline.DAL.Exeption.DALException;
 
 /**
  *
@@ -32,8 +33,9 @@ public class ConvertDAO {
      
     /**
      * This is the constructor of this class.
+     * @throws shoreline.DAL.Exeption.DALException
      */
-    public ConvertDAO() 
+    public ConvertDAO() throws DALException 
     {
         try 
         {
@@ -41,15 +43,16 @@ public class ConvertDAO {
         } 
         catch (IOException ex) 
         {
-            Logger.getLogger(LogDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DALException(ex.getMessage(), ex);
         }
     }
 
     /**
      * Saves the task and its configuration to the database
      * @param conversionTask 
+     * @throws shoreline.DAL.Exeption.DALException 
      */
-    public void saveTask(ConversionTask conversionTask) 
+    public void saveTask(ConversionTask conversionTask) throws DALException 
     {
         try(Connection con = dbconnector.getConnection())
         {
@@ -86,7 +89,7 @@ public class ConvertDAO {
         }    
         catch (SQLException ex) 
         {
-             Logger.getLogger(ConvertDAO.class.getName()).log(Level.SEVERE, null, ex);
+             throw new DALException(ex.getMessage(), ex);
         }
 
     }
@@ -94,8 +97,9 @@ public class ConvertDAO {
     /**
      * Gets a list of all the tasks in the database.
      * @return Returns a list of all the tasks from the database.
+     * @throws shoreline.DAL.Exeption.DALException
      */
-    public List<ConversionTask> getAllTasks() 
+    public List<ConversionTask> getAllTasks() throws DALException 
     {
         try(Connection con = dbconnector.getConnection())
         {
@@ -141,16 +145,17 @@ public class ConvertDAO {
             
         } catch (SQLException ex) 
         {
-            Logger.getLogger(ConvertDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DALException(ex.getMessage(), ex);
         }
-    return null;    
+   
     }
 
     /**
      * Updating the status of CoversionTask in the database.
      * @param updatedTask 
+     * @throws shoreline.DAL.Exeption.DALException 
      */
-    public void updateTaskStatus(ConversionTask updatedTask) 
+    public void updateTaskStatus(ConversionTask updatedTask) throws DALException 
     {
          try(Connection con = dbconnector.getConnection())
          {
@@ -167,7 +172,7 @@ public class ConvertDAO {
              
          } catch (SQLException ex) 
          {
-            Logger.getLogger(ConvertDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DALException(ex.getMessage(), ex);
         }
         
     }
@@ -175,8 +180,9 @@ public class ConvertDAO {
     /**
      * Saves the map configuration and design to the database. 
      * @param mc
+     * @throws shoreline.DAL.Exeption.DALException
      */
-    public void saveMapConfig(MappingDesign mc) 
+    public void saveMapConfig(MappingDesign mc) throws DALException 
     {
          try(Connection con = dbconnector.getConnection())
          {            
@@ -214,15 +220,16 @@ public class ConvertDAO {
              
          } catch (SQLException ex) 
          {
-            Logger.getLogger(ConvertDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DALException(ex.getMessage(), ex);
         }
     }
 
     /**
      * Get all map designs and configurations from the database.
      * @return Returns a List of MappingDesigns and configurations from the database.
+     * @throws shoreline.DAL.Exeption.DALException
      */
-    public List<MappingDesign> getAllMapDesigns() 
+    public List<MappingDesign> getAllMapDesigns() throws DALException 
     {
         try(Connection con = dbconnector.getConnection())
         {
@@ -266,9 +273,8 @@ public class ConvertDAO {
             
         } catch (SQLException ex) 
         {
-            Logger.getLogger(ConvertDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DALException(ex.getMessage(), ex);
         }
-        return null;
     }
 
 }

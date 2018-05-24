@@ -43,7 +43,7 @@ public class LogViewController implements Initializable {
     @FXML
     private TableColumn<ActionLog, String> actionColumn;
     
-    private Model model = new Model();
+    private Model model; = new Model();
     @FXML
     private JFXTextField searchTxtField;
 

@@ -13,6 +13,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Observable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import shoreline.BE.ActionLog;
@@ -22,8 +24,10 @@ import shoreline.BE.MappingDesign;
 import shoreline.BE.User;
 import shoreline.BLL.Convert.ConvertManager;
 import shoreline.BLL.DirectoryWatcher.WatchManager;
+import shoreline.BLL.Exception.BLLException;
 import shoreline.BLL.LogManager;
 import shoreline.BLL.UserManager;
+import shoreline.GUI.Model.Exception.GUIException;
 
 /**
  *
@@ -32,9 +36,9 @@ import shoreline.BLL.UserManager;
 public class Model
 {
 
-    private UserManager usermanager = new UserManager();
-    private LogManager logmanager = new LogManager();
-    private ConvertManager convertmanager = ConvertManager.getInstance();
+    private UserManager usermanager;
+    private LogManager logmanager;
+    private ConvertManager convertmanager;
     private WatchManager watchmanager = new WatchManager();
 
     private ObservableList<Configuration> headerValues;
@@ -49,27 +53,35 @@ public class Model
      * This is the constructor of this class.
      * It contains several observableArrayLists.
      */
-    public Model()
+    public Model() throws GUIException
     {
-        this.actionLogList = FXCollections.observableArrayList();
-        this.outputHeaderValues = FXCollections.observableArrayList("siteName",
-                "assetSerialNumber",
-                "type",
-                "externalWorkOrderId",
-                "systemStatus",
-                "userStatus",
-                "createdOn",
-                "createdBy",
-                "name",
-                "priority",
-                "status",
-                "latestFinishDate",
-                "earliestStartDate",
-                "latestStartDate",
-                "estimatedTime");
-        this.headerValues = FXCollections.observableArrayList();
-        this.inputHeaderValues = FXCollections.observableArrayList();
-        this.taskList = FXCollections.observableArrayList();
+        try {
+            this.convertmanager = ConvertManager.getInstance();
+            this.logmanager = new LogManager();
+            this.usermanager = new UserManager();
+            this.actionLogList = FXCollections.observableArrayList();
+            this.outputHeaderValues = FXCollections.observableArrayList("siteName",
+                    "assetSerialNumber",
+                    "type",
+                    "externalWorkOrderId",
+                    "systemStatus",
+                    "userStatus",
+                    "createdOn",
+                    "createdBy",
+                    "name",
+                    "priority",
+                    "status",
+                    "latestFinishDate",
+                    "earliestStartDate",
+                    "latestStartDate",
+                    "estimatedTime");
+            this.headerValues = FXCollections.observableArrayList();
+            this.inputHeaderValues = FXCollections.observableArrayList();
+            this.taskList = FXCollections.observableArrayList();
+        } catch (BLLException ex) 
+        {
+            throw new GUIException(ex.getMessage(), ex);
+        }
     }
 
     /**
@@ -77,10 +89,17 @@ public class Model
      *
      * @param selectedFile
      * @return Properties of a selected file
+     * @throws shoreline.GUI.Model.Exception.GUIException
      */
-    public void readProperties(File selectedFile)
+    public void readProperties(File selectedFile) throws GUIException
     {
-        headerValues.setAll(convertmanager.readProperties(selectedFile));
+        try 
+        {
+            headerValues.setAll(convertmanager.readProperties(selectedFile));
+        } catch (BLLException ex) 
+        {
+            throw new GUIException(ex.getMessage(), ex);
+        }
     }
 
     /**
@@ -117,11 +136,17 @@ public class Model
      * Get an ObservableList with actions that the users has made.
      *
      * @return Returns a list of actions that the users has made.
+     * @throws shoreline.GUI.Model.Exception.GUIException
      */
-    public ObservableList<ActionLog> getActionLogList()
+    public ObservableList<ActionLog> getActionLogList() throws GUIException
     {
-        actionLogList.setAll(logmanager.getAllActionLogs());
-        return actionLogList;
+        try {
+            actionLogList.setAll(logmanager.getAllActionLogs());
+            return actionLogList;
+        } catch (BLLException ex) 
+        {
+            throw new GUIException(ex.getMessage(), ex);
+        }
     }
 
     /**
@@ -129,10 +154,16 @@ public class Model
      *
      * @return Returns a list of the saved tasks.
      */
-    public ObservableList<ConversionTask> getAllTasks()
+    public ObservableList<ConversionTask> getAllTasks() throws GUIException
     {
-        taskList.setAll(convertmanager.getAllTasks());
-        return taskList;
+        try 
+        {
+            taskList.setAll(convertmanager.getAllTasks());
+            return taskList;
+        } catch (BLLException ex) 
+        {
+            throw new GUIException(ex.getMessage(), ex);
+        }
     }
 
     /**
@@ -201,10 +232,17 @@ public class Model
      *
      * @param loginInfo
      * @return true if the email is in the database - else return false.
+     * @throws shoreline.GUI.Model.Exception.GUIException
      */
-    public boolean validateLogin(String loginInfo)
+    public boolean validateLogin(String loginInfo) throws GUIException
     {
-        return usermanager.validateLogin(loginInfo);
+        try 
+        {
+            return usermanager.validateLogin(loginInfo);
+        } catch (BLLException ex) 
+        {
+            throw new GUIException(ex.getMessage(), ex);
+        }
     }
 
     /**
@@ -222,23 +260,30 @@ public class Model
      *
      * @param taskName
      * @param filePath
+     * @throws shoreline.GUI.Model.Exception.GUIException
      */
-    public void saveTask(String taskName, String filePath)
+    public void saveTask(String taskName, String filePath) throws GUIException
     {
-        List<Configuration> mapConfig = new ArrayList<>();
-
-        for (String outputValue : outputHeaderValues)
+        try 
         {
-            int index = outputHeaderValues.indexOf(outputValue);
-
-            Configuration con = inputHeaderValues.get(index);
-
-            con.setNewValue(outputValue);
-
-            mapConfig.add(con);
+            List<Configuration> mapConfig = new ArrayList<>();
+            
+            for (String outputValue : outputHeaderValues)
+            {
+                int index = outputHeaderValues.indexOf(outputValue);
+                
+                Configuration con = inputHeaderValues.get(index);
+                
+                con.setNewValue(outputValue);
+                
+                mapConfig.add(con);
+            }
+            
+            convertmanager.saveTask(taskName, filePath, mapConfig);
+        } catch (BLLException ex) 
+        {
+            throw new GUIException(ex.getMessage(), ex);
         }
-
-        convertmanager.saveTask(taskName, filePath, mapConfig);
     }
 
     /**
@@ -261,27 +306,33 @@ public class Model
      * Converts a selectedTask to JSON
      * @param selectedTask
      * @param dir 
+     * @throws shoreline.GUI.Model.Exception.GUIException 
      */
-    public void convertToJSON(ConversionTask selectedTask, String dir)
+    public void convertToJSON(ConversionTask selectedTask, String dir) throws GUIException
     {
-        int taskIndex = taskList.indexOf(selectedTask);
-        ConversionTask updatedTask = taskList.get(taskIndex);
-        updatedTask.changeSatusConverting();
-
-        taskList.set(taskIndex, updatedTask);
-        convertmanager.updateTaskStatus(updatedTask);
-
-        if (convertmanager.convertToJSON(selectedTask, dir))
+        try {
+            int taskIndex = taskList.indexOf(selectedTask);
+            ConversionTask updatedTask = taskList.get(taskIndex);
+            updatedTask.changeSatusConverting();
+            
+            taskList.set(taskIndex, updatedTask);
+            convertmanager.updateTaskStatus(updatedTask);
+            
+            if (convertmanager.convertToJSON(selectedTask, dir))
+            {
+                
+                selectedTask.changeStatusConverted();
+                taskList.set(taskIndex, selectedTask);
+                convertmanager.updateTaskStatus(selectedTask);
+            } else
+            {
+                selectedTask.changeStatusFailed();
+                taskList.set(taskIndex, selectedTask);
+                convertmanager.updateTaskStatus(selectedTask);
+            }
+        } catch (BLLException ex) 
         {
-
-            selectedTask.changeStatusConverted();
-            taskList.set(taskIndex, selectedTask);
-            convertmanager.updateTaskStatus(selectedTask);
-        } else
-        {
-            selectedTask.changeStatusFailed();
-            taskList.set(taskIndex, selectedTask);
-            convertmanager.updateTaskStatus(selectedTask);
+            throw new GUIException(ex.getMessage(), ex);
         }
 
     }
@@ -289,34 +340,46 @@ public class Model
     /**
      * Saves the map configuration to an ArrayList.
      * @param mapConfigName 
+     * @throws shoreline.GUI.Model.Exception.GUIException 
      */
-    public void saveMapConfig(String mapConfigName)
+    public void saveMapConfig(String mapConfigName) throws GUIException
     {
-        List<Configuration> mapConfig = new ArrayList<>();
-
-        for (String outputValue : outputHeaderValues)
+        try {
+            List<Configuration> mapConfig = new ArrayList<>();
+            
+            for (String outputValue : outputHeaderValues)
+            {
+                int index = outputHeaderValues.indexOf(outputValue);
+                
+                Configuration con = inputHeaderValues.get(index);
+                
+                con.setNewValue(outputValue);
+                
+                mapConfig.add(con);
+                
+            }
+            MappingDesign mc = new MappingDesign(mapConfigName, mapConfig);
+            
+            convertmanager.saveMapConfig(mc);
+        } catch (BLLException ex) 
         {
-            int index = outputHeaderValues.indexOf(outputValue);
-
-            Configuration con = inputHeaderValues.get(index);
-
-            con.setNewValue(outputValue);
-
-            mapConfig.add(con);
-
+            throw new GUIException(ex.getMessage(), ex);
         }
-        MappingDesign mc = new MappingDesign(mapConfigName, mapConfig);
-
-        convertmanager.saveMapConfig(mc);
     }
 
     /**
      * Get all map designs and configurations from the database.
      * @return Returns a List of MappingDesigns and configurations from the database.
+     * @throws shoreline.GUI.Model.Exception.GUIException
      */
-    public List<MappingDesign> getAllMapDesigns()
+    public List<MappingDesign> getAllMapDesigns() throws GUIException
     {
-        return convertmanager.getAllMapDesigns();
+        try {
+            return convertmanager.getAllMapDesigns();
+        } catch (BLLException ex) 
+        {
+            throw new GUIException(ex.getMessage(), ex);
+        }
     }
     
     /**
@@ -324,10 +387,16 @@ public class Model
      * @param dir
      * @param name
      * @param selectedMap 
+     * @throws shoreline.GUI.Model.Exception.GUIException 
      */
-    public void createDirectoryWatcher(String dir, String name, MappingDesign selectedMap)
+    public void createDirectoryWatcher(String dir, String name, MappingDesign selectedMap) throws GUIException
     {
-        watchmanager.createDirectoryWatcher(dir, name, selectedMap);
+        try {
+            watchmanager.createDirectoryWatcher(dir, name, selectedMap);
+        } catch (BLLException ex) 
+        {
+            throw new GUIException(ex.getMessage(), ex);
+        }
     }
 
     /**

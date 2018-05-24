@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import org.json.JSONObject;
 import shoreline.BE.ActionLog;
 import shoreline.BE.ConversionTask;
+import shoreline.BLL.Exception.BLLException;
 import shoreline.BLL.LogManager;
 import shoreline.BLL.StrategyFileReader.CSVReader;
 import shoreline.BLL.StrategyFileReader.StrategyFileReader;
@@ -29,17 +30,30 @@ public class ConvertRunnable implements Runnable{
     private ConversionTask conversionTask;
     private String dir;
     private StrategyFileReader fileReader;
-    private LogManager logmanager = new LogManager();
+    private LogManager logmanager; 
+    private List<HashMap> extractedData;
     
     /**
      * This is the constructor of the class.
      * @param conversionTask
      * @param dir
+     * @throws shoreline.BLL.Exception.BLLException
      */
-    public ConvertRunnable(ConversionTask conversionTask, String dir)
+    public ConvertRunnable(ConversionTask conversionTask, String dir) throws BLLException
     {
         this.conversionTask = conversionTask;
         this.dir = dir;
+        chooseReader(conversionTask.getFilePath());
+        try
+        {
+            logmanager = new LogManager();
+            extractedData = fileReader.extractData(conversionTask);
+        }catch (BLLException ex)
+        {
+            throw ex;
+        }
+        
+        
     }
     
     /**
@@ -58,10 +72,9 @@ public class ConvertRunnable implements Runnable{
             
             String fileDir = dir + "\\" + conversionTask.getName().trim()+ ".JSON";
             System.out.println(fileDir);
-            chooseReader(conversionTask.getFilePath());
+            
             if(fileReader != null)
-            {
-                List<HashMap> extractedData = fileReader.extractData(conversionTask);
+            {              
                 JSONObject root = new JSONObject();
               
                 int rowIndex = 1;
@@ -87,15 +100,14 @@ public class ConvertRunnable implements Runnable{
                     
                 } catch (IOException ex) 
                 {
-                    Logger.getLogger(ConvertRunnable.class.getName()).log(Level.SEVERE, null, ex);
-                    
                     ActionLog a = new ActionLog("Failed conversion on Task: " + conversionTask.getName());
                     logmanager.logAction(a);
                 }
+                
             }
             
         
-        
+   
     
     }
     
@@ -106,7 +118,7 @@ public class ConvertRunnable implements Runnable{
      * - csv
      * @param absolutePath 
      */
-    private void chooseReader(String absolutePath) 
+    private void chooseReader(String absolutePath) throws BLLException 
     {
         if(absolutePath.endsWith("xlsx"))
         {
@@ -115,6 +127,14 @@ public class ConvertRunnable implements Runnable{
         {
             fileReader = new CSVReader();
         }
+        else
+        {            
+            ActionLog a = new ActionLog("Failed to convert " + conversionTask.getName() + "due to unsurpported filetype");
+            logmanager.logAction(a);
+            throw new BLLException("Could not convert task " + conversionTask.getName() + "due to an unsurpported filetype");
+
+        }
+        
     }
     
 }

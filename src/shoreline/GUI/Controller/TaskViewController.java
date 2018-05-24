@@ -56,7 +56,7 @@ public class TaskViewController implements Initializable {
         statusColumn.setCellValueFactory(new PropertyValueFactory("status"));
         TaskTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         
-       // setupStatusColumnColor();
+
         configuringDirectoryChooser(directoryChooser);
     }    
 
@@ -92,39 +92,12 @@ public class TaskViewController implements Initializable {
             model.logAciton(al);    
     }
     
-        private void configuringDirectoryChooser(DirectoryChooser directoryChooser) {
-       
-        directoryChooser.setTitle("Select a Directorie");
- 
-       
-        directoryChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-    }
-
-    private void setupStatusColumnColor() 
-    {
-        statusColumn.setCellFactory(column -> {
-            return new TableCell<ConversionTask, String>() {
-                @Override
-                protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-
-                    setText(empty ? "" : getItem().toString());
-                    setGraphic(null);
-
-                    TableRow<ConversionTask> currentRow = getTableRow();
-
-                   if (!isEmpty()) 
-                   {
-                    
-                     if(item.equals("Converted"))
-                        currentRow.setStyle("-fx-background-color:lightgreen");
-                    else if(item.equals("Failed to convert"))
-                        currentRow.setStyle("-fx-background-color:lightred");
-                    
-                }
-            }
-        };
-    });              
-    }
-    
+        private void configuringDirectoryChooser(DirectoryChooser directoryChooser) 
+        {
+            directoryChooser.setTitle("Select a Directorie");
+            directoryChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        }
 }
+
+
+

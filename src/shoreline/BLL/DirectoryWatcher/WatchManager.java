@@ -8,8 +8,11 @@ package shoreline.BLL.DirectoryWatcher;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import shoreline.BE.MappingDesign;
 import shoreline.BLL.Convert.ConvertManager;
+import shoreline.BLL.Exception.BLLException;
 
 /**
  *
@@ -33,10 +36,16 @@ public class WatchManager {
      * @param name
      * @param selectedMap 
      */
-    public void createDirectoryWatcher(String dir, String name, MappingDesign selectedMap) 
+    public void createDirectoryWatcher(String dir, String name, MappingDesign selectedMap) throws BLLException 
     {
-        WatchRunnable wr = new WatchRunnable(dir, name, selectedMap);
-        executor.submit(wr);
+        try 
+        {
+            WatchRunnable wr = new WatchRunnable(dir, name, selectedMap);
+            executor.submit(wr);
+        } catch (BLLException ex) 
+        {
+            throw ex;
+        }
     }
     
     

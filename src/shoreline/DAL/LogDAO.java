@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import shoreline.BE.ActionLog;
+import shoreline.DAL.Exeption.DALException;
 
 /**
  *
@@ -27,8 +28,9 @@ public class LogDAO {
     
     /**
      * This is the constructor of this class.
+     * @throws shoreline.DAL.Exeption.DALException
      */
-    public LogDAO()
+    public LogDAO() throws DALException
     {
         try 
         {
@@ -36,7 +38,7 @@ public class LogDAO {
         } 
         catch (IOException ex) 
         {
-            Logger.getLogger(LogDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DALException(ex.getMessage(), ex);
         }
     }
     
@@ -45,8 +47,9 @@ public class LogDAO {
     /**
      * Logs actions in the database
      * @param log 
+     * @throws shoreline.DAL.Exeption.DALException 
      */
-    public void logAction(ActionLog log) 
+    public void logAction(ActionLog log) throws DALException 
     {
         try(Connection con = dbconnector.getConnection())
         {
@@ -65,15 +68,16 @@ public class LogDAO {
         } 
         catch (SQLException ex) 
         {
-            Logger.getLogger(LogDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DALException(ex.getMessage(), ex);
         }
     }
 
      /**
      * Draw all actions made from the database.
      * @return Returns a list of actions that the users has made.
+     * @throws shoreline.DAL.Exeption.DALException
      */
-    public List<ActionLog> getAllActionLogs() 
+    public List<ActionLog> getAllActionLogs() throws DALException 
     {
         try(Connection con = dbconnector.getConnection())
         {
@@ -104,9 +108,9 @@ public class LogDAO {
         } 
         catch (SQLException ex) 
         {
-            Logger.getLogger(LogDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DALException(ex.getMessage(), ex);
         }
-        return null;
+
     }
     
 }

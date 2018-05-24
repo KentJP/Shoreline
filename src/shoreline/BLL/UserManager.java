@@ -7,6 +7,8 @@ package shoreline.BLL;
 
 import java.sql.SQLException;
 import shoreline.BE.User;
+import shoreline.BLL.Exception.BLLException;
+import shoreline.DAL.Exeption.DALException;
 import shoreline.DAL.UserDAO;
 
 /**
@@ -16,17 +18,39 @@ import shoreline.DAL.UserDAO;
 public class UserManager 
 {
     
-    private UserDAO userdao = new UserDAO();
+    private UserDAO userdao; 
 
+    public UserManager() throws BLLException 
+    {
+        try
+        {
+            userdao = new UserDAO();
+            
+        }catch(DALException ex)
+        {
+            throw new BLLException(ex.getMessage(), ex);
+        }
+        
+    }
+
+    
     /**
      * Validate wheater or not the Email is in the Database.
      * @param loginInfo
      * @return true if the email is in the database - else return false.
+     * @throws shoreline.BLL.Exception.BLLException
      */
-    public boolean validateLogin(String loginInfo) 
+    public boolean validateLogin(String loginInfo) throws BLLException 
     {
-        return userdao.validateLogin(loginInfo);
+        try
+        {
+            return userdao.validateLogin(loginInfo);
+        }catch (DALException ex) 
+        {
+            throw new BLLException(ex.getMessage(), ex);
+        }
     }
+
     
       
         

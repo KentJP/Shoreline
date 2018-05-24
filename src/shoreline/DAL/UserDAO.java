@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import shoreline.BE.CurrentUser;
 import shoreline.BE.User;
+import shoreline.DAL.Exeption.DALException;
 
 /**
  *
@@ -28,8 +29,9 @@ public class UserDAO
     
     /**
      * This is the constructor of this class.
+     * @throws shoreline.DAL.Exeption.DALException
      */
-    public UserDAO()
+    public UserDAO() throws DALException
     {
         try 
         {
@@ -37,7 +39,7 @@ public class UserDAO
         } 
         catch (IOException ex) 
         {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DALException(ex.getMessage(), ex);
         }
     }
     
@@ -46,8 +48,9 @@ public class UserDAO
      * Validate wheater or not the Email is in the Database.
      * @param loginInfo
      * @return true if the email is in the database - else return false.
+     * @throws shoreline.DAL.Exeption.DALException
      */
-    public boolean validateLogin(String loginInfo) 
+    public boolean validateLogin(String loginInfo) throws DALException 
     {
         try(Connection con = dbConnector.getConnection())
         {
@@ -78,10 +81,10 @@ public class UserDAO
                    
             
             
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) 
+        {
+            throw new DALException(ex.getMessage(), ex);
         }
-        return false;
     }
 
 

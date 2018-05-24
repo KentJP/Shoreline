@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import shoreline.BE.Configuration;
 import shoreline.BE.ConversionTask;
+import shoreline.BLL.Exception.BLLException;
 
 /**
  *
@@ -28,9 +29,10 @@ public class CSVReader implements StrategyFileReader {
      * Reading the headers from a CSV file 
      * @param file
      * @return Returns a list of headers
+     * @throws shoreline.BLL.Exception.BLLException
      */
     @Override
-    public List<Configuration> readProperties(File file) {
+    public List<Configuration> readProperties(File file) throws BLLException {
 
         String filePath = file.getAbsolutePath();
         List<Configuration> configList = new ArrayList<>();
@@ -54,10 +56,13 @@ public class CSVReader implements StrategyFileReader {
                 }
             }
 
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(CSVReader.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(CSVReader.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (FileNotFoundException ex) 
+        {
+            throw new BLLException(ex.getMessage(), ex);
+            
+        } catch (IOException ex) 
+        {
+            throw new BLLException(ex.getMessage(), ex);
         }
 
         return configList;
@@ -68,9 +73,10 @@ public class CSVReader implements StrategyFileReader {
      * Extracting data from a file and mapping it in a hashmap.
      * @param task
      * @return Returns a hashmap of extracted data
+     * @throws shoreline.BLL.Exception.BLLException
      */
     @Override
-    public List<HashMap> extractData(ConversionTask task) {
+    public List<HashMap> extractData(ConversionTask task) throws BLLException {
         List<HashMap> extractedData = new ArrayList<>();
 
         List<Configuration> configList = task.getConfigurations();
@@ -118,14 +124,17 @@ public class CSVReader implements StrategyFileReader {
                         
                     } catch (InterruptedException ex1) 
                     {
-                        Logger.getLogger(CSVReader.class.getName()).log(Level.SEVERE, null, ex1);
+                        throw new BLLException(ex1.getMessage(), ex1);
                     }
                 } catch (IOException ex) 
                 {
-                    Logger.getLogger(CSVReader.class.getName()).log(Level.SEVERE, null, ex);
+                    throw new BLLException(ex.getMessage(), ex);
                 }
             }
 
+        }else
+        {
+            throw new BLLException("Could not find the original file fot " + task.getName());
         }
 
         return extractedData;

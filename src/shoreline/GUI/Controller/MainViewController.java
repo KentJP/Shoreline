@@ -46,6 +46,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Callback;
@@ -126,6 +127,7 @@ public class MainViewController implements Initializable {
     private void chooseFileEvent(ActionEvent event) 
     {
         FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().addAll(new ExtensionFilter("CSV Files", ".csv"), new ExtensionFilter("Excel sheet", ".xlsx"));
         currentFile = fc.showOpenDialog(null);
         
         if(currentFile != null)

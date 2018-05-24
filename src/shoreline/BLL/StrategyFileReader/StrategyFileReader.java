@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import shoreline.BE.Configuration;
 import shoreline.BE.ConversionTask;
+import shoreline.BLL.Exception.BLLException;
 
 /**
  *
@@ -23,14 +24,14 @@ public interface StrategyFileReader
      * @param file
      * @return
      */
-    public List<Configuration> readProperties(File file);
+    public List<Configuration> readProperties(File file) throws BLLException;
     
     /**
      *
      * @param task
      * @return
      */
-    public List<HashMap> extractData(ConversionTask task);
+    public List<HashMap> extractData(ConversionTask task) throws BLLException;
             
     
     

@@ -20,18 +20,21 @@ import org.json.JSONObject;
 import shoreline.BE.Configuration;
 import shoreline.BE.ConversionTask;
 import shoreline.BE.MappingDesign;
+import shoreline.BLL.Exception.BLLException;
 import shoreline.BLL.StrategyFileReader.CSVReader;
 
 import shoreline.BLL.StrategyFileReader.StrategyFileReader;
 import shoreline.BLL.StrategyFileReader.XLSXReader;
 import shoreline.DAL.ConvertDAO;
+import shoreline.DAL.Exeption.DALException;
 /**
  *
  * @author Kent Juul
  */
 public class ConvertManager
 {
-        private static ConvertManager convertmanager = new ConvertManager();
+    private static ConvertManager convertmanager;
+    private static boolean isInstansiated = false;
 
     private static final ExecutorService executor = Executors.newSingleThreadExecutor(new ThreadFactory() {
             public Thread newThread(Runnable r) {
@@ -42,18 +45,43 @@ public class ConvertManager
         });
     
     private StrategyFileReader fileReader;
-    private ConvertDAO convertdao = new ConvertDAO();
+    private ConvertDAO convertdao;
     
     
-    private ConvertManager(){}
+    private ConvertManager() throws BLLException
+    {
+        try
+        {
+            this.convertdao = new ConvertDAO();
+                
+        } catch (DALException ex) 
+        {
+            throw new BLLException(ex.getMessage(), ex);
+        }
+    }
     
     /**
      * Gets instance - singleton.
      * @return an instance of convertmanager - singleton.
      */
-    public static ConvertManager getInstance()
+    public static ConvertManager getInstance() throws BLLException
     {
-        return convertmanager;
+        if(!isInstansiated)
+        {
+            try 
+            {
+                convertmanager = new ConvertManager();
+                
+            } catch (BLLException ex) 
+            {
+                throw ex;
+            }
+        }
+        else
+        {
+            return convertmanager;            
+        }
+        return null;
     }
     
     
@@ -62,8 +90,9 @@ public class ConvertManager
    * Reading properties of a selected file
    * @param selectedFile
    * @return Properties of a selected file
+     * @throws shoreline.BLL.Exception.BLLException
    */
-    public List<Configuration> readProperties(File selectedFile) 
+    public List<Configuration> readProperties(File selectedFile) throws BLLException 
     {
         String path = selectedFile.getAbsolutePath();
         String fileExtension = FilenameUtils.getExtension(path);
@@ -82,14 +111,21 @@ public class ConvertManager
      * Starts a thread that starts Converting the selected task to JSON.
      * @param conversionTask
      * @param dir
-     * @return true
+     * @return boolean
+     * @throws shoreline.BLL.Exception.BLLException
      */
-    public boolean convertToJSON(ConversionTask conversionTask, String dir)
+    public boolean convertToJSON(ConversionTask conversionTask, String dir) throws BLLException
     {
         
-        executor.submit(new ConvertRunnable(conversionTask, dir));
-  
-        return true;
+        try 
+        {
+            executor.submit(new ConvertRunnable(conversionTask, dir));    
+            return true;
+            
+        } catch (BLLException ex) 
+        {
+            throw ex;
+        }
     }
 
     /**
@@ -97,21 +133,37 @@ public class ConvertManager
      * @param taskName
      * @param filePath
      * @param mapConfig 
+     * @throws shoreline.BLL.Exception.BLLException 
      */
-    public void saveTask(String taskName, String filePath, List<Configuration> mapConfig) 
+    public void saveTask(String taskName, String filePath, List<Configuration> mapConfig) throws BLLException 
     {
-        ConversionTask conversionTask = new ConversionTask(taskName, filePath, mapConfig);
-        convertdao.saveTask(conversionTask);
+        try 
+        {
+            ConversionTask conversionTask = new ConversionTask(taskName, filePath, mapConfig);
+            convertdao.saveTask(conversionTask);
+            
+        } catch (DALException ex) 
+        {
+            throw new BLLException(ex.getMessage(), ex);
+        }
         
     }
 
     /**
      * Gets a list of all the tasks from the database.
      * @return Returns a list of all tasks from the database.
+     * @throws shoreline.BLL.Exception.BLLException
      */
-    public List<ConversionTask> getAllTasks() 
+    public List<ConversionTask> getAllTasks() throws BLLException 
     {
-        return convertdao.getAllTasks();
+        try 
+        {
+            return convertdao.getAllTasks();
+            
+        } catch (DALException ex) 
+        {
+            throw new BLLException(ex.getMessage(), ex);
+        }
     }
 
     /**
@@ -136,28 +188,49 @@ public class ConvertManager
      * Updating the status of CoversionTask in the database.
      * Either "Completed" or "Failed".
      * @param updatedTask 
+     * @throws shoreline.BLL.Exception.BLLException 
      */
-    public void updateTaskStatus(ConversionTask updatedTask) 
+    public void updateTaskStatus(ConversionTask updatedTask) throws BLLException 
     {
-        convertdao.updateTaskStatus(updatedTask);
+            try 
+            {
+                convertdao.updateTaskStatus(updatedTask);
+            } catch (DALException ex) 
+            {
+                throw new BLLException(ex.getMessage(), ex);
+            }
     }
 
     /**
      * Saves the map configuration and design to the database. 
      * @param mc
+     * @throws shoreline.BLL.Exception.BLLException
      */
-    public void saveMapConfig(MappingDesign mc) 
+    public void saveMapConfig(MappingDesign mc) throws BLLException 
     {
-        convertdao.saveMapConfig(mc);
+            try 
+            {
+                convertdao.saveMapConfig(mc);
+            } catch (DALException ex) 
+            {
+                throw new BLLException(ex.getMessage(), ex);
+            }
     }
 
     /**
      * Get all map designs and configurations from the database.
      * @return Returns a List of MappingDesigns and configurations from the database.
+     * @throws shoreline.BLL.Exception.BLLException
      */
-    public List<MappingDesign> getAllMapDesigns() 
+    public List<MappingDesign> getAllMapDesigns() throws BLLException 
     {
-        return convertdao.getAllMapDesigns();
+            try
+            {
+                return convertdao.getAllMapDesigns();
+            } catch (DALException ex) 
+            {
+                throw new BLLException(ex.getMessage(), ex);
+            }
     }
 
 

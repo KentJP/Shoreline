@@ -20,6 +20,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import shoreline.BE.Configuration;
 import shoreline.BE.ConversionTask;
+import shoreline.BLL.Exception.BLLException;
 
 /**
  *
@@ -31,10 +32,12 @@ public class XLSXReader implements StrategyFileReader {
      * Reading the headers from a XLSX file 
      * @param file
      * @return Returns a list of headers
+     * @throws shoreline.BLL.Exception.BLLException
      */
     @Override
-    public List<Configuration> readProperties(File file) {
-        try {
+    public List<Configuration> readProperties(File file) throws BLLException {
+        try 
+        {
             DataFormatter formatter = new DataFormatter();
             FileInputStream fis = new FileInputStream(file.getAbsolutePath());
             XSSFWorkbook wb = new XSSFWorkbook(fis);
@@ -54,24 +57,28 @@ public class XLSXReader implements StrategyFileReader {
             }
             return configurationList;
 
-        } catch (IOException ex) {
-            Logger.getLogger(XLSXReader.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) 
+        {
+            throw new BLLException(ex.getMessage(), ex);
         }
-        return null;
     }
 
     /**
      * Extracting data from a file and mapping it in a hashmap.
      * @param task
      * @return Returns a hashmap of extracted data
+     * @throws shoreline.BLL.Exception.BLLException
      */
     @Override
-    public List<HashMap> extractData(ConversionTask task){
-        try {
+    public List<HashMap> extractData(ConversionTask task) throws BLLException{
+        try 
+        {
             DataFormatter formatter = new DataFormatter();
             boolean succesFullRead = false;
             File inProcessFile = new File(task.getFilePath());
             FileInputStream fis = null;
+            
+            
             if(inProcessFile.exists())
             {
                 while (!succesFullRead) {
@@ -80,15 +87,17 @@ public class XLSXReader implements StrategyFileReader {
                         fis = new FileInputStream(task.getFilePath());
                         succesFullRead=true;
                     } catch (FileNotFoundException fnf) {
-                        try {
+                        try 
+                        {
                             Thread.sleep(50);
                         } catch (InterruptedException ex) {
-                            Logger.getLogger(XLSXReader.class.getName()).log(Level.SEVERE, null, ex);
+                            throw new BLLException(ex.getMessage(), ex);
                         }
                     }
                 }
             }else
             {
+                throw new BLLException("Could not find the original file for " + task.getName());
             }
             XSSFWorkbook wb = new XSSFWorkbook(fis);
 
@@ -117,10 +126,11 @@ public class XLSXReader implements StrategyFileReader {
 
             }
             return listProperties;
-        } catch (IOException ex) {
-            Logger.getLogger(XLSXReader.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) 
+        {
+            throw new BLLException(ex.getMessage(), ex);
         }
-        return null;
+      
     }
 
 }

@@ -6,7 +6,11 @@
 package shoreline.BLL;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import shoreline.BE.ActionLog;
+import shoreline.BLL.Exception.BLLException;
+import shoreline.DAL.Exeption.DALException;
 import shoreline.DAL.LogDAO;
 
 /**
@@ -15,24 +19,48 @@ import shoreline.DAL.LogDAO;
  */
 public class LogManager {
     
-    private LogDAO logdao = new LogDAO();
+    private LogDAO logdao;
 
+
+    public LogManager() throws BLLException 
+    {        
+        try 
+        {
+            logdao = new LogDAO();
+        } catch (DALException ex) {
+            throw new BLLException(ex.getMessage(), ex);
+        }
+    }
     /**
-     * Logs actions in the database
-     * @param log 
-     */
-    public void logAction(ActionLog log) 
+     * Logs actions in the database 
+     * @param log
+     */ 
+    public void logAction(ActionLog log)
     {
-        logdao.logAction(log);
+        try 
+        {
+            logdao.logAction(log);
+            
+        } catch (DALException ex) 
+        {
+            Logger.getLogger(LogManager.class.getName()).log(Level.INFO, null, ex);
+        } 
     }
 
     /**
      * Get a List with actions that the users has made.
      * @return Returns a list of actions that the users has made.
+     * @throws shoreline.BLL.Exception.BLLException
      */
-    public List<ActionLog> getAllActionLogs() 
+    public List<ActionLog> getAllActionLogs() throws BLLException 
     {
-        return logdao.getAllActionLogs();
+        try {
+            return logdao.getAllActionLogs();
+            
+        } catch (DALException ex) 
+        {
+            throw new BLLException(ex.getMessage(), ex);
+        }
     }
 
 

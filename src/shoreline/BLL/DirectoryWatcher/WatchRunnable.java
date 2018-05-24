@@ -24,6 +24,7 @@ import shoreline.BE.Configuration;
 import shoreline.BE.ConversionTask;
 import shoreline.BE.MappingDesign;
 import shoreline.BLL.Convert.ConvertManager;
+import shoreline.BLL.Exception.BLLException;
 import shoreline.BLL.LogManager;
 
 /**
@@ -32,7 +33,7 @@ import shoreline.BLL.LogManager;
  */
 public class WatchRunnable implements Runnable
 {
-    private ConvertManager convertmanager = ConvertManager.getInstance();
+    private ConvertManager convertmanager ;
     private LogManager logmanager = new LogManager();
     private WatchService watcher;
 
@@ -47,20 +48,25 @@ public class WatchRunnable implements Runnable
      * @param dir
      * @param name
      * @param md
+     * @throws shoreline.BLL.Exception.BLLException
      */
-    public WatchRunnable(String dir, String name, MappingDesign md)
-    {
+    public WatchRunnable(String dir, String name, MappingDesign md) throws BLLException
+    {  
         try 
         {
             this.dir = dir;
             this.md = md;
             this.name = name;
             this.watcher = FileSystems.getDefault().newWatchService();
-            
+            convertmanager = ConvertManager.getInstance();
         } catch (IOException ex) 
         {
-            Logger.getLogger(WatchRunnable.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            throw new BLLException(ex.getMessage(), ex);
+        } catch (BLLException ex) 
+        {
+            throw ex;
+        } 
+        
     }
     
     @Override
@@ -136,10 +142,17 @@ public class WatchRunnable implements Runnable
                     }  
                     key.reset();
                 }
-            } catch (IOException ex) 
+            } catch (IOException ex)  
             {
-                Logger.getLogger(WatchRunnable.class.getName()).log(Level.SEVERE, null, ex);
+                ActionLog a = new ActionLog("an error has occoured on the directory watcher : " + name + " Error; " + ex.getMessage());
+                logmanager.logAction(a);
+                
+            } catch (BLLException ex) 
+            {
+                ActionLog a = new ActionLog("an error has occoured on the directory watcher : " + name + " Error; " + ex.getMessage());
+                logmanager.logAction(a);
             }
+            
         }
         
         
