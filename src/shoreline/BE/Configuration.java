@@ -41,32 +41,59 @@ public class Configuration implements Serializable{
     
     
     
-
+    /**
+     * Gets Index.
+     * @return Returns Index.
+     */
     public int getIndex() {
         return index;
     }
 
+    /**
+     * Sets Index.
+     * @param index 
+     */
     public void setIndex(int index) {
         this.index = index;
     }
 
+    /**
+     * Gets Old Value.
+     * @return Returns Old Value.
+     */
     public String getOldValue() {
         return oldValue;
     }
 
+    /**
+     * Sets Old Value.
+     * @param oldValue 
+     */
     public void setOldValue(String oldValue) {
         this.oldValue = oldValue;
     }
 
+    /**
+     * Gets New Value.
+     * @return Returns New Value.
+     */
     public String getNewValue() {
         return newValue;
     }
 
+    /**
+     * Sets New Value.
+     * @param newValue 
+     */
     public void setNewValue(String newValue) {
         this.newValue = newValue;
     }
     
-    
+    /**
+     * Checks if the Value is a static Value.
+     * @return Returns true if its a static value 
+     * Else false.
+     */
     public boolean isStaticValue()            
     {
         if(oldValue.startsWith("\"") && oldValue.endsWith("\""))
@@ -79,6 +106,9 @@ public class Configuration implements Serializable{
         }
     }
     
+    /**
+     * Removes "\" and "/" from the name of the static value.
+     */
     public void removeStaticIdentifier()
     {
         int nameLength = oldValue.length();

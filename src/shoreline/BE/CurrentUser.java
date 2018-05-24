@@ -32,22 +32,42 @@ public class CurrentUser {
     }
     
 
+    /**
+     * Gets ID.
+     * @return Returns ID. 
+     */
     public static int getId() {
         return id;
     }
 
+    /**
+     * Gets Email.
+     * @return Returns Email.
+     */
     public static String getEmail() {
         return email;
     }
 
+    /**
+     * Gets First Name.
+     * @return Returns First Name.
+     */
     public static String getfName() {
         return fName;
     }
 
+    /**
+     * Gets Last Name.
+     * @return Returns Last Name.
+     */
     public static String getlName() {
         return lName;
     }
     
+    /**
+     * Gets Instance.
+     * @return Returns current user.
+     */
     public static CurrentUser getInstance()
     {
         return currentUser;

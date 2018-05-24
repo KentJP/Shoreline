@@ -27,7 +27,12 @@ public class WatchManager {
 
     
     
-    
+    /**
+     * Create a thread that watches if there is any changes in this new directory. 
+     * @param dir
+     * @param name
+     * @param selectedMap 
+     */
     public void createDirectoryWatcher(String dir, String name, MappingDesign selectedMap) 
     {
         WatchRunnable wr = new WatchRunnable(dir, name, selectedMap);

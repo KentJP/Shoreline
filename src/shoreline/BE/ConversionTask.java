@@ -39,36 +39,65 @@ public class ConversionTask {
         this.status = status;        
     }
 
+    /**
+     * Gets ID.
+     * @return Returns ID.
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Gets Name.
+     * @return Returns Name.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Gets FilePath.
+     * @return Returns FilePath.
+     */
     public String getFilePath() {
         return filePath;
     }
 
+    /**
+     * Gets Status.
+     * @return Returns Status.
+     */
     public String getStatus() {
         return status;
     }
 
+    /**
+     * Gets a List of Configurations.
+     * @return Returns the list of configurations.
+     */
     public List<Configuration> getConfigurations() {
         return configurations;
     }
     
+    /**
+     * Changes Status to "Converted".
+     */
     public void changeStatusConverted()
     {
         this.status = "Converted";
     }
     
+    /**
+     * Changes status to "Failed to convert".
+     */
     public void changeStatusFailed()
     {
         this.status = "Failed to convert";
     }
     
+    /**
+     * Changes status to "Converting...".
+     */
     public void changeSatusConverting()
     {
         this.status = "Converting...";

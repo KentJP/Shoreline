@@ -314,7 +314,13 @@ public class Model
     {
         return convertmanager.getAllMapDesigns();
     }
-
+    
+    /**
+     * Create a thread that watches if there is any changes in this new directory. 
+     * @param dir
+     * @param name
+     * @param selectedMap 
+     */
     public void createDirectoryWatcher(String dir, String name, MappingDesign selectedMap)
     {
         watchmanager.createDirectoryWatcher(dir, name, selectedMap);

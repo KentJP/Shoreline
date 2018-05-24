@@ -28,18 +28,34 @@ public class User implements Serializable{
         
     }
 
+    /**
+     * Gets ID.
+     * @return Returns ID.
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Gets Email.
+     * @return Returns Email.
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * Gets First Name.
+     * @return Returns First Name.
+     */
     public String getfName() {
         return fName;
     }
 
+    /**
+     * Gets Last Name.
+     * @return Returns Last Name.
+     */
     public String getlName() {
         return lName;
     }

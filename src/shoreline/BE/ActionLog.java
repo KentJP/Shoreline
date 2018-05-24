@@ -56,32 +56,60 @@ public class ActionLog implements Serializable
         
     }
 
+    /**
+     * Gets ID.
+     * @return Returns ID.
+     */
     public int getId() {
   
             return id;
         
     }
 
+    /**
+     * Gets First Name.
+     * @return Return First Name.
+     */
     public String getFname() {
         return fname;
     }
 
+    /**
+     * Gets Last Name.
+     * @return Returns Last Name.
+     */
     public String getLname() {
         return lname;
     }
 
+    /**
+     * Gets Email.
+     * @return Returns Email.
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * Gets Date.
+     * @return Returns Date.
+     */
     public String getDate() {
         return date;
     }
 
+    /**
+     * Gets Time.
+     * @return Returns Time.
+     */
     public String getTime() {
         return time;
     }
 
+    /**
+     * Gets Action.
+     * @return Returns Action.
+     */
     public String getAction() {
         return action;
     }

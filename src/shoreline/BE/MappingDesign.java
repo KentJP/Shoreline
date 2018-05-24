@@ -31,18 +31,34 @@ public class MappingDesign {
         this.mapConfig = mapConfig;
     }
 
+    /**
+     * Gets ID.
+     * @return Returns ID.
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Gets Name.
+     * @return Returns Name.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Gets Map Configuration
+     * @return Returns a List of Map Configurations. 
+     */
     public List<Configuration> getMapConfig() {
         return mapConfig;
     }
 
+    /**
+     * Converts to a name to String.
+     * @return Returns Name.
+     */
     @Override
     public String toString() {
         return name;
