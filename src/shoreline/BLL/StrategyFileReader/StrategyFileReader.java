@@ -18,8 +18,18 @@ import shoreline.BE.ConversionTask;
 public interface StrategyFileReader 
 {
     
+    /**
+     *
+     * @param file
+     * @return
+     */
     public List<Configuration> readProperties(File file);
     
+    /**
+     *
+     * @param task
+     * @return
+     */
     public List<HashMap> extractData(ConversionTask task);
             
     

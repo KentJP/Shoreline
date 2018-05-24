@@ -17,19 +17,32 @@ public class Configuration implements Serializable{
     private String oldValue;
     private String newValue;
 
-    
-    
+    /**
+     *
+     * @param oldValue
+     */
     public Configuration(String oldValue) 
     {
         this.oldValue = oldValue;
     }
     
+    /**
+     *
+     * @param index
+     * @param oldValue
+     */
     public Configuration(int index, String oldValue)
     {
         this.index = index;
         this.oldValue = oldValue;
     }
     
+    /**
+     *
+     * @param index
+     * @param oldValue
+     * @param newValue
+     */
     public Configuration(int index, String oldValue, String newValue)
     {
         this.index = index;

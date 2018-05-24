@@ -26,7 +26,9 @@ public class UserDAO
     
     private DataBaseConnector dbConnector;
     
-    
+    /**
+     *
+     */
     public UserDAO()
     {
         try 

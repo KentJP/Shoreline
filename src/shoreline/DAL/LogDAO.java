@@ -25,6 +25,9 @@ public class LogDAO {
 
     DataBaseConnector dbconnector;
     
+    /**
+     *
+     */
     public LogDAO()
     {
         try 

@@ -20,7 +20,12 @@ public class ConversionTask {
     
     private List<Configuration> configurations;
     
-    
+    /**
+     *
+     * @param name
+     * @param filePath
+     * @param configurations
+     */
     public ConversionTask(String name, String filePath, List<Configuration> configurations)
     {
         this.name = name;
@@ -30,6 +35,14 @@ public class ConversionTask {
         
     }
     
+    /**
+     *
+     * @param id
+     * @param name
+     * @param filePath
+     * @param status
+     * @param configurations
+     */
     public ConversionTask(int id, String name, String filePath, String status, List<Configuration> configurations)
     {
         this.id = id;

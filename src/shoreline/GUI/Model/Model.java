@@ -45,6 +45,9 @@ public class Model
 
     private ObservableList<ConversionTask> taskList;
 
+    /**
+     *
+     */
     public Model()
     {
         this.actionLogList = FXCollections.observableArrayList();

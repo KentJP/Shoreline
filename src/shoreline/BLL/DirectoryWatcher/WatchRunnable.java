@@ -42,9 +42,12 @@ public class WatchRunnable implements Runnable
     
     private String[] subFolders = {"Input", "Output",};
     
-    
-    
-    
+    /**
+     *
+     * @param dir
+     * @param name
+     * @param md
+     */
     public WatchRunnable(String dir, String name, MappingDesign md)
     {
         try 

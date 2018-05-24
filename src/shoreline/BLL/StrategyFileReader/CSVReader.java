@@ -24,6 +24,11 @@ import shoreline.BE.ConversionTask;
  */
 public class CSVReader implements StrategyFileReader {
 
+    /**
+     *
+     * @param file
+     * @return Returns a list of configurations
+     */
     @Override
     public List<Configuration> readProperties(File file) {
 
@@ -59,9 +64,13 @@ public class CSVReader implements StrategyFileReader {
 
     }
 
+    /**
+     *
+     * @param task
+     * @return
+     */
     @Override
     public List<HashMap> extractData(ConversionTask task) {
-        System.out.println("JEG ER INDE BOIS");
         List<HashMap> extractedData = new ArrayList<>();
 
         List<Configuration> configList = task.getConfigurations();

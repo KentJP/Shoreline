@@ -23,6 +23,13 @@ public class CurrentUser {
     
     private CurrentUser(){}
     
+    /**
+     *
+     * @param id
+     * @param email
+     * @param fName
+     * @param lName
+     */
     public static void setCurrentUser(int id, String email, String fName, String lName)
     {
         CurrentUser.id = id;

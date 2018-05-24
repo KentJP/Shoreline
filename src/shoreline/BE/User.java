@@ -18,7 +18,13 @@ public class User implements Serializable{
     private String fName;
     private String lName;
     
-    
+    /**
+     *
+     * @param id
+     * @param email
+     * @param fName
+     * @param lName
+     */
     public User(int id, String email, String fName, String lName)
     {
         this.id = id;

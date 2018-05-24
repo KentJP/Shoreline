@@ -31,7 +31,11 @@ public class ConvertRunnable implements Runnable{
     private StrategyFileReader fileReader;
     private LogManager logmanager = new LogManager();
     
-    
+    /**
+     *
+     * @param conversionTask
+     * @param dir
+     */
     public ConvertRunnable(ConversionTask conversionTask, String dir)
     {
         this.conversionTask = conversionTask;

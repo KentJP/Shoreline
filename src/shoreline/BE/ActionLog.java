@@ -33,7 +33,10 @@ public class ActionLog implements Serializable
     private Date currentTime = new Date();
     private DateFormat timeFormat = new SimpleDateFormat("HH:mm");
     
-    
+    /**
+     *
+     * @param action
+     */
     public ActionLog(String action)
     {
         this.fname = CurrentUser.getfName();
@@ -44,6 +47,16 @@ public class ActionLog implements Serializable
         this.action = action;     
     }
     
+    /**
+     *
+     * @param id
+     * @param fname
+     * @param lname
+     * @param email
+     * @param date
+     * @param time
+     * @param action
+     */
     public ActionLog(int id, String fname, String lname, String email, String date, String time, String action)
     {
         this.id = id;

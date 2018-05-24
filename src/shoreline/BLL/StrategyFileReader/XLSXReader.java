@@ -27,6 +27,11 @@ import shoreline.BE.ConversionTask;
  */
 public class XLSXReader implements StrategyFileReader {
 
+    /**
+     *
+     * @param file
+     * @return
+     */
     @Override
     public List<Configuration> readProperties(File file) {
         try {
@@ -55,6 +60,11 @@ public class XLSXReader implements StrategyFileReader {
         return null;
     }
 
+    /**
+     *
+     * @param task
+     * @return
+     */
     @Override
     public List<HashMap> extractData(ConversionTask task){
         try {

@@ -17,13 +17,23 @@ public class MappingDesign {
     private String name;
     private List<Configuration> mapConfig;
     
-    
+    /**
+     *
+     * @param name
+     * @param mapConfig
+     */
     public MappingDesign(String name, List<Configuration> mapConfig)
     {
         this.name = name;
         this.mapConfig = mapConfig;
     }
 
+    /**
+     *
+     * @param id
+     * @param name
+     * @param mapConfig
+     */
     public MappingDesign(int id, String name, List<Configuration> mapConfig) 
     {
         this.id = id;

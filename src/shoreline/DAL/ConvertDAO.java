@@ -30,10 +30,9 @@ public class ConvertDAO {
      
     private boolean wasSuccessfull;
      
-     
-     
-     
-
+    /**
+     *
+     */
     public ConvertDAO() 
     {
         try 
@@ -174,8 +173,8 @@ public class ConvertDAO {
     }
 
     /**
-     * Saves the map configuration and design to the database.
-     * @param mapConfigName 
+     * Saves the map configuration and design to the database. 
+     * @param mc
      */
     public void saveMapConfig(MappingDesign mc) 
     {

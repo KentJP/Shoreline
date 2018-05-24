@@ -47,6 +47,10 @@ public class ConvertManager
     
     private ConvertManager(){}
     
+    /**
+     *
+     * @return
+     */
     public static ConvertManager getInstance()
     {
         return convertmanager;
@@ -139,8 +143,8 @@ public class ConvertManager
     }
 
     /**
-     * Saves the map configuration and design to the database.
-     * @param mapConfigName 
+     * Saves the map configuration and design to the database. 
+     * @param mc
      */
     public void saveMapConfig(MappingDesign mc) 
     {
