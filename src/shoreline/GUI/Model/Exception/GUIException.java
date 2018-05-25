@@ -13,12 +13,20 @@ import shoreline.BLL.Exception.BLLException;
  */
 public class GUIException extends BLLException {
 
-
+    /**
+     *
+     * @param message
+     * @param cause
+     */
     public GUIException(String message, Throwable cause) 
     {
         super(message, cause);
     }
     
+    /**
+     *
+     * @param message
+     */
     public GUIException(String message) 
     {
         super(message);

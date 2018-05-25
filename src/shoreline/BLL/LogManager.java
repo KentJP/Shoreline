@@ -21,7 +21,10 @@ public class LogManager {
     
     private LogDAO logdao;
 
-
+    /**
+     *
+     * @throws BLLException
+     */
     public LogManager() throws BLLException 
     {        
         try 

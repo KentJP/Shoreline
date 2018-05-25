@@ -129,9 +129,9 @@ public class ConvertRunnable implements Runnable{
         }
         else
         {            
-            ActionLog a = new ActionLog("Failed to convert " + conversionTask.getName() + "due to unsurpported filetype");
+            ActionLog a = new ActionLog("Failed to convert " + conversionTask.getName() + ", due to unsurpported filetype");
             logmanager.logAction(a);
-            throw new BLLException("Could not convert task " + conversionTask.getName() + "due to an unsurpported filetype");
+            throw new BLLException("Could not convert task " + conversionTask.getName() + ", due to an unsurpported filetype");
 
         }
         

@@ -18,7 +18,7 @@ public class MappingDesign {
     private List<Configuration> mapConfig;
     
     /**
-     *
+     * This is a constructor of this class.
      * @param name
      * @param mapConfig
      */
@@ -29,7 +29,7 @@ public class MappingDesign {
     }
 
     /**
-     *
+     * This is a constructor of this class.
      * @param id
      * @param name
      * @param mapConfig
@@ -42,7 +42,7 @@ public class MappingDesign {
     }
 
     /**
-     * Gets ID.
+     * Retrieves ID.
      * @return Returns ID.
      */
     public int getId() {
@@ -50,7 +50,7 @@ public class MappingDesign {
     }
 
     /**
-     * Gets Name.
+     * Retrieves Name.
      * @return Returns Name.
      */
     public String getName() {
@@ -58,7 +58,7 @@ public class MappingDesign {
     }
 
     /**
-     * Gets Map Configuration
+     * Retrieves a List of Map Configurations
      * @return Returns a List of Map Configurations. 
      */
     public List<Configuration> getMapConfig() {
@@ -66,7 +66,7 @@ public class MappingDesign {
     }
 
     /**
-     * Converts to a name to String.
+     * Converts a name to String.
      * @return Returns Name.
      */
     @Override

@@ -18,7 +18,7 @@ public class Configuration implements Serializable{
     private String newValue;
 
     /**
-     *
+     * This is a constructor of this class.
      * @param oldValue
      */
     public Configuration(String oldValue) 
@@ -27,7 +27,7 @@ public class Configuration implements Serializable{
     }
     
     /**
-     *
+     * This is a constructor of this class.
      * @param index
      * @param oldValue
      */
@@ -38,7 +38,7 @@ public class Configuration implements Serializable{
     }
     
     /**
-     *
+     * This is a constructor of this class.
      * @param index
      * @param oldValue
      * @param newValue
@@ -55,7 +55,7 @@ public class Configuration implements Serializable{
     
     
     /**
-     * Gets Index.
+     * Retrieves Index.
      * @return Returns Index.
      */
     public int getIndex() {
@@ -63,7 +63,7 @@ public class Configuration implements Serializable{
     }
 
     /**
-     * Sets Index.
+     * Defines Index.
      * @param index 
      */
     public void setIndex(int index) {
@@ -71,7 +71,7 @@ public class Configuration implements Serializable{
     }
 
     /**
-     * Gets Old Value.
+     * Retrieves Old Value.
      * @return Returns Old Value.
      */
     public String getOldValue() {
@@ -79,7 +79,7 @@ public class Configuration implements Serializable{
     }
 
     /**
-     * Sets Old Value.
+     * Defines Old Value.
      * @param oldValue 
      */
     public void setOldValue(String oldValue) {
@@ -87,7 +87,7 @@ public class Configuration implements Serializable{
     }
 
     /**
-     * Gets New Value.
+     * Retrieves New Value.
      * @return Returns New Value.
      */
     public String getNewValue() {
@@ -95,7 +95,7 @@ public class Configuration implements Serializable{
     }
 
     /**
-     * Sets New Value.
+     * Defines New Value.
      * @param newValue 
      */
     public void setNewValue(String newValue) {
@@ -120,7 +120,8 @@ public class Configuration implements Serializable{
     }
     
     /**
-     * Removes "\" and "/" from the name of the static value.
+     * A static value contains \" before and after its name.
+     * This method removes "\" and "/" from the name of a static value.
      */
     public void removeStaticIdentifier()
     {

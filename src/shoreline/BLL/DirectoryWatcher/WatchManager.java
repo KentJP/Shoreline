@@ -35,6 +35,7 @@ public class WatchManager {
      * @param dir
      * @param name
      * @param selectedMap 
+     * @throws shoreline.BLL.Exception.BLLException 
      */
     public void createDirectoryWatcher(String dir, String name, MappingDesign selectedMap) throws BLLException 
     {

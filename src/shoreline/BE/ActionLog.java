@@ -34,7 +34,7 @@ public class ActionLog implements Serializable
     private DateFormat timeFormat = new SimpleDateFormat("HH:mm");
     
     /**
-     * Constructor of ActionLog
+     * Constructor of ActionLog that retrives data from CurrentUser.
      * @param action
      */
     public ActionLog(String action)
@@ -70,7 +70,7 @@ public class ActionLog implements Serializable
     }
 
     /**
-     * Gets ID.
+     * Retrieves ID.
      * @return Returns ID.
      */
     public int getId() {
@@ -78,7 +78,7 @@ public class ActionLog implements Serializable
     }
 
     /**
-     * Gets First Name.
+     * Retrieves First Name.
      * @return Return First Name.
      */
     public String getFname() {
@@ -86,7 +86,7 @@ public class ActionLog implements Serializable
     }
 
     /**
-     * Gets Last Name.
+     * Retrieves Last Name.
      * @return Returns Last Name.
      */
     public String getLname() {
@@ -94,7 +94,7 @@ public class ActionLog implements Serializable
     }
 
     /**
-     * Gets Email.
+     * Retrieves Email.
      * @return Returns Email.
      */
     public String getEmail() {
@@ -102,7 +102,7 @@ public class ActionLog implements Serializable
     }
 
     /**
-     * Gets Date.
+     * Retrieves Date.
      * @return Returns Date.
      */
     public String getDate() {
@@ -110,7 +110,7 @@ public class ActionLog implements Serializable
     }
 
     /**
-     * Gets Time.
+     * Retrieves Time.
      * @return Returns Time.
      */
     public String getTime() {
@@ -118,7 +118,7 @@ public class ActionLog implements Serializable
     }
 
     /**
-     * Gets Action.
+     * Retrieves Action.
      * @return Returns Action.
      */
     public String getAction() {
