@@ -38,7 +38,7 @@ public class LogDAO {
         } 
         catch (IOException ex) 
         {
-            throw new DALException(ex.getMessage(), ex);
+            throw new DALException("Could not connect to the database", ex);
         }
     }
     
@@ -68,7 +68,7 @@ public class LogDAO {
         } 
         catch (SQLException ex) 
         {
-            throw new DALException(ex.getMessage(), ex);
+            throw new DALException("Could not connect to the database", ex);
         }
     }
 
@@ -108,7 +108,7 @@ public class LogDAO {
         } 
         catch (SQLException ex) 
         {
-            throw new DALException(ex.getMessage(), ex);
+            throw new DALException("Could not connect to the database", ex);
         }
 
     }

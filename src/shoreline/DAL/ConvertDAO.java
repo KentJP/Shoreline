@@ -43,7 +43,7 @@ public class ConvertDAO {
         } 
         catch (IOException ex) 
         {
-            throw new DALException(ex.getMessage(), ex);
+            throw new DALException("Could not connect to the database", ex);
         }
     }
 
@@ -89,7 +89,7 @@ public class ConvertDAO {
         }    
         catch (SQLException ex) 
         {
-             throw new DALException(ex.getMessage(), ex);
+             throw new DALException("Could not connect to the database", ex);
         }
 
     }
@@ -145,7 +145,7 @@ public class ConvertDAO {
             
         } catch (SQLException ex) 
         {
-            throw new DALException(ex.getMessage(), ex);
+            throw new DALException("Could not connect to the database", ex);
         }
    
     }
@@ -172,7 +172,7 @@ public class ConvertDAO {
              
          } catch (SQLException ex) 
          {
-            throw new DALException(ex.getMessage(), ex);
+            throw new DALException("Could not connect to the database", ex);
         }
         
     }
@@ -220,7 +220,7 @@ public class ConvertDAO {
              
          } catch (SQLException ex) 
          {
-            throw new DALException(ex.getMessage(), ex);
+            throw new DALException("Could not connect to the database", ex);
         }
     }
 
@@ -273,7 +273,7 @@ public class ConvertDAO {
             
         } catch (SQLException ex) 
         {
-            throw new DALException(ex.getMessage(), ex);
+            throw new DALException("Could not connect to the database", ex);
         }
     }
 

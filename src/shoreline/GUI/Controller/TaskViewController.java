@@ -10,6 +10,8 @@ import com.jfoenix.controls.JFXTreeTableView;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,6 +26,8 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import shoreline.BE.ActionLog;
 import shoreline.BE.ConversionTask;
+import shoreline.GUI.Model.Exception.ExceptionDisplay;
+import shoreline.GUI.Model.Exception.GUIException;
 import shoreline.GUI.Model.Model;
 
 /**
@@ -33,7 +37,7 @@ import shoreline.GUI.Model.Model;
  */
 public class TaskViewController implements Initializable {
 
-    private Model model = new Model();
+    private Model model;
     private final DirectoryChooser directoryChooser = new DirectoryChooser();
     
     @FXML
@@ -51,13 +55,21 @@ public class TaskViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        TaskTableView.setItems(model.getAllTasks());
-        taskNameColumn.setCellValueFactory(new PropertyValueFactory("name"));
-        statusColumn.setCellValueFactory(new PropertyValueFactory("status"));
-        TaskTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        
-
-        configuringDirectoryChooser(directoryChooser);
+        try 
+        {
+            model = new Model();
+            TaskTableView.setItems(model.getAllTasks());
+            taskNameColumn.setCellValueFactory(new PropertyValueFactory("name"));
+            statusColumn.setCellValueFactory(new PropertyValueFactory("status"));
+            TaskTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+            
+            
+            
+            configuringDirectoryChooser(directoryChooser);
+        } catch (GUIException ex) 
+        {
+            ExceptionDisplay.displayException(ex);
+        }
     }    
 
     @FXML
@@ -71,9 +83,15 @@ public class TaskViewController implements Initializable {
                 File file = directoryChooser.showDialog(null);
                 if(file != null)
                 {
-                    String dir = file.getAbsolutePath();
-            
-                    model.convertToJSON(selectedTask, dir);
+                    try 
+                    {
+                        String dir = file.getAbsolutePath();
+                        
+                        model.convertToJSON(selectedTask, dir);
+                    } catch (GUIException ex) 
+                    {
+                        ExceptionDisplay.displayException(ex);
+                    }
                 }
             }
             else

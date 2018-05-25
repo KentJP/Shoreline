@@ -63,6 +63,7 @@ public class ConvertManager
     /**
      * Gets instance - singleton.
      * @return an instance of convertmanager - singleton.
+     * @throws shoreline.BLL.Exception.BLLException
      */
     public static ConvertManager getInstance() throws BLLException
     {
@@ -71,6 +72,7 @@ public class ConvertManager
             try 
             {
                 convertmanager = new ConvertManager();
+                isInstansiated = true;
                 
             } catch (BLLException ex) 
             {

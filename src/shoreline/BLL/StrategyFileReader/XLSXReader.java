@@ -86,12 +86,13 @@ public class XLSXReader implements StrategyFileReader {
                     try {
                         fis = new FileInputStream(task.getFilePath());
                         succesFullRead=true;
-                    } catch (FileNotFoundException fnf) {
+                    } catch (FileNotFoundException fnf) 
+                    {
                         try 
                         {
                             Thread.sleep(50);
                         } catch (InterruptedException ex) {
-                            throw new BLLException(ex.getMessage(), ex);
+                            throw new BLLException("The conversion process has ended due to an error please try again", ex);
                         }
                     }
                 }
@@ -118,6 +119,7 @@ public class XLSXReader implements StrategyFileReader {
 
                         rowValue.put(config.getNewValue(), cellValue);
                     } else {
+                        config.removeStaticIdentifier();
                         rowValue.put(config.getNewValue(), config.getOldValue());
                     }
                 }
@@ -128,7 +130,7 @@ public class XLSXReader implements StrategyFileReader {
             return listProperties;
         } catch (IOException ex) 
         {
-            throw new BLLException(ex.getMessage(), ex);
+            throw new BLLException("Failed to read from file in task " + task.getName(), ex);
         }
       
     }

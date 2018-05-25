@@ -39,7 +39,7 @@ public class UserDAO
         } 
         catch (IOException ex) 
         {
-            throw new DALException(ex.getMessage(), ex);
+            throw new DALException("Could not connect to the database", ex);
         }
     }
     
@@ -83,7 +83,7 @@ public class UserDAO
             
         } catch (SQLException ex) 
         {
-            throw new DALException(ex.getMessage(), ex);
+            throw new DALException("Could not connect to the database", ex);
         }
     }
 
