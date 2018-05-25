@@ -24,7 +24,7 @@ public class CurrentUser {
     private CurrentUser(){}
     
     /**
-     *
+     * This is a constructor of this class.
      * @param id
      * @param email
      * @param fName
@@ -40,7 +40,7 @@ public class CurrentUser {
     
 
     /**
-     * Gets ID.
+     * Retrieves ID.
      * @return Returns ID. 
      */
     public static int getId() {
@@ -48,7 +48,7 @@ public class CurrentUser {
     }
 
     /**
-     * Gets Email.
+     * Retrieves Email.
      * @return Returns Email.
      */
     public static String getEmail() {
@@ -56,7 +56,7 @@ public class CurrentUser {
     }
 
     /**
-     * Gets First Name.
+     * Retrieves First Name.
      * @return Returns First Name.
      */
     public static String getfName() {
@@ -64,7 +64,7 @@ public class CurrentUser {
     }
 
     /**
-     * Gets Last Name.
+     * Retrieves Last Name.
      * @return Returns Last Name.
      */
     public static String getlName() {
@@ -72,7 +72,7 @@ public class CurrentUser {
     }
     
     /**
-     * Gets Instance.
+     * Retrieves Instance.
      * @return Returns current user.
      */
     public static CurrentUser getInstance()

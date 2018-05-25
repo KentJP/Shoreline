@@ -48,6 +48,11 @@ public class ConvertManager
     private ConvertDAO convertdao;
     
     
+    /**
+     * This is the constructor of this class.
+     * Beaware that this constructor is private.
+     * @throws BLLException 
+     */
     private ConvertManager() throws BLLException
     {
         try
@@ -61,8 +66,14 @@ public class ConvertManager
     }
     
     /**
+<<<<<<< HEAD
      * Gets instance - singleton.
      * @return an instance of convertmanager - singleton.
+=======
+     * Singleton - This is class can only be instantiated once.
+     * 
+     * @return Returns a single instatiated object of this class.
+>>>>>>> db3b0f547f390dc744abc536434915f35c72f868
      * @throws shoreline.BLL.Exception.BLLException
      */
     public static ConvertManager getInstance() throws BLLException
@@ -89,7 +100,7 @@ public class ConvertManager
     
     
   /**
-   * Reading properties of a selected file
+   * Reads properties of a selected file into a list.
    * @param selectedFile
    * @return Properties of a selected file
      * @throws shoreline.BLL.Exception.BLLException
@@ -152,7 +163,7 @@ public class ConvertManager
     }
 
     /**
-     * Gets a list of all the tasks from the database.
+     * Retrieves a list of all the tasks from the database.
      * @return Returns a list of all tasks from the database.
      * @throws shoreline.BLL.Exception.BLLException
      */
@@ -220,7 +231,7 @@ public class ConvertManager
     }
 
     /**
-     * Get all map designs and configurations from the database.
+     * Retrieves all map designs and configurations from the database.
      * @return Returns a List of MappingDesigns and configurations from the database.
      * @throws shoreline.BLL.Exception.BLLException
      */

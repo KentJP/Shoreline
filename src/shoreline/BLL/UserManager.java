@@ -20,6 +20,10 @@ public class UserManager
     
     private UserDAO userdao; 
 
+    /**
+     *
+     * @throws BLLException
+     */
     public UserManager() throws BLLException 
     {
         try

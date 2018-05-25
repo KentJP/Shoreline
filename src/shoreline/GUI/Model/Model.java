@@ -52,6 +52,7 @@ public class Model
     /**
      * This is the constructor of this class.
      * It contains several observableArrayLists.
+     * @throws shoreline.GUI.Model.Exception.GUIException
      */
     public Model() throws GUIException
     {
@@ -85,7 +86,7 @@ public class Model
     }
 
     /**
-     * Reading properties of a selected file
+     * Reads properties of a selected file
      *
      * @param selectedFile
      * @return Properties of a selected file
@@ -103,7 +104,7 @@ public class Model
     }
 
     /**
-     * Get an observableList with the current header values.
+     * Retrives an observableList with the current header values.
      *
      * @return Returns an ObservableList with the header values.
      */
@@ -113,7 +114,7 @@ public class Model
     }
 
     /**
-     * Get an ObservableList with predefined values
+     * Retrives an ObservableList with predefined values
      *
      * @return Returns an ObservableList with predefined values.
      */
@@ -123,7 +124,7 @@ public class Model
     }
 
     /**
-     * Get an observableList with the current input header values.
+     * Retrives an observableList with the current input header values.
      *
      * @return Returns an ObservableList with the input header values.
      */
@@ -133,7 +134,7 @@ public class Model
     }
 
     /**
-     * Get an ObservableList with actions that the users has made.
+     * Retrives an ObservableList with actions that the users has made.
      *
      * @return Returns a list of actions that the users has made.
      * @throws shoreline.GUI.Model.Exception.GUIException
@@ -150,9 +151,10 @@ public class Model
     }
 
     /**
-     * Get an ObservableList with all the task that have been saved.
+     * Retrives an ObservableList with all the task that have been saved.
      *
      * @return Returns a list of the saved tasks.
+     * @throws shoreline.GUI.Model.Exception.GUIException
      */
     public ObservableList<ConversionTask> getAllTasks() throws GUIException
     {
@@ -228,7 +230,7 @@ public class Model
     }
 
     /**
-     * Validate wheater or not the Email is in the Database.
+     * Validate whether or not the Email is in the Database.
      *
      * @param loginInfo
      * @return true if the email is in the database - else return false.
@@ -256,7 +258,7 @@ public class Model
     }
 
     /**
-     * Saves a task to an ArrayList
+     * Saves a task to an ArrayList so that its convertable for later.
      *
      * @param taskName
      * @param filePath
@@ -303,7 +305,7 @@ public class Model
     }
     
     /**
-     * Converts a selectedTask to JSON
+     * This method converts a selectedTask to a JSON file
      * @param selectedTask
      * @param dir 
      * @throws shoreline.GUI.Model.Exception.GUIException 
@@ -338,7 +340,7 @@ public class Model
     }
 
     /**
-     * Saves the map configuration to an ArrayList.
+     * Saves the map configuration to an ArrayList so that its convertable for later.
      * @param mapConfigName 
      * @throws shoreline.GUI.Model.Exception.GUIException 
      */
@@ -368,7 +370,7 @@ public class Model
     }
 
     /**
-     * Get all map designs and configurations from the database.
+     * Retrives all map designs and configurations from the database.
      * @return Returns a List of MappingDesigns and configurations from the database.
      * @throws shoreline.GUI.Model.Exception.GUIException
      */

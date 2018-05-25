@@ -21,7 +21,7 @@ public class ConversionTask {
     private List<Configuration> configurations;
     
     /**
-     *
+     * This is a constructor of this class.
      * @param name
      * @param filePath
      * @param configurations
@@ -36,7 +36,7 @@ public class ConversionTask {
     }
     
     /**
-     *
+     * This is a constructor of this class.
      * @param id
      * @param name
      * @param filePath
@@ -53,7 +53,7 @@ public class ConversionTask {
     }
 
     /**
-     * Gets ID.
+     * Retrieves ID.
      * @return Returns ID.
      */
     public int getId() {
@@ -61,7 +61,7 @@ public class ConversionTask {
     }
 
     /**
-     * Gets Name.
+     * Retrieves Name.
      * @return Returns Name.
      */
     public String getName() {
@@ -69,7 +69,7 @@ public class ConversionTask {
     }
 
     /**
-     * Gets FilePath.
+     * Retrieves FilePath.
      * @return Returns FilePath.
      */
     public String getFilePath() {
@@ -77,7 +77,7 @@ public class ConversionTask {
     }
 
     /**
-     * Gets Status.
+     * Retrieves Status.
      * @return Returns Status.
      */
     public String getStatus() {
@@ -85,7 +85,7 @@ public class ConversionTask {
     }
 
     /**
-     * Gets a List of Configurations.
+     * Retrieves a List of Configurations.
      * @return Returns the list of configurations.
      */
     public List<Configuration> getConfigurations() {

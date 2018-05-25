@@ -11,11 +11,21 @@ package shoreline.DAL.Exeption;
  */
 public class DALException extends Exception 
 {
+
+    /**
+     *
+     * @param message
+     * @param cause
+     */
     public DALException(String message, Throwable cause)
     {
         super(message, cause);
     }
     
+    /**
+     *
+     * @param message
+     */
     public DALException(String message)
     {
         super(message);

@@ -23,6 +23,7 @@ public interface StrategyFileReader
      *
      * @param file
      * @return
+     * @throws shoreline.BLL.Exception.BLLException
      */
     public List<Configuration> readProperties(File file) throws BLLException;
     
@@ -30,6 +31,7 @@ public interface StrategyFileReader
      *
      * @param task
      * @return
+     * @throws shoreline.BLL.Exception.BLLException
      */
     public List<HashMap> extractData(ConversionTask task) throws BLLException;
             

@@ -13,11 +13,21 @@ import shoreline.DAL.Exeption.DALException;
  */
 public class BLLException extends Exception 
 {
+
+    /**
+     *
+     * @param message
+     * @param cause
+     */
     public BLLException(String message, Throwable cause)
     {
         super(message, cause);
     }
 
+    /**
+     *
+     * @param message
+     */
     public BLLException(String message) 
     {
         super(message);

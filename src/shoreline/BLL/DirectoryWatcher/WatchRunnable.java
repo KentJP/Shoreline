@@ -70,6 +70,14 @@ public class WatchRunnable implements Runnable
         
     }
     
+    /**
+     * Creates a directory with a given name.
+     * Creates two subfolders with the names "Input" and "Output"
+     * Makes a WatchKey listen to the directory if any changes should occur.
+     * If any xlsx or csv files should enter the input directory,
+     * Then it will create json files in output and add data from a predefined mapping configuration.
+     * 
+     */
     @Override
     public void run() 
     {

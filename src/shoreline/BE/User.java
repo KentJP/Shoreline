@@ -19,7 +19,7 @@ public class User implements Serializable{
     private String lName;
     
     /**
-     *
+     * This is a constructor of this class.
      * @param id
      * @param email
      * @param fName
@@ -35,7 +35,7 @@ public class User implements Serializable{
     }
 
     /**
-     * Gets ID.
+     * Retrieves ID.
      * @return Returns ID.
      */
     public int getId() {
@@ -43,7 +43,7 @@ public class User implements Serializable{
     }
 
     /**
-     * Gets Email.
+     * Retrieves Email.
      * @return Returns Email.
      */
     public String getEmail() {
@@ -51,7 +51,7 @@ public class User implements Serializable{
     }
 
     /**
-     * Gets First Name.
+     * Retrieves First Name.
      * @return Returns First Name.
      */
     public String getfName() {
@@ -59,7 +59,7 @@ public class User implements Serializable{
     }
 
     /**
-     * Gets Last Name.
+     * Retrieves Last Name.
      * @return Returns Last Name.
      */
     public String getlName() {
