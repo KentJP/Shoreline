@@ -65,15 +65,14 @@ public class ConvertManager
         }
     }
     
-    /**
-<<<<<<< HEAD
+   
+    /*
      * Gets instance - singleton.
      * @return an instance of convertmanager - singleton.
-=======
+
      * Singleton - This is class can only be instantiated once.
      * 
      * @return Returns a single instatiated object of this class.
->>>>>>> db3b0f547f390dc744abc536434915f35c72f868
      * @throws shoreline.BLL.Exception.BLLException
      */
     public static ConvertManager getInstance() throws BLLException

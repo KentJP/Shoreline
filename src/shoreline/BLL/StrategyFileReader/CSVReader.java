@@ -45,12 +45,13 @@ public class CSVReader implements StrategyFileReader {
             line = br.readLine();
             {
                 String[] headerRow = line.split(",");
-                for (int i = 0; i < headerRow.length; i++) {
-                    String header = headerRow[i];
+                for (int i = 0; i < headerRow.length; i++) 
+                {
+                    String header = headerRow[i].replaceAll("\"", "");
                     int index = i;
 
                     Configuration c = new Configuration(index, header);
-                    c.removeStaticIdentifier();
+                    
                     configList.add(c);
 
                 }

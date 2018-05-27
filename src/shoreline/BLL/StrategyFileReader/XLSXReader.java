@@ -108,19 +108,23 @@ public class XLSXReader implements StrategyFileReader {
 
             List<HashMap> listProperties = new ArrayList<>();
 
-            for (int i = 1; i < rowLength; i++) {
+            for (int i = 1; i < rowLength; i++) 
+            {
 
                 HashMap<String, String> rowValue = new HashMap<>();
 
-                for (Configuration config : task.getConfigurations()) {
-                    if (!config.isStaticValue()) {
+                for (Configuration config : task.getConfigurations()) 
+                {
+                    if (!config.isStaticValue()) 
+                    {
                         Cell cell = sheet.getRow(i).getCell(config.getIndex());
                         String cellValue = formatter.formatCellValue(cell);
 
                         rowValue.put(config.getNewValue(), cellValue);
-                    } else {
+                    } else 
+                    {
                         config.removeStaticIdentifier();
-                        rowValue.put(config.getNewValue(), config.getOldValue());
+                        rowValue.put(config.getNewValue(), config.removeStaticIdentifier());
                     }
                 }
 

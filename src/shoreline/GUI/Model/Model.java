@@ -61,13 +61,13 @@ public class Model
             this.logmanager = new LogManager();
             this.usermanager = new UserManager();
             this.actionLogList = FXCollections.observableArrayList();
-            this.outputHeaderValues = FXCollections.observableArrayList("siteName",
+            this.outputHeaderValues = FXCollections.observableArrayList(
+                    "siteName",
                     "assetSerialNumber",
                     "type",
                     "externalWorkOrderId",
                     "systemStatus",
                     "userStatus",
-                    "createdOn",
                     "createdBy",
                     "name",
                     "priority",
