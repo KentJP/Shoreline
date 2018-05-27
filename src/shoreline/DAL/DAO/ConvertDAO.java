@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package shoreline.DAL;
+package shoreline.DAL.DAO;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import shoreline.BE.Configuration;
 import shoreline.BE.ConversionTask;
 import shoreline.BE.MappingDesign;
+import shoreline.DAL.DataBaseConnector;
 import shoreline.DAL.Exeption.DALException;
 
 /**

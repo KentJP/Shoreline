@@ -137,7 +137,8 @@ public class WatchRunnable implements Runnable
                             List<Configuration> taskConfig = md.getMapConfig();
                             
                             ConversionTask ct = new ConversionTask(taskName, taskFilePath, taskConfig);
-                            ActionLog a = new ActionLog("Started Automatic Conversion on Task : " + ct.getName());
+                            ActionLog a = new ActionLog("Started Automatic Conversion on Task : "      
+                                                        + ct.getName());
                             logmanager.logAction(a);
                             convertmanager.convertToJSON(ct, directory.getAbsolutePath() + "\\" + "Output");
                             

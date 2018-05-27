@@ -25,8 +25,9 @@ import shoreline.BLL.StrategyFileReader.CSVReader;
 
 import shoreline.BLL.StrategyFileReader.StrategyFileReader;
 import shoreline.BLL.StrategyFileReader.XLSXReader;
-import shoreline.DAL.ConvertDAO;
 import shoreline.DAL.Exeption.DALException;
+import shoreline.DAL.Facade.DalFacade;
+import shoreline.DAL.Facade.DalFacadeDistributor;
 /**
  *
  * @author Kent Juul
@@ -45,7 +46,7 @@ public class ConvertManager
         });
     
     private StrategyFileReader fileReader;
-    private ConvertDAO convertdao;
+    private DalFacade dalfacade;
     
     
     /**
@@ -57,7 +58,7 @@ public class ConvertManager
     {
         try
         {
-            this.convertdao = new ConvertDAO();
+            this.dalfacade = new DalFacadeDistributor();
                 
         } catch (DALException ex) 
         {
@@ -152,7 +153,7 @@ public class ConvertManager
         try 
         {
             ConversionTask conversionTask = new ConversionTask(taskName, filePath, mapConfig);
-            convertdao.saveTask(conversionTask);
+            dalfacade.saveTask(conversionTask);
             
         } catch (DALException ex) 
         {
@@ -170,7 +171,7 @@ public class ConvertManager
     {
         try 
         {
-            return convertdao.getAllTasks();
+            return dalfacade.getAllTasks();
             
         } catch (DALException ex) 
         {
@@ -206,7 +207,7 @@ public class ConvertManager
     {
             try 
             {
-                convertdao.updateTaskStatus(updatedTask);
+                dalfacade.updateTaskStatus(updatedTask);
             } catch (DALException ex) 
             {
                 throw new BLLException(ex.getMessage(), ex);
@@ -222,7 +223,7 @@ public class ConvertManager
     {
             try 
             {
-                convertdao.saveMapConfig(mc);
+                dalfacade.saveMapConfig(mc);
             } catch (DALException ex) 
             {
                 throw new BLLException(ex.getMessage(), ex);
@@ -238,7 +239,7 @@ public class ConvertManager
     {
             try
             {
-                return convertdao.getAllMapDesigns();
+                return dalfacade.getAllMapDesigns();
             } catch (DALException ex) 
             {
                 throw new BLLException(ex.getMessage(), ex);
