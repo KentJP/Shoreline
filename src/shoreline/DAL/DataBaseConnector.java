@@ -39,6 +39,7 @@ public class DataBaseConnector
         
     /**
      * This method gets the connection with the database
+     * @return 
      * @returns dataSource from DataBaseConnector
      * @throws SQLServerException 
      */    

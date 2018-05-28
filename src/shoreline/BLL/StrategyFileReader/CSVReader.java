@@ -26,7 +26,7 @@ import shoreline.BLL.Exception.BLLException;
 public class CSVReader implements StrategyFileReader {
 
     /**
-     * Reading the headers from a CSV file 
+     * Reads the headers from a CSV file 
      * @param file
      * @return Returns a list of headers
      * @throws shoreline.BLL.Exception.BLLException

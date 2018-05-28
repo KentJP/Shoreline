@@ -29,7 +29,7 @@ import shoreline.BLL.Exception.BLLException;
 public class XLSXReader implements StrategyFileReader {
 
     /**
-     * Reading the headers from a XLSX file 
+     * Reads the headers from a XLSX file 
      * @param file
      * @return Returns a list of headers
      * @throws shoreline.BLL.Exception.BLLException

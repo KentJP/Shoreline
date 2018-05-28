@@ -78,6 +78,7 @@ public class ConvertManager
             try 
             {
                 convertmanager = new ConvertManager();
+               
                 
             } catch (BLLException ex) 
             {
@@ -148,10 +149,11 @@ public class ConvertManager
         {
             ConversionTask conversionTask = new ConversionTask(taskName, filePath, mapConfig);
             convertdao.saveTask(conversionTask);
-            
+           
         } catch (DALException ex) 
         {
             throw new BLLException(ex.getMessage(), ex);
+           
         }
         
     }
