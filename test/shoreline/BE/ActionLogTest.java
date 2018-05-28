@@ -5,6 +5,9 @@
  */
 package shoreline.BE;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,6 +20,15 @@ import static org.junit.Assert.*;
  * @author Frederik Tubæk
  */
 public class ActionLogTest {
+    
+    private Date todaysDate = new Date();
+    private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+  
+    
+    private Date currentTime = new Date();
+    private DateFormat timeFormat = new SimpleDateFormat("HH:mm");
+    
+    private ActionLog testLog = new ActionLog("Test Log");
     
     public ActionLogTest() 
     {
@@ -43,57 +55,44 @@ public class ActionLogTest {
     /**
      * Test of getId method, of class ActionLog.
      */
-    @Test
-    public void testGetId() {
-        System.out.println("getId");
-        ActionLog instance = null;
-        int expResult = 0;
-        int result = instance.getId();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
     /**
      * Test of getFname method, of class ActionLog.
      */
     @Test
-    public void testGetFname() {
-        System.out.println("getFname");
-        ActionLog instance = null;
-        String expResult = "";
-        String result = instance.getFname();
+    public void testGetFname() 
+    {
+        String expResult ="Unidentified First name";
+        String result = testLog.getFname();
+        
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
      * Test of getLname method, of class ActionLog.
      */
     @Test
-    public void testGetLname() {
-        System.out.println("getLname");
-        ActionLog instance = null;
-        String expResult = "";
-        String result = instance.getLname();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGetLname() 
+    {
+        String expResult = "Unidentified Last name";
+        String reuslt = testLog.getLname();
+        
+        assertEquals(expResult, reuslt);
+
     }
 
     /**
      * Test of getEmail method, of class ActionLog.
      */
     @Test
-    public void testGetEmail() {
-        System.out.println("getEmail");
-        ActionLog instance = null;
-        String expResult = "";
-        String result = instance.getEmail();
+    public void testGetEmail() 
+    {
+        String expResult = "Unidentified Email";
+        String result = testLog.getEmail();
+        
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -101,13 +100,13 @@ public class ActionLogTest {
      */
     @Test
     public void testGetDate() {
-        System.out.println("getDate");
-        ActionLog instance = null;
-        String expResult = "";
+        ActionLog instance = new ActionLog("Test getDate");
+        
+        String expResult = dateFormat.format(todaysDate);
         String result = instance.getDate();
+        
+        
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -115,27 +114,14 @@ public class ActionLogTest {
      */
     @Test
     public void testGetTime() {
-        System.out.println("getTime");
-        ActionLog instance = null;
-        String expResult = "";
+        ActionLog instance = new ActionLog("Test getTime");
+        
+        String expResult = timeFormat.format(currentTime);
         String result = instance.getTime();
+        
+        
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of getAction method, of class ActionLog.
-     */
-    @Test
-    public void testGetAction() {
-        System.out.println("getAction");
-        ActionLog instance = null;
-        String expResult = "";
-        String result = instance.getAction();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
     
 }

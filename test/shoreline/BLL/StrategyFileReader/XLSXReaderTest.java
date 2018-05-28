@@ -16,6 +16,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import shoreline.BE.Configuration;
 import shoreline.BE.ConversionTask;
+import shoreline.BLL.Exception.BLLException;
 
 /**
  *
@@ -23,7 +24,12 @@ import shoreline.BE.ConversionTask;
  */
 public class XLSXReaderTest {
     
-    public XLSXReaderTest() {
+    private ConversionTask testTask;
+    private File xlsxTestFile = new File("test/shoreline/testDocuments/XLSX_test.xlsx");
+    
+    
+    public XLSXReaderTest() 
+    {
     }
     
     @BeforeClass
@@ -35,7 +41,27 @@ public class XLSXReaderTest {
     }
     
     @Before
-    public void setUp() {
+    public void setUp() 
+    {
+        XLSXReader reader = new XLSXReader();
+        
+        
+        try 
+        {
+            List<Configuration> configurationList = configurationList = reader.readProperties(xlsxTestFile);
+            
+            for (Configuration configuration : configurationList) 
+            {
+                configuration.setNewValue("New Value test");
+            }
+
+            testTask = new ConversionTask(1, "Test Task", xlsxTestFile.getAbsolutePath(), "Ready to Convert", configurationList);
+            
+        } catch (BLLException ex) 
+        {
+            fail("Failed due to connection error");
+        }
+        
     }
     
     @After
@@ -48,28 +74,49 @@ public class XLSXReaderTest {
     @Test
     public void testReadProperties() throws Exception {
         System.out.println("readProperties");
-        File file = null;
+        
         XLSXReader instance = new XLSXReader();
-        List<Configuration> expResult = null;
-        List<Configuration> result = instance.readProperties(file);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        List<Configuration> result = instance.readProperties(xlsxTestFile);
+        
+        for (Configuration configuration : result) 
+        {
+            if(configuration.getIndex() > 10 || configuration.getIndex() < 0)
+            {
+                fail("Index incement failed");
+            }
+            
+        }
+        
+        assertTrue(result.size() == 10);
+        
+        
     }
 
     /**
      * Test of extractData method, of class XLSXReader.
      */
     @Test
-    public void testExtractData() throws Exception {
-        System.out.println("extractData");
-        ConversionTask task = null;
+    public void testExtractData() throws Exception 
+    {
+        ConversionTask task = testTask;
+        
         XLSXReader instance = new XLSXReader();
-        List<HashMap> expResult = null;
+        
         List<HashMap> result = instance.extractData(task);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        assertTrue(result.size() == 5);     
+        
+        int rowLengthStandard = result.get(0).size();
+        
+        for (HashMap hashMap : result) 
+        {
+            if(hashMap.size() != rowLengthStandard)
+            {
+                fail("Not all rows are same length");
+            }
+            
+        }
     }
     
 }

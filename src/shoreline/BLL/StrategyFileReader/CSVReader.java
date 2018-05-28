@@ -44,7 +44,7 @@ public class CSVReader implements StrategyFileReader {
 
             line = br.readLine();
             {
-                String[] headerRow = line.split(",");
+                String[] headerRow = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
                 for (int i = 0; i < headerRow.length; i++) 
                 {
                     String header = headerRow[i].replaceAll("\"", "");
@@ -102,14 +102,12 @@ public class CSVReader implements StrategyFileReader {
                     while ((line = br.readLine()) != null) 
                     {
                         HashMap<String, String> rowData = new HashMap<>();
-                        String[] row = line.split(",");
-
+                        String[] row = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+                        
                         for (Configuration config : configList) 
                         {
                             String cellValue = row[config.getIndex()];
                             String newHeaderValue = config.getNewValue();
-
-                            System.out.println(newHeaderValue + " : " + cellValue);
 
                             rowData.put(newHeaderValue, cellValue.replaceAll("\"", ""));
                         }

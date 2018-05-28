@@ -17,9 +17,9 @@ public class CurrentUser {
     private static CurrentUser currentUser = new CurrentUser();
     
     private static int id;
-    private static String email;
-    private static String fName;
-    private static String lName;
+    private static String email = "Unidentified Email";
+    private static String fName = "Unidentified First name";   
+    private static String lName = "Unidentified Last name";
     
     private CurrentUser(){}
     
