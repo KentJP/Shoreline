@@ -53,6 +53,8 @@ import javafx.util.Callback;
 import shoreline.BE.ActionLog;
 import shoreline.BE.Configuration;
 import shoreline.BE.MappingDesign;
+import shoreline.GUI.Model.Exception.ExceptionDisplay;
+import shoreline.GUI.Model.Exception.GUIException;
 import shoreline.GUI.Model.Model;
 
 /**
@@ -63,7 +65,7 @@ import shoreline.GUI.Model.Model;
 public class MainViewController implements Initializable {
 
     
-    private Model model = new Model();
+    private Model model;
     private File currentFile;
 
     private String selectedHeader;
@@ -109,13 +111,23 @@ public class MainViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) 
-    {
+    { 
+        try 
+        {
+            model = new Model();
+        } catch (GUIException ex) 
+        {
+            ExceptionDisplay.displayException(ex);
+        }
+        
+        
         setListViewCellFactory();
 
         importListView.setItems(model.getCurrentHeaderValues());
         inputListView.setItems(model.getCurrentInputHeaderVaules());
         outputListView.setItems(model.getCurrentOutputHeaderValues());
-
+        
+       
 
         
        
@@ -127,12 +139,18 @@ public class MainViewController implements Initializable {
     private void chooseFileEvent(ActionEvent event) 
     {
         FileChooser fc = new FileChooser();
-        fc.getExtensionFilters().addAll(new ExtensionFilter("CSV Files", ".csv"), new ExtensionFilter("Excel sheet", ".xlsx"));
+        fc.getExtensionFilters().addAll(new ExtensionFilter("CSV Files", "*.csv", "*.xlsx"));
         currentFile = fc.showOpenDialog(null);
         
         if(currentFile != null)
         {
-            model.readProperties(currentFile);
+            try 
+            {
+                model.readProperties(currentFile);
+            } catch (GUIException ex) 
+            {
+                ExceptionDisplay.displayException(ex);
+            }
             
         }
     }
@@ -181,12 +199,18 @@ public class MainViewController implements Initializable {
         
             if(result.isPresent())
             {
-                model.saveTask(result.get(),currentFile.getAbsolutePath()); 
-                ActionLog a = new ActionLog("saved Task: " + result.get());
-                model.logAciton(a);
-          
-                model.clearInput();
-                model.clearImport();
+                try 
+                {
+                    model.saveTask(result.get(),currentFile.getAbsolutePath());
+                    ActionLog a = new ActionLog("saved Task: " + result.get());
+                    model.logAciton(a);
+                    
+                    model.clearInput();
+                    model.clearImport();
+                } catch (GUIException ex) 
+                {
+                    ExceptionDisplay.displayException(ex);
+                }
             }
             
         }else
@@ -286,13 +310,19 @@ public class MainViewController implements Initializable {
         
             if(result.isPresent())
             {
-                model.saveMapConfig(result.get());
-                
-                ActionLog a = new ActionLog("Created new Map Design: " + result.get());
-                model.logAciton(a);
-                
-                model.clearImport();
-                model.clearInput();
+                try 
+                {
+                    model.saveMapConfig(result.get());
+                    
+                    ActionLog a = new ActionLog("Created new Map Design: " + result.get());
+                    model.logAciton(a);
+                    
+                    model.clearImport();
+                    model.clearInput();
+                } catch (GUIException ex) 
+                {
+                    ExceptionDisplay.displayException(ex);
+                }
             }  
         }else
         {
@@ -325,23 +355,29 @@ public class MainViewController implements Initializable {
             if(!textDialogResult.get().isEmpty())
             {
             
-                List<MappingDesign> mapDesigns = model.getAllMapDesigns();
-                  
-                MappingDesign defaultDesign = mapDesigns.get(0);
-                ChoiceDialog<MappingDesign> dialog = new ChoiceDialog<>(defaultDesign, mapDesigns);
-            
-                dialog.setTitle("Select Configuration");
-                dialog.setHeaderText("Select a predifined mapping configuration");
-                dialog.setContentText("Choose your Map configuration:");
-
-                Optional<MappingDesign> result = dialog.showAndWait();
-                if (result.isPresent())
+                try 
                 {
-                    String dir = file.getAbsolutePath();
-                    MappingDesign  selectedMap = result.get();
-                
-                    model.createDirectoryWatcher(dir, textDialog.getResult(), selectedMap);
-               
+                    List<MappingDesign> mapDesigns = model.getAllMapDesigns();
+                    
+                    MappingDesign defaultDesign = mapDesigns.get(0);
+                    ChoiceDialog<MappingDesign> dialog = new ChoiceDialog<>(defaultDesign, mapDesigns);
+                    
+                    dialog.setTitle("Select Configuration");
+                    dialog.setHeaderText("Select a predifined mapping configuration");
+                    dialog.setContentText("Choose your Map configuration:");
+                    
+                    Optional<MappingDesign> result = dialog.showAndWait();
+                    if (result.isPresent())
+                    {
+                        String dir = file.getAbsolutePath();
+                        MappingDesign  selectedMap = result.get();
+                        
+                        model.createDirectoryWatcher(dir, textDialog.getResult(), selectedMap);
+                        
+                    }
+                } catch (GUIException ex) 
+                {
+                    ExceptionDisplay.displayException(ex);
                 }
             }
         }

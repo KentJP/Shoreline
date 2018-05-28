@@ -19,21 +19,21 @@
               <items>
                 <AnchorPane fx:id="naviPane" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
-                        <JFXButton fx:id="importDataBtn" layoutX="36.0" layoutY="23.0" onAction="#chooseFileEvent" prefHeight="50.0" prefWidth="185.0" text="Select Import data" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="60.0">
+                        <JFXButton fx:id="importDataBtn" layoutX="36.0" layoutY="23.0" onAction="#chooseFileEvent" prefHeight="50.0" prefWidth="185.0" text="Select Import data" AnchorPane.leftAnchor="36.0">
                            <font>
                               <Font size="18.0" />
                            </font></JFXButton>
-                        <JFXButton fx:id="viewLogBtn" layoutX="36.0" layoutY="247.0" onAction="#viewLogEvent" prefHeight="50.0" prefWidth="185.0" text="View Log">
+                        <JFXButton fx:id="viewLogBtn" layoutX="36.0" layoutY="247.0" onAction="#viewLogEvent" prefHeight="50.0" prefWidth="185.0" text="View Log" AnchorPane.leftAnchor="36.0">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton fx:id="viewTaskBtn" layoutX="36.0" layoutY="182.0" onAction="#viewTasksEvent" prefHeight="50.0" prefWidth="185.0" text="View Tasks">
+                        <JFXButton fx:id="viewTaskBtn" layoutX="36.0" layoutY="182.0" onAction="#viewTasksEvent" prefHeight="50.0" prefWidth="185.0" text="View Tasks" AnchorPane.leftAnchor="36.0">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton fx:id="AutoConversionBtn" layoutX="36.0" layoutY="118.0" onAction="#SetupAutoConvertEvent" prefHeight="50.0" prefWidth="185.0" text="Setup Automated Conversion" />
+                        <JFXButton fx:id="AutoConversionBtn" layoutX="36.0" layoutY="118.0" onAction="#SetupAutoConvertEvent" prefHeight="50.0" prefWidth="185.0" text="Setup Automated Conversion" AnchorPane.leftAnchor="36.0" />
                      </children>
                   </AnchorPane>
                 <AnchorPane fx:id="importPane" minHeight="0.0" minWidth="0.0" prefHeight="297.0" prefWidth="249.0">
@@ -113,12 +113,12 @@
                   <Font size="18.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="saveMappingBtn" layoutX="543.0" layoutY="67.0" onAction="#saveMappingEvent" prefHeight="50.0" prefWidth="185.0" text="Save Mapping">
+            <JFXButton fx:id="saveMappingBtn" layoutX="543.0" layoutY="67.0" onAction="#saveMappingEvent" prefHeight="50.0" prefWidth="185.0" text="Save Mapping" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="67.0">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="clearAllBtn" layoutX="543.0" layoutY="128.0" onAction="#clearAllEvent" prefHeight="50.0" prefWidth="185.0" text="Clear All">
+            <JFXButton fx:id="clearAllBtn" layoutX="543.0" layoutY="128.0" onAction="#clearAllEvent" prefHeight="50.0" prefWidth="185.0" text="Clear All" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="128.0">
                <font>
                   <Font size="18.0" />
                </font>

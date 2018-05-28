@@ -61,7 +61,8 @@ public class WatchRunnable implements Runnable
             convertmanager = ConvertManager.getInstance();
         } catch (IOException ex) 
         {
-            throw new BLLException(ex.getMessage(), ex);
+            throw new BLLException("Failed to set a Directory Watcher on folder" + name, ex);
+            
         } catch (BLLException ex) 
         {
             throw ex;
@@ -136,9 +137,12 @@ public class WatchRunnable implements Runnable
                             List<Configuration> taskConfig = md.getMapConfig();
                             
                             ConversionTask ct = new ConversionTask(taskName, taskFilePath, taskConfig);
-                            ActionLog a = new ActionLog("Started Automatic Conversion on Task : " + ct.getName());
+                            ActionLog a = new ActionLog("Started Automatic Conversion on Task : "      
+                                                        + ct.getName());
                             logmanager.logAction(a);
                             convertmanager.convertToJSON(ct, directory.getAbsolutePath() + "\\" + "Output");
+                            
+                            
                             
                             
                             

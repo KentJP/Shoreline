@@ -3,11 +3,26 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Daniels%20PC/Desktop/Datamatiker/Assignments%202.%20semester/Eksamensprojekt%20-%20shoreline/Shoreline/src/shoreline/BLL/Convert/ConvertManager.java</file>
             <file>file:/C:/Users/Daniels%20PC/Desktop/Datamatiker/Assignments%202.%20semester/Eksamensprojekt%20-%20shoreline/Shoreline/src/shoreline/BLL/StrategyFileReader/CSVReader.java</file>
             <file>file:/C:/Users/Daniels%20PC/Desktop/Datamatiker/Assignments%202.%20semester/Eksamensprojekt%20-%20shoreline/Shoreline/src/shoreline/BLL/StrategyFileReader/XLSXReader.java</file>
             <file>file:/C:/Users/Daniels%20PC/Desktop/Datamatiker/Assignments%202.%20semester/Eksamensprojekt%20-%20shoreline/Shoreline/src/shoreline/BLL/DirectoryWatcher/WatchRunnable.java</file>
             <file>file:/C:/Users/Daniels%20PC/Desktop/Datamatiker/Assignments%202.%20semester/Eksamensprojekt%20-%20shoreline/Shoreline/src/shoreline/BLL/LogManager.java</file>
+=======
+            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/DAL/DAO/UserDAO.java</file>
+            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/DAL/Facade/DalFacadeDistributor.java</file>
+            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/DAL/DataBaseConnector.java</file>
+            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/BLL/DirectoryWatcher/WatchManager.java</file>
+            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/DAL/DAO/LogDAO.java</file>
+            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/BLL/Convert/ConvertManager.java</file>
+            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/BLL/LogManager.java</file>
+            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/BLL/DirectoryWatcher/WatchRunnable.java</file>
+            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/DAL/Facade/DalFacade.java</file>
+            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/BLL/StrategyFileReader/CSVReader.java</file>
+            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/DAL/DAO/ConvertDAO.java</file>
+            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/BLL/UserManager.java</file>
+>>>>>>> 194e415ecc6d5d59e3812b8a22414ffe514fe229
         </group>
     </open-files>
 </project-private>

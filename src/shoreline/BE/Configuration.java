@@ -123,12 +123,12 @@ public class Configuration implements Serializable{
      * A static value contains \" before and after its name.
      * This method removes "\" and "/" from the name of a static value.
      */
-    public void removeStaticIdentifier()
+    public String removeStaticIdentifier()
     {
         int nameLength = oldValue.length();
         
-        String newOldValue = oldValue.substring(1, nameLength-1);
-        oldValue = newOldValue;
+        String newOldValue = oldValue.replaceAll("\"", "");
+        return newOldValue;
         
     }
     

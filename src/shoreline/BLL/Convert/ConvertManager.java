@@ -25,8 +25,10 @@ import shoreline.BLL.StrategyFileReader.CSVReader;
 
 import shoreline.BLL.StrategyFileReader.StrategyFileReader;
 import shoreline.BLL.StrategyFileReader.XLSXReader;
-import shoreline.DAL.ConvertDAO;
+import shoreline.DAL.DAO.ConvertDAO;
 import shoreline.DAL.Exeption.DALException;
+import shoreline.DAL.Facade.DalFacade;
+import shoreline.DAL.Facade.DalFacadeDistributor;
 /**
  *
  * @author Kent Juul
@@ -34,6 +36,7 @@ import shoreline.DAL.Exeption.DALException;
 public class ConvertManager
 {
     private static ConvertManager convertmanager;
+    private ConvertDAO convertdao;
     private static boolean isInstansiated = false;
 
     private static final ExecutorService executor = Executors.newSingleThreadExecutor(new ThreadFactory() {
@@ -45,7 +48,7 @@ public class ConvertManager
         });
     
     private StrategyFileReader fileReader;
-    private ConvertDAO convertdao;
+    private DalFacade dalfacade;
     
     
     /**
@@ -57,7 +60,7 @@ public class ConvertManager
     {
         try
         {
-            this.convertdao = new ConvertDAO();
+            this.dalfacade = new DalFacadeDistributor();
                 
         } catch (DALException ex) 
         {
@@ -65,7 +68,11 @@ public class ConvertManager
         }
     }
     
-    /**
+   
+    /*
+     * Gets instance - singleton.
+     * @return an instance of convertmanager - singleton.
+
      * Singleton - This is class can only be instantiated once.
      * 
      * @return Returns a single instatiated object of this class.
@@ -78,7 +85,11 @@ public class ConvertManager
             try 
             {
                 convertmanager = new ConvertManager();
+
                
+
+                isInstansiated = true;
+
                 
             } catch (BLLException ex) 
             {
@@ -148,8 +159,13 @@ public class ConvertManager
         try 
         {
             ConversionTask conversionTask = new ConversionTask(taskName, filePath, mapConfig);
+
             convertdao.saveTask(conversionTask);
            
+
+            dalfacade.saveTask(conversionTask);
+            
+
         } catch (DALException ex) 
         {
             throw new BLLException(ex.getMessage(), ex);
@@ -167,7 +183,7 @@ public class ConvertManager
     {
         try 
         {
-            return convertdao.getAllTasks();
+            return dalfacade.getAllTasks();
             
         } catch (DALException ex) 
         {
@@ -203,7 +219,7 @@ public class ConvertManager
     {
             try 
             {
-                convertdao.updateTaskStatus(updatedTask);
+                dalfacade.updateTaskStatus(updatedTask);
             } catch (DALException ex) 
             {
                 throw new BLLException(ex.getMessage(), ex);
@@ -219,7 +235,7 @@ public class ConvertManager
     {
             try 
             {
-                convertdao.saveMapConfig(mc);
+                dalfacade.saveMapConfig(mc);
             } catch (DALException ex) 
             {
                 throw new BLLException(ex.getMessage(), ex);
@@ -235,7 +251,7 @@ public class ConvertManager
     {
             try
             {
-                return convertdao.getAllMapDesigns();
+                return dalfacade.getAllMapDesigns();
             } catch (DALException ex) 
             {
                 throw new BLLException(ex.getMessage(), ex);

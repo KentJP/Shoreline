@@ -9,6 +9,8 @@ import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
@@ -19,6 +21,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import org.apache.poi.hsmf.datatypes.PropertyValue;
 import shoreline.BE.ActionLog;
+import shoreline.GUI.Model.Exception.ExceptionDisplay;
+import shoreline.GUI.Model.Exception.GUIException;
 import shoreline.GUI.Model.Model;
 
 /**
@@ -43,7 +47,7 @@ public class LogViewController implements Initializable {
     @FXML
     private TableColumn<ActionLog, String> actionColumn;
     
-    private Model model; = new Model();
+    private Model model;
     @FXML
     private JFXTextField searchTxtField;
 
@@ -55,17 +59,29 @@ public class LogViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        actionLogTableView.getItems().setAll(model.getActionLogList());
-
-        firstNameColumn.setCellValueFactory(new PropertyValueFactory("fname"));
-        lastNameColumn.setCellValueFactory(new PropertyValueFactory("lname"));
-        emailColumn.setCellValueFactory(new PropertyValueFactory("email"));
-        dateColumn.setCellValueFactory(new PropertyValueFactory("date"));
-        timeColumn.setCellValueFactory(new PropertyValueFactory("time"));
-        actionColumn.setCellValueFactory(new PropertyValueFactory("action"));
-        dateColumn.setSortType(TableColumn.SortType.DESCENDING);
-        actionLogTableView.getSortOrder().add(dateColumn);              
-        
+        try 
+        {
+            
+            model = new Model();
+            actionLogTableView.getItems().setAll(model.getActionLogList());
+            
+            firstNameColumn.setCellValueFactory(new PropertyValueFactory("fname"));
+            lastNameColumn.setCellValueFactory(new PropertyValueFactory("lname"));
+            emailColumn.setCellValueFactory(new PropertyValueFactory("email"));
+            dateColumn.setCellValueFactory(new PropertyValueFactory("date"));
+            timeColumn.setCellValueFactory(new PropertyValueFactory("time"));
+            actionColumn.setCellValueFactory(new PropertyValueFactory("action"));
+            dateColumn.setSortType(TableColumn.SortType.DESCENDING);
+            actionLogTableView.getSortOrder().add(dateColumn);
+            
+          
+            
+           
+            
+        } catch (GUIException ex)
+        {
+            ExceptionDisplay.displayException(ex);        
+        }
       
     }    
 

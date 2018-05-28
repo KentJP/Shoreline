@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,6 +29,8 @@ import shoreline.BE.ActionLog;
 import shoreline.BE.User;
 import shoreline.GUI.Model.Model;
 import org.controlsfx.control.textfield.TextFields;
+import shoreline.GUI.Model.Exception.ExceptionDisplay;
+import shoreline.GUI.Model.Exception.GUIException;
 
 /**
  * FXML Controller class
@@ -52,7 +56,7 @@ public class LoginViewController implements Initializable
     private Label loginErrorLbl;    
   
     
-    private Model model = new Model();
+    private Model model;
 
     
     
@@ -61,6 +65,14 @@ public class LoginViewController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+        try 
+        {
+            model = new Model();
+        } catch (GUIException ex) 
+        {
+            ExceptionDisplay.displayException(ex);
+        }
+        
         loginErrorLbl.setVisible(false);
         imageView.setImage(new Image(getClass().getResourceAsStream("/shoreline/res/shoreline.png")));
         
@@ -73,26 +85,32 @@ public class LoginViewController implements Initializable
     @FXML
     private void submitAction(ActionEvent event) throws IOException, SQLException
     {
-        String loginInfo = userTxtField.getText();
-        
-        if(model.validateLogin(loginInfo))
-        {           
-            Parent root = FXMLLoader.load(getClass().getResource("/shoreline/GUI/View/MainView.fxml"));
-            
-            Scene scene = new Scene(root);
-            scene.getStylesheets().add("/shoreline/res/MainView.css");
-
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
-            stage.setTitle("Shoreline login");
-            
-            Stage closeStage = (Stage) submitBtn.getScene().getWindow();
-            closeStage.close();   
-        }
-        else
+        try 
         {
-            loginErrorLbl.setVisible(true);
+            String loginInfo = userTxtField.getText();
+            
+            if(model.validateLogin(loginInfo))
+            {
+                Parent root = FXMLLoader.load(getClass().getResource("/shoreline/GUI/View/MainView.fxml"));
+                
+                Scene scene = new Scene(root);
+                scene.getStylesheets().add("/shoreline/res/MainView.css");
+                
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.show();
+                stage.setTitle("Shoreline login");
+                
+                Stage closeStage = (Stage) submitBtn.getScene().getWindow();
+                closeStage.close();
+            }
+            else
+            {
+                loginErrorLbl.setVisible(true);
+            }
+        } catch (GUIException ex) 
+        {
+            ExceptionDisplay.displayException(ex);
         }
     }    
 }

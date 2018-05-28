@@ -8,8 +8,12 @@ package shoreline.BLL.Convert;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.JSONObject;
@@ -33,6 +37,9 @@ public class ConvertRunnable implements Runnable{
     private LogManager logmanager; 
     private List<HashMap> extractedData;
     
+    
+    private Date todaysDate = new Date();
+    private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
     /**
      * This is the constructor of the class.
      * @param conversionTask
@@ -78,10 +85,31 @@ public class ConvertRunnable implements Runnable{
                 JSONObject root = new JSONObject();
               
                 int rowIndex = 1;
-                for (HashMap listOfValues : extractedData) 
+                for (HashMap<String, String> listOfValues : extractedData) 
                 { 
-                    JSONObject jsonRow = new JSONObject(listOfValues);
-            
+                    
+                    JSONObject jsonRow = new JSONObject();
+                    JSONObject planning = new JSONObject();
+                    
+                    for (Map.Entry<String, String> entry : listOfValues.entrySet()) 
+                    {
+                        String key = entry.getKey();
+                        String value = entry.getValue();
+                        
+                        
+                        
+                        if(key.equals("latestFinishDate") || key.equals("earliestStartDate") || key.equals("latestStartDate") || key.equals("estimatedTime"))
+                        {
+                            planning.put(key, value);
+                        }else
+                        {
+                            jsonRow.put(key, value);
+                        }                           
+                    }
+                    
+                    jsonRow.put("planning", planning);
+                    jsonRow.put("createdOn", dateFormat.format(todaysDate));
+                               
                     root.put("JSON Object: " + rowIndex  , jsonRow);
                     rowIndex++;
             

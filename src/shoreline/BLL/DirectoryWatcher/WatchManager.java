@@ -8,10 +8,7 @@ package shoreline.BLL.DirectoryWatcher;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import shoreline.BE.MappingDesign;
-import shoreline.BLL.Convert.ConvertManager;
 import shoreline.BLL.Exception.BLLException;
 
 /**

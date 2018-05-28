@@ -11,7 +11,8 @@ import java.util.logging.Logger;
 import shoreline.BE.ActionLog;
 import shoreline.BLL.Exception.BLLException;
 import shoreline.DAL.Exeption.DALException;
-import shoreline.DAL.LogDAO;
+import shoreline.DAL.Facade.DalFacade;
+import shoreline.DAL.Facade.DalFacadeDistributor;
 
 /**
  *
@@ -19,7 +20,7 @@ import shoreline.DAL.LogDAO;
  */
 public class LogManager {
     
-    private LogDAO logdao;
+    private DalFacade dalfacade;
 
     /**
      *
@@ -29,8 +30,9 @@ public class LogManager {
     {        
         try 
         {
-            logdao = new LogDAO();
-        } catch (DALException ex) {
+            dalfacade = new DalFacadeDistributor();
+        } catch (DALException ex) 
+        {
             throw new BLLException(ex.getMessage(), ex);
         }
     }
@@ -42,7 +44,7 @@ public class LogManager {
     {
         try 
         {
-            logdao.logAction(log);
+            dalfacade.logAction(log);
             
         } catch (DALException ex) 
         {
@@ -58,7 +60,7 @@ public class LogManager {
     public List<ActionLog> getAllActionLogs() throws BLLException 
     {
         try {
-            return logdao.getAllActionLogs();
+            return dalfacade.getAllActionLogs();
             
         } catch (DALException ex) 
         {

@@ -45,12 +45,13 @@ public class CSVReader implements StrategyFileReader {
             line = br.readLine();
             {
                 String[] headerRow = line.split(",");
-                for (int i = 0; i < headerRow.length; i++) {
-                    String header = headerRow[i];
+                for (int i = 0; i < headerRow.length; i++) 
+                {
+                    String header = headerRow[i].replaceAll("\"", "");
                     int index = i;
 
                     Configuration c = new Configuration(index, header);
-                    c.removeStaticIdentifier();
+                    
                     configList.add(c);
 
                 }
@@ -124,17 +125,17 @@ public class CSVReader implements StrategyFileReader {
                         
                     } catch (InterruptedException ex1) 
                     {
-                        throw new BLLException(ex1.getMessage(), ex1);
+                        throw new BLLException("The conversion process has ended due to an error please try again", ex1);
                     }
                 } catch (IOException ex) 
                 {
-                    throw new BLLException(ex.getMessage(), ex);
+                    throw new BLLException("Failed to read from file in task " + task.getName(), ex);
                 }
             }
 
         }else
         {
-            throw new BLLException("Could not find the original file fot " + task.getName());
+            throw new BLLException("Could not find the original file " + task.getName());
         }
 
         return extractedData;

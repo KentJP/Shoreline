@@ -5,11 +5,12 @@
  */
 package shoreline.BLL;
 
-import java.sql.SQLException;
-import shoreline.BE.User;
+
 import shoreline.BLL.Exception.BLLException;
 import shoreline.DAL.Exeption.DALException;
-import shoreline.DAL.UserDAO;
+import shoreline.DAL.Facade.DalFacade;
+import shoreline.DAL.Facade.DalFacadeDistributor;
+
 
 /**
  *
@@ -18,7 +19,7 @@ import shoreline.DAL.UserDAO;
 public class UserManager 
 {
     
-    private UserDAO userdao; 
+    private DalFacade dalfacade; 
 
     /**
      *
@@ -28,7 +29,7 @@ public class UserManager
     {
         try
         {
-            userdao = new UserDAO();
+            dalfacade = new DalFacadeDistributor();
             
         }catch(DALException ex)
         {
@@ -48,7 +49,7 @@ public class UserManager
     {
         try
         {
-            return userdao.validateLogin(loginInfo);
+            return dalfacade.validateLogin(loginInfo);
         }catch (DALException ex) 
         {
             throw new BLLException(ex.getMessage(), ex);
