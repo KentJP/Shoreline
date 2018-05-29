@@ -79,8 +79,7 @@ public class WatchRunnable implements Runnable
      * 
      */
     @Override
-    public void run() 
-    {
+    public void run()  {
         File directory = new File(dir + "\\" +name);
         
         if(!directory.exists())
@@ -97,8 +96,7 @@ public class WatchRunnable implements Runnable
                     {
                         subDirectory.mkdir();
                     }
-                }
-                
+                }             
                 Path path = Paths.get(directory.getAbsolutePath() + "\\" + "Input");
                 path.register(watcher, StandardWatchEventKinds.ENTRY_CREATE);
                 
@@ -107,7 +105,6 @@ public class WatchRunnable implements Runnable
                     WatchKey key;
                     try 
                     {
-                        // wait for a key to be available
                         key = watcher.take();
                     } catch (InterruptedException ex) 
                     {
@@ -116,20 +113,13 @@ public class WatchRunnable implements Runnable
  
                     for (WatchEvent<?> event : key.pollEvents()) 
                     {
-                        // get event type
                         WatchEvent.Kind<?> kind = event.kind();
  
-                        // get file name
                         @SuppressWarnings("unchecked")
                         WatchEvent<Path> ev = (WatchEvent<Path>) event;
                         Path fileName = ev.context();
- 
-                        System.out.println(kind.name() + ": " + fileName);
- 
-                        if (kind == StandardWatchEventKinds.OVERFLOW) 
-                        {
-                          continue;
-                        } else if (kind == StandardWatchEventKinds.ENTRY_CREATE) 
+  
+                       if (kind == StandardWatchEventKinds.ENTRY_CREATE) 
                         {
                            
                             String taskFilePath = directory.getAbsolutePath() + "\\" + "Input" + "\\" + fileName; 
@@ -137,20 +127,16 @@ public class WatchRunnable implements Runnable
                             List<Configuration> taskConfig = md.getMapConfig();
                             
                             ConversionTask ct = new ConversionTask(taskName, taskFilePath, taskConfig);
-                            ActionLog a = new ActionLog("Started Automatic Conversion on Task : "      
-                                                        + ct.getName());
+                           
+                            ActionLog a = new ActionLog("Started Automatic Conversion on Task : " + ct.getName());
                             logmanager.logAction(a);
                             convertmanager.convertToJSON(ct, directory.getAbsolutePath() + "\\" + "Output");
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-            
- 
                         } 
+                       else if (kind == StandardWatchEventKinds.OVERFLOW) 
+                        {
+                          continue;
+                        } 
+  
                     }  
                     key.reset();
                 }
@@ -165,6 +151,10 @@ public class WatchRunnable implements Runnable
                 logmanager.logAction(a);
             }
             
+        } else
+        {
+            ActionLog a = new ActionLog("Failed to create new Directory as another directory with the same name already exists");
+            logmanager.logAction(a);
         }
         
         

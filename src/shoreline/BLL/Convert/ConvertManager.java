@@ -76,6 +76,13 @@ public class ConvertManager
      * @return Returns a single instatiated object of this class.
      * @throws shoreline.BLL.Exception.BLLException
      */
+
+    /**
+     *
+     * @return
+     * @throws BLLException
+     */
+
     public static ConvertManager getInstance() throws BLLException
     {
         if(!isInstansiated)

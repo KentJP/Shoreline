@@ -16,14 +16,14 @@ import shoreline.DAL.Facade.DalFacadeDistributor;
 
 /**
  *
- * @author Frederik Tubæk
+ * @author Daniel Saaby
  */
 public class LogManager {
     
     private DalFacade dalfacade;
 
     /**
-     *
+     * This is the constructor of this class.
      * @throws BLLException
      */
     public LogManager() throws BLLException 

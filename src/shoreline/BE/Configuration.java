@@ -107,6 +107,7 @@ public class Configuration implements Serializable{
     /**
      * A static value contains \" before and after its name.
      * This method removes "\" and "/" from the name of a static value.
+     * @return 
      */
     public String removeStaticIdentifier()
     {

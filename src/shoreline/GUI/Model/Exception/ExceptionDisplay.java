@@ -15,6 +15,10 @@ import javafx.scene.control.Alert.AlertType;
 public class ExceptionDisplay 
 {
     
+    /**
+     * Shows an error message to the user.
+     * @param ex
+     */
     public static void displayException(GUIException ex)
     {
         Alert alert = new Alert(AlertType.ERROR);
