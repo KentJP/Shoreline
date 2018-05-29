@@ -19,14 +19,10 @@ public class ConversionTask {
     private String status;
     
     private List<Configuration> configurations;
+
     
-    /**
-     * This is a constructor of this class.
-     * @param name
-     * @param filePath
-     * @param configurations
-     */
-    public ConversionTask(String name, String filePath, List<Configuration> configurations)
+    public ConversionTask(String name, String filePath, 
+                        List<Configuration> configurations)
     {
         this.name = name;
         this.filePath = filePath;
@@ -35,15 +31,9 @@ public class ConversionTask {
         
     }
     
-    /**
-     * This is a constructor of this class.
-     * @param id
-     * @param name
-     * @param filePath
-     * @param status
-     * @param configurations
-     */
-    public ConversionTask(int id, String name, String filePath, String status, List<Configuration> configurations)
+
+    public ConversionTask(int id, String name, String filePath, 
+                    String status, List<Configuration> configurations)
     {
         this.id = id;
         this.name = name;

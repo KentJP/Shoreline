@@ -17,32 +17,17 @@ public class Configuration implements Serializable{
     private String oldValue;
     private String newValue;
 
-    /**
-     * This is a constructor of this class.
-     * @param oldValue
-     */
     public Configuration(String oldValue) 
     {
         this.oldValue = oldValue;
     }
-    
-    /**
-     * This is a constructor of this class.
-     * @param index
-     * @param oldValue
-     */
+
     public Configuration(int index, String oldValue)
     {
         this.index = index;
         this.oldValue = oldValue;
     }
-    
-    /**
-     * This is a constructor of this class.
-     * @param index
-     * @param oldValue
-     * @param newValue
-     */
+
     public Configuration(int index, String oldValue, String newValue)
     {
         this.index = index;
