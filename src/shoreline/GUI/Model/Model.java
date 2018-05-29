@@ -89,7 +89,6 @@ public class Model
      * Reads properties of a selected file
      *
      * @param selectedFile
-     * @return Properties of a selected file
      * @throws shoreline.GUI.Model.Exception.GUIException
      */
     public void readProperties(File selectedFile) throws GUIException

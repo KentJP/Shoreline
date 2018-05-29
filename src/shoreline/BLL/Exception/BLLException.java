@@ -15,7 +15,7 @@ public class BLLException extends Exception
 {
 
     /**
-     *
+     * Throws an exception message in BLL.
      * @param message
      * @param cause
      */
@@ -25,7 +25,7 @@ public class BLLException extends Exception
     }
 
     /**
-     *
+     * Contains a exception message in BLL.
      * @param message
      */
     public BLLException(String message) 

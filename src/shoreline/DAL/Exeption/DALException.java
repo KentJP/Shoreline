@@ -13,7 +13,7 @@ public class DALException extends Exception
 {
 
     /**
-     *
+     * Throws an exception message in BLL.
      * @param message
      * @param cause
      */
@@ -23,7 +23,7 @@ public class DALException extends Exception
     }
     
     /**
-     *
+     * Contains a exception message in BLL.
      * @param message
      */
     public DALException(String message)
