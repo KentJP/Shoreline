@@ -99,7 +99,7 @@ public class LoginViewController implements Initializable
                 Stage stage = new Stage();
                 stage.setScene(scene);
                 stage.show();
-                stage.setTitle("Shoreline login");
+                stage.setTitle("Shoreline conversion");
                 
                 Stage closeStage = (Stage) submitBtn.getScene().getWindow();
                 closeStage.close();

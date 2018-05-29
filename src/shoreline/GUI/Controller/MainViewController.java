@@ -239,7 +239,7 @@ public class MainViewController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
-            stage.setTitle("Shoreline login");
+            stage.setTitle("Shoreline log");
         } catch (IOException ex) 
         {
             Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
@@ -286,7 +286,7 @@ public class MainViewController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
-            stage.setTitle("Shoreline login");
+            stage.setTitle("Shoreline task view");
             
         } catch (IOException ex) 
         {
