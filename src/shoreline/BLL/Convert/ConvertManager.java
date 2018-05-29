@@ -25,7 +25,6 @@ import shoreline.BLL.StrategyFileReader.CSVReader;
 
 import shoreline.BLL.StrategyFileReader.StrategyFileReader;
 import shoreline.BLL.StrategyFileReader.XLSXReader;
-import shoreline.DAL.DAO.ConvertDAO;
 import shoreline.DAL.Exeption.DALException;
 import shoreline.DAL.Facade.DalFacade;
 import shoreline.DAL.Facade.DalFacadeDistributor;
@@ -36,7 +35,6 @@ import shoreline.DAL.Facade.DalFacadeDistributor;
 public class ConvertManager
 {
     private static ConvertManager convertmanager;
-    private ConvertDAO convertdao;
     private static boolean isInstansiated = false;
 
     private static final ExecutorService executor = Executors.newSingleThreadExecutor(new ThreadFactory() {
@@ -158,11 +156,7 @@ public class ConvertManager
     {
         try 
         {
-            ConversionTask conversionTask = new ConversionTask(taskName, filePath, mapConfig);
-
-            convertdao.saveTask(conversionTask);
-           
-
+            ConversionTask conversionTask = new ConversionTask(taskName, filePath, mapConfig);           
             dalfacade.saveTask(conversionTask);
             
 

@@ -115,6 +115,7 @@ public class MainViewController implements Initializable {
         try 
         {
             model = new Model();
+            
         } catch (GUIException ex) 
         {
             ExceptionDisplay.displayException(ex);
@@ -201,6 +202,8 @@ public class MainViewController implements Initializable {
             {
                 try 
                 {
+                    System.out.println(result.get());
+                    System.out.println(currentFile.getAbsolutePath());
                     model.saveTask(result.get(),currentFile.getAbsolutePath());
                     ActionLog a = new ActionLog("saved Task: " + result.get());
                     model.logAciton(a);
