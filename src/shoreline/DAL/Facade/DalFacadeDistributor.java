@@ -48,7 +48,7 @@ public class DalFacadeDistributor implements DalFacade
     }
 
     /**
-     * Gets a list of all the tasks in the database.
+     * Retrieves a list of all the tasks in the database.
      * @return Returns a list of all the tasks from the database.
      * @throws shoreline.DAL.Exeption.DALException
      */
@@ -103,7 +103,7 @@ public class DalFacadeDistributor implements DalFacade
     }
 
     /**
-     * Draw all actions made from the database.
+     * Retrieves all actions made from the database.
      * @return Returns a list of actions that the users has made.
      * @throws shoreline.DAL.Exeption.DALException
      */

@@ -5,7 +5,7 @@
  */
 package shoreline.BLL.Exception;
 
-import shoreline.DAL.Exeption.DALException;
+
 
 /**
  *

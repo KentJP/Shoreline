@@ -13,8 +13,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import shoreline.BE.Configuration;
 import shoreline.BE.ConversionTask;
 import shoreline.BE.MappingDesign;
@@ -29,9 +27,7 @@ public class ConvertDAO {
     
      
     DataBaseConnector dbconnector;
-     
-    private boolean wasSuccessfull;
-     
+          
     /**
      * This is the constructor of this class.
      * @throws shoreline.DAL.Exeption.DALException

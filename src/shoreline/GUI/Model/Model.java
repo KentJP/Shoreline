@@ -6,22 +6,15 @@
 package shoreline.GUI.Model;
 
 import java.io.File;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Observable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import shoreline.BE.ActionLog;
 import shoreline.BE.Configuration;
 import shoreline.BE.ConversionTask;
 import shoreline.BE.MappingDesign;
-import shoreline.BE.User;
 import shoreline.BLL.Convert.ConvertManager;
 import shoreline.BLL.DirectoryWatcher.WatchManager;
 import shoreline.BLL.Exception.BLLException;

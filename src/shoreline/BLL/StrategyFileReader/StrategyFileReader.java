@@ -20,17 +20,17 @@ public interface StrategyFileReader
 {
     
     /**
-     *
+     * Reads the headers from a CSV file 
      * @param file
-     * @return
+     * @return Returns a list of headers
      * @throws shoreline.BLL.Exception.BLLException
      */
     public List<Configuration> readProperties(File file) throws BLLException;
     
     /**
-     *
+     * Extracting data from a file and mapping it in a hashmap.
      * @param task
-     * @return
+     * @return Returns a hashmap of extracted data
      * @throws shoreline.BLL.Exception.BLLException
      */
     public List<HashMap> extractData(ConversionTask task) throws BLLException;

@@ -24,7 +24,7 @@ public class CurrentUser {
     private CurrentUser(){}
     
     /**
-     * This is a constructor of this class.
+     * Sets the current user information.
      * @param id
      * @param email
      * @param fName

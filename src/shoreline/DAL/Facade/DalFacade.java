@@ -60,7 +60,7 @@ public interface DalFacade {
     public void logAction(ActionLog log) throws DALException;
     
     /**
-     * Draw all actions made from the database.
+     * Retrieves all actions made from the database.
      * @return Returns a list of actions that the users has made.
      * @throws shoreline.DAL.Exeption.DALException
      */

@@ -34,7 +34,7 @@ public class ActionLog implements Serializable
     private DateFormat timeFormat = new SimpleDateFormat("HH:mm");
     
     /**
-     * Constructor of ActionLog that retrives data from CurrentUser.
+     * This is a constructor of this class.
      * @param action
      */
     public ActionLog(String action)
@@ -48,7 +48,7 @@ public class ActionLog implements Serializable
     }
     
     /**
-     * This is the constructor of this class
+     * This is a constructor of this class.
      * @param id
      * @param fname
      * @param lname

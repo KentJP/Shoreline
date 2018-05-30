@@ -22,7 +22,7 @@ public class UserManager
     private DalFacade dalfacade; 
 
     /**
-     *
+     * This is a constructor of this class.
      * @throws BLLException
      */
     public UserManager() throws BLLException 

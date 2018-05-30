@@ -18,7 +18,7 @@ public class MappingDesign {
     private List<Configuration> mapConfig;
     
     /**
-     * This is a constructor of this class.
+     * This is a constructor of this class
      * @param name
      * @param mapConfig
      */
@@ -29,7 +29,7 @@ public class MappingDesign {
     }
 
     /**
-     * This is a constructor of this class.
+     * This is a constructor of this class
      * @param id
      * @param name
      * @param mapConfig

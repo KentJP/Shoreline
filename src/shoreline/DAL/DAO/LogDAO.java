@@ -13,8 +13,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import shoreline.BE.ActionLog;
 import shoreline.DAL.DataBaseConnector;
 import shoreline.DAL.Exeption.DALException;
@@ -74,7 +72,7 @@ public class LogDAO {
     }
 
      /**
-     * Draw all actions made from the database.
+     * Retrieves all actions made from the database.
      * @return Returns a list of actions that the users has made.
      * @throws shoreline.DAL.Exeption.DALException
      */

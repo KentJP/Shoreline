@@ -5,7 +5,6 @@
  */
 package shoreline.BLL.Convert;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -14,8 +13,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.json.JSONObject;
 import shoreline.BE.ActionLog;
 import shoreline.BE.ConversionTask;
@@ -40,6 +37,7 @@ public class ConvertRunnable implements Runnable{
     
     private Date todaysDate = new Date();
     private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+    
     /**
      * This is the constructor of the class.
      * @param conversionTask

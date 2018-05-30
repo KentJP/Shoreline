@@ -5,25 +5,18 @@
  */
 package shoreline.GUI.Controller;
 
-import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXTreeTableView;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.DirectoryChooser;
-import javafx.stage.FileChooser;
 import shoreline.BE.ActionLog;
 import shoreline.BE.ConversionTask;
 import shoreline.GUI.Model.Exception.ExceptionDisplay;

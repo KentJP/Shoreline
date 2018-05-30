@@ -6,17 +6,11 @@
 package shoreline.BLL.Convert;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.apache.commons.io.FilenameUtils;
-import org.json.JSONObject;
 import shoreline.BE.Configuration;
 import shoreline.BE.ConversionTask;
 import shoreline.BE.MappingDesign;
@@ -71,18 +65,11 @@ public class ConvertManager
      * Gets instance - singleton.
      * @return an instance of convertmanager - singleton.
 
-     * Singleton - This is class can only be instantiated once.
+     * Singleton - This class can only be instantiated once.
      * 
      * @return Returns a single instatiated object of this class.
      * @throws shoreline.BLL.Exception.BLLException
      */
-
-    /**
-     *
-     * @return
-     * @throws BLLException
-     */
-
     public static ConvertManager getInstance() throws BLLException
     {
         if(!isInstansiated)
