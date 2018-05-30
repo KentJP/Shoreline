@@ -14,7 +14,7 @@ import shoreline.BLL.Exception.BLLException;
 public class GUIException extends BLLException {
 
     /**
-     * Throws an exception message in BLL.
+     * Wraps an exception from GUI with a message and a cause.
      * @param message
      * @param cause
      */
@@ -24,7 +24,7 @@ public class GUIException extends BLLException {
     }
     
     /**
-     * Contains a exception message in BLL.
+     * Wraps an exception from GUI with message.
      * @param message
      */
     public GUIException(String message) 
