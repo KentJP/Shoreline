@@ -37,7 +37,8 @@ public class CSVReader implements StrategyFileReader {
         String line = "";
         BufferedReader br = null;
 
-        try {
+        try 
+        {
             br = new BufferedReader(new FileReader(filePath));
 
             line = br.readLine();
@@ -57,11 +58,11 @@ public class CSVReader implements StrategyFileReader {
 
         } catch (FileNotFoundException ex) 
         {
-            throw new BLLException(ex.getMessage(), ex);
+            throw new BLLException("Could not find the file " + file.getName(), ex);
             
         } catch (IOException ex) 
         {
-            throw new BLLException(ex.getMessage(), ex);
+            throw new BLLException("Failed to read from file " + file.getName(), ex);
         }
 
         return configList;

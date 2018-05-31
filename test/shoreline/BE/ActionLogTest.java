@@ -22,8 +22,7 @@ import static org.junit.Assert.*;
 public class ActionLogTest {
     
     private Date todaysDate = new Date();
-    private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-  
+    private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd"); 
     
     private Date currentTime = new Date();
     private DateFormat timeFormat = new SimpleDateFormat("HH:mm");

@@ -23,7 +23,7 @@ public class ExceptionDisplay
     {
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Error");
-        alert.setHeaderText("An Error has Occoured");
+        alert.setHeaderText("An Error has Occurred");
         alert.setContentText(ex.getMessage());
 
         alert.showAndWait();

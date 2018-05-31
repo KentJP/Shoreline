@@ -34,10 +34,9 @@ public class ConvertRunnable implements Runnable{
     private LogManager logmanager; 
     private List<HashMap> extractedData;
     
-    
     private Date todaysDate = new Date();
     private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-    
+        
     /**
      * This is the constructor of the class.
      * @param conversionTask
@@ -121,6 +120,9 @@ public class ConvertRunnable implements Runnable{
      
                     System.out.println("ended conversion on " + conversionTask.getName());
                     
+                    conversionTask.changeStatusConverted();
+                    
+                    
                     ActionLog a = new ActionLog("Successfully converted Task: " + conversionTask.getName());
                     logmanager.logAction(a);
                     
@@ -162,5 +164,6 @@ public class ConvertRunnable implements Runnable{
         }
         
     }
+    
     
 }

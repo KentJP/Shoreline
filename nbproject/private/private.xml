@@ -3,31 +3,37 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/Daniels%20PC/Desktop/Datamatiker/Assignments%202.%20semester/Eksamensprojekt%20-%20shoreline/Shoreline/src/shoreline/GUI/Model/Exception/GUIException.java</file>
-            <file>file:/C:/Users/Daniels%20PC/Desktop/Datamatiker/Assignments%202.%20semester/Eksamensprojekt%20-%20shoreline/Shoreline/src/shoreline/BLL/Exception/BLLException.java</file>
-            <file>file:/C:/Users/Daniels%20PC/Desktop/Datamatiker/Assignments%202.%20semester/Eksamensprojekt%20-%20shoreline/Shoreline/src/shoreline/DAL/Exeption/DALException.java</file>
-=======
-<<<<<<< HEAD
-            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/GUI/Model/Model.java</file>
-            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/test/shoreline/BLL/StrategyFileReader/XLSXReaderTest.java</file>
-            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/BLL/Convert/ConvertRunnable.java</file>
-            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/BLL/Convert/ConvertManager.java</file>
-            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/DAL/Exeption/DALException.java</file>
-            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/test/shoreline/BLL/StrategyFileReader/CSVReaderTest.java</file>
-            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/GUI/Controller/MainViewController.java</file>
-            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/BLL/LogManager.java</file>
-            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/Main.java</file>
-            <file>file:/C:/Users/Frederik%20Tubæk/Documents/GitHub/Shoreline/src/shoreline/BLL/UserManager.java</file>
-=======
-            <file>file:/C:/Users/Daniels%20PC/Desktop/Datamatiker/Assignments%202.%20semester/Eksamensprojekt%20-%20shoreline/Shoreline/src/shoreline/BLL/Convert/ConvertManager.java</file>
-            <file>file:/C:/Users/Daniels%20PC/Desktop/Datamatiker/Assignments%202.%20semester/Eksamensprojekt%20-%20shoreline/Shoreline/src/shoreline/BLL/StrategyFileReader/CSVReader.java</file>
-            <file>file:/C:/Users/Daniels%20PC/Desktop/Datamatiker/Assignments%202.%20semester/Eksamensprojekt%20-%20shoreline/Shoreline/src/shoreline/BLL/StrategyFileReader/XLSXReader.java</file>
-            <file>file:/C:/Users/Daniels%20PC/Desktop/Datamatiker/Assignments%202.%20semester/Eksamensprojekt%20-%20shoreline/Shoreline/src/shoreline/GUI/Controller/MainViewController.java</file>
-            <file>file:/C:/Users/Daniels%20PC/Desktop/Datamatiker/Assignments%202.%20semester/Eksamensprojekt%20-%20shoreline/Shoreline/src/shoreline/BLL/DirectoryWatcher/WatchRunnable.java</file>
-            <file>file:/C:/Users/Daniels%20PC/Desktop/Datamatiker/Assignments%202.%20semester/Eksamensprojekt%20-%20shoreline/Shoreline/src/shoreline/BLL/LogManager.java</file>
->>>>>>> 5c4baaec267e779564f59f2b51ce7dcb610ed645
->>>>>>> 41436ad9b86a3538d592683778e5a4208cddb4f3
+            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/BLL/Convert/ConvertRunnable.java</file>
+            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/DAL/DataBaseConnector.java</file>
+            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/DAL/Exeption/DALException.java</file>
+            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/BLL/Exception/BLLException.java</file>
+            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/BLL/LogManager.java</file>
+            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/BLL/StrategyFileReader/XLSXReader.java</file>
+            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/DAL/Facade/DalFacade.java</file>
+            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/BE/MappingDesign.java</file>
+            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/BLL/Convert/ConvertManager.java</file>
+            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/GUI/Controller/TaskViewController.java</file>
+            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/BE/Configuration.java</file>
+            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/GUI/Controller/LoginViewController.java</file>
+            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/DAL/DAO/LogDAO.java</file>
+            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/Main.java</file>
+            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/BLL/UserManager.java</file>
+            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/BLL/DirectoryWatcher/WatchRunnable.java</file>
+            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/BLL/StrategyFileReader/CSVReader.java</file>
+            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/BE/ActionLog.java</file>
+            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/test/shoreline/BLL/StrategyFileReader/XLSXReaderTest.java</file>
+            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/GUI/Controller/LogViewController.java</file>
+            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/GUI/Model/Exception/ExceptionDisplay.java</file>
+            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/BE/ConversionTask.java</file>
+            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/BLL/DirectoryWatcher/WatchManager.java</file>
+            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/GUI/Controller/MainViewController.java</file>
+            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/test/shoreline/BE/ActionLogTest.java</file>
+            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/DAL/Facade/DalFacadeDistributor.java</file>
+            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/DAL/DAO/UserDAO.java</file>
+            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/DAL/DAO/ConvertDAO.java</file>
+            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/GUI/Model/Exception/GUIException.java</file>
+            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/src/shoreline/BLL/StrategyFileReader/StrategyFileReader.java</file>
+            <file>file:/C:/Users/frederik/Documents/GitHub/Shoreline/test/shoreline/BLL/StrategyFileReader/CSVReaderTest.java</file>
         </group>
     </open-files>
 </project-private>

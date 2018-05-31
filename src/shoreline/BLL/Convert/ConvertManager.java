@@ -130,7 +130,9 @@ public class ConvertManager
         
         try 
         {
-            executor.submit(new ConvertRunnable(conversionTask, dir));    
+            ConvertRunnable cr = new ConvertRunnable(conversionTask, dir);
+            executor.submit(cr);
+         
             return true;
             
         } catch (BLLException ex) 
