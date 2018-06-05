@@ -80,7 +80,7 @@
                   </AnchorPane>
               </items>
             </SplitPane>
-            <JFXButton fx:id="moveDownBtn" layoutX="315.0" layoutY="158.0" onAction="#moveInputDown" prefHeight="41.0" prefWidth="37.0" text=" ">
+            <JFXButton fx:id="moveDownBtn" layoutX="328.0" layoutY="159.0" onAction="#moveInputDown" prefHeight="41.0" prefWidth="37.0" text=" ">
                <graphic>
                   <FontAwesomeIconView glyphName="ARROW_DOWN" size="30" wrappingWidth="21.85714340209961" />
                </graphic>
@@ -93,7 +93,7 @@
                      </stops>
                   </LinearGradient>
                </ripplerFill></JFXButton>
-            <JFXButton fx:id="moveUpBtn" layoutX="269.0" layoutY="158.0" onAction="#moveInputUp" prefHeight="41.0" prefWidth="37.0" text=" ">
+            <JFXButton fx:id="moveUpBtn" layoutX="289.0" layoutY="159.0" onAction="#moveInputUp" prefHeight="41.0" prefWidth="37.0" text=" ">
                <graphic>
                   <FontAwesomeIconView glyphName="ARROW_UP" size="30" wrappingWidth="21.85714340209961" />
                </graphic>
@@ -123,7 +123,7 @@
                   <Font size="18.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="197.0" layoutY="158.0" onAction="#removeInputEvent" prefHeight="40.0" prefWidth="59.0" text="Remove">
+            <JFXButton layoutX="208.0" layoutY="160.0" onAction="#removeInputEvent" prefHeight="40.0" prefWidth="81.0" text="Remove">
                <ripplerFill>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -133,8 +133,8 @@
                   </LinearGradient>
                </ripplerFill>
             </JFXButton>
-            <JFXTextField fx:id="staticValueTxtField" layoutY="159.0" prefHeight="40.0" prefWidth="144.0" promptText="Insert Static Value Here" />
-            <JFXButton layoutX="159.0" layoutY="158.0" onAction="#addStaticValueEvent" prefHeight="40.0" prefWidth="38.0" text="Add">
+            <JFXTextField fx:id="staticValueTxtField" layoutY="159.0" prefHeight="40.0" prefWidth="144.0" promptText="Insert Static Value " />
+            <JFXButton layoutX="147.0" layoutY="158.0" onAction="#addStaticValueEvent" prefHeight="40.0" prefWidth="50.0" text="Add">
                <ripplerFill>
                   <LinearGradient endX="1.0" endY="1.0" proportional="false">
                      <stops>

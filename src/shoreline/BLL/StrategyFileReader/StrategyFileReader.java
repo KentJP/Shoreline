@@ -20,7 +20,7 @@ public interface StrategyFileReader
 {
     
     /**
-     * Reads the headers from a CSV file 
+     * Reads the headers from a selected file 
      * @param file
      * @return Returns a list of headers
      * @throws shoreline.BLL.Exception.BLLException

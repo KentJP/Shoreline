@@ -44,6 +44,7 @@ public class CSVReader implements StrategyFileReader {
             line = br.readLine();
             {
                 String[] headerRow = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+                
                 for (int i = 0; i < headerRow.length; i++) 
                 {
                     String header = headerRow[i].replaceAll("\"", "");
